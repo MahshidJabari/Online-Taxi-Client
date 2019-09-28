@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">digipeyk</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="back">بازگشت</string>
+    <string name="archive">آرشیو فعالیت ها</string>
+    <string name="credit">افزایش اعتبار</string>
+    <string name="pay">پرداخت</string>
+    <string name="your_credit">اعتبار شما</string>
+    <string name="toman">تومان</string>
+    <string name="increase_credit_toman">افزایش اعتبار به تومان</string>
+
+</resources>
