@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTop"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="73dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineBottom"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineLeft"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineRight"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/back_thirty_radius_white"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintHeight_percent="0.8"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintLeft_toLeftOf="@id/guidelineLeft"
+        app:layout_constraintRight_toRightOf="@id/guidelineRight"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop">
+
+        <TextView
+            android:id="@+id/et_header"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/back_thirty_radius_blue"
+            android:gravity="center"
+            android:text="@string/signin_client"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineMiddleHeader"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <LinearLayout
+            android:id="@+id/curveTop"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/blue"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineUnderHeader"
+            app:layout_constraintTop_toBottomOf="@id/guidelineMiddleHeader">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/curve_shape_white"
+                android:scaleX="-1"
+                android:scaleY="-1">
+
+            </View>
+
+        </LinearLayout>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineUnderHeader"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2" />
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/middle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:layoutDirection="rtl"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/guidelineUnderHeader">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/inner_guidelineRight"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/inner_guidelineLeft"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9" />
+
+
+            <EditText
+                android:id="@+id/et_phoneNum"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@android:color/transparent"
+                android:drawableRight="@drawable/ic_phone_black_24dp"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:hint="شماره تلفن همراه"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color01"
+                android:textSize="15sp"
+                app:layout_constraintHeight_percent="0.15"
+                app:layout_constraintLeft_toLeftOf="@id/inner_guidelineLeft"
+                app:layout_constraintRight_toRightOf="@id/inner_guidelineRight"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@color/color01"
+                app:layout_constraintLeft_toLeftOf="@id/inner_guidelineLeft"
+                app:layout_constraintRight_toRightOf="@id/inner_guidelineRight"
+                app:layout_constraintTop_toBottomOf="@id/et_phoneNum" />
+
+            <Space
+                android:id="@+id/space"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.15"
+                app:layout_constraintLeft_toLeftOf="@id/inner_guidelineLeft"
+                app:layout_constraintRight_toRightOf="@id/inner_guidelineRight"
+                app:layout_constraintTop_toBottomOf="@id/view1" />
+
+            <LinearLayout
+                android:id="@+id/lin1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back_fifty_radius_blue"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="@id/inner_guidelineLeft"
+                app:layout_constraintRight_toRightOf="@id/inner_guidelineRight"
+                app:layout_constraintTop_toBottomOf="@id/space"
+                app:layout_constraintWidth_percent="0.6">
+
+                <Button
+                    android:id="@+id/btn_send"
+                    style="@style/title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue"
+                    android:text="@string/give_code" />
+
+                <ProgressBar
+                    android:id="@+id/pbLoading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="top"
+                    android:indeterminateDrawable="@drawable/progress"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+            <Space
+                android:id="@+id/space2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintLeft_toLeftOf="@id/inner_guidelineLeft"
+                app:layout_constraintRight_toRightOf="@id/inner_guidelineRight"
+                app:layout_constraintTop_toBottomOf="@id/lin1" />
+
+            <EditText
+                android:id="@+id/et_validationcode"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@android:color/transparent"
+                android:drawableRight="@drawable/ic_lock_outline_black_24dp"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:hint="شماره تلفن همراه"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color01"
+                android:textSize="15sp"
+                app:layout_constraintHeight_percent="0.15"
+                app:layout_constraintLeft_toLeftOf="@id/inner_guidelineLeft"
+                app:layout_constraintRight_toRightOf="@id/inner_guidelineRight"
+                app:layout_constraintTop_toBottomOf="@id/space2" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@color/color01"
+                android:paddingTop="5dp"
+                app:layout_constraintLeft_toLeftOf="@id/inner_guidelineLeft"
+                app:layout_constraintRight_toRightOf="@id/inner_guidelineRight"
+                app:layout_constraintTop_toBottomOf="@id/et_validationcode" />
+
+            <Space
+                android:id="@+id/space3"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.08"
+                app:layout_constraintLeft_toLeftOf="@id/inner_guidelineLeft"
+                app:layout_constraintRight_toRightOf="@id/inner_guidelineRight"
+                app:layout_constraintTop_toBottomOf="@id/view2" />
+
+            <CheckBox
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layoutDirection="rtl"
+                android:text="تمامی قوانین و مقررات سفیران را می پذیرم"
+                android:textColor="#000"
+                android:textDirection="rtl"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintLeft_toLeftOf="@id/inner_guidelineLeft"
+                app:layout_constraintRight_toRightOf="@id/inner_guidelineRight"
+                app:layout_constraintTop_toBottomOf="@id/space3" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <!--|||||||||||||||||||||||||||||||||||||||||||||||||-->
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_floatingBtn_right"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_floatingBtn_left"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_floatingBtn_top"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_floatingBtn_bottom"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_weight="0.2"
+            android:elevation="20dp"
+            android:src="@drawable/ic_tick"
+            app:backgroundTint="@color/green"
+            app:layout_constraintTop_toTopOf="@id/guideline_floatingBtn_top"
+            app:layout_constraintBottom_toTopOf="@id/guideline_floatingBtn_bottom"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+
+        <!--|||||||||||||||||||||||||||||||||||||||||||||||||-->
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_bottom"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/tv_bottom"
+            app:layout_constraintTop_toBottomOf="@id/guideline_bottom">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/curve_shape_dark_blue"
+                android:scaleX="-1"
+                android:scaleY="-1">
+
+            </View>
+
+        </LinearLayout>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_aboveHeader"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <TextView
+            android:id="@+id/tv_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/radius_dark_blue"
+            android:gravity="center_horizontal"
+            android:text="@string/signin"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
