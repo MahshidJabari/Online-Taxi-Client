@@ -1,5 +1,6 @@
 package com.jabari.client.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,73 +9,71 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jabari.client.R;
-import com.jabari.client.entities.Item;
-import com.jabari.client.entities.Location;
+import com.jabari.client.activity.SearchActivity;
+import com.jabari.client.network.model.Item;
+import com.jabari.client.network.model.Location;
 
 import org.neshan.core.LngLat;
 
 import java.util.List;
 
+public class SearchAdapter extends
+        RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
+    private Context context;
+    private RecyclerView recyclerView;
+    private List<Item> resultList;
+    private SearchActivity.IOnSearchItemListener iOnSearchItemListener;
 
-
-    private List<Item> items;
-    private OnSearchItemListener onSearchItemListener;
-
-    public SearchAdapter(List<Item> items , OnSearchItemListener onSearchItemListener) {
-        this.items = items;
-        this.onSearchItemListener = onSearchItemListener;
+    public SearchAdapter(Context context, RecyclerView recyclerView, List<Item> list, SearchActivity.IOnSearchItemListener iOnSearchItemListener) {
+        this.context = context;
+        this.recyclerView = recyclerView;
+        this.resultList = list;
+        this.iOnSearchItemListener = iOnSearchItemListener;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_search , parent , false);
-        return new ViewHolder(view);
+    public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_search, parent, false);
+        return new SearchAdapter.SearchViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvTitle.setText(items.get(position).getTitle());
-        holder.tvAddress.setText(items.get(position).getAddress());
+    public void onBindViewHolder(@NonNull SearchViewHolder holder, int i) {
+
+        if (resultList.get(i).getRegion() != null)
+            holder.tv_address.setText(resultList.get(i).getRegion());
+        holder.tv_title.setText(resultList.get(i).getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return resultList.size();
     }
 
-
-
-
-    public void updateList(List<Item> items){
-        this.items = items;
+    public void updateList(List<Item> items) {
+        this.resultList = items;
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView tvTitle;
-        private TextView tvAddress;
+    public class SearchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private TextView tv_address, tv_title;
 
-        public ViewHolder(@NonNull View itemView) {
+        public SearchViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.textView_title);
-            tvAddress = itemView.findViewById(R.id.textView_address);
-
+            tv_address = itemView.findViewById(R.id.tv_search_address);
+            tv_title = itemView.findViewById(R.id.tv_search_title);
             itemView.setOnClickListener(this);
         }
 
         @Override
-        public void onClick(View v) {
-            Location location = items.get(getAdapterPosition()).getLocation();
-            LngLat lngLat = new LngLat(location.getX() , location.getY());
-            onSearchItemListener.onSeachItemClick(lngLat);
+        public void onClick(View view) {
+            Location location = resultList.get(getAdapterPosition()).getLocation();
+            LngLat lngLat = new LngLat(location.getX(), location.getY());
+            iOnSearchItemListener.onSearchItemClick(lngLat);
         }
     }
 
-    public interface OnSearchItemListener{
-        void onSeachItemClick(LngLat lngLat);
-    }
 }

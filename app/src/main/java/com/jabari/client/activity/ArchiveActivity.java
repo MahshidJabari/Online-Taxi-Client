@@ -1,5 +1,6 @@
 package com.jabari.client.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,12 +16,19 @@ import com.jabari.client.network.model.Travel;
 
 import java.util.ArrayList;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class ArchiveActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ArchiveAdapter adapter;
     private ArrayList<Travel> travels;
     private TextView tv_return;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

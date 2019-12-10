@@ -221,26 +221,28 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.86" />
+
     <android.support.constraint.Guideline
         android:id="@+id/guideline_right2"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.65" />
+        app:layout_constraintGuide_percent="0.68" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_floatingBtn_top"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.65" />
+        app:layout_constraintGuide_percent="0.63" />
+
     <android.support.constraint.Guideline
         android:id="@+id/guideline_floatingBtn_bottom"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.77" />
+        app:layout_constraintGuide_percent="0.78" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -249,10 +251,10 @@
         android:layout_height="wrap_content"
         android:src="@drawable/others"
         app:backgroundTint="@color/gray"
-        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top"
         app:layout_constraintBottom_toTopOf="@id/guideline_floatingBtn_bottom"
         app:layout_constraintLeft_toRightOf="@id/guideline_left"
-        app:layout_constraintRight_toLeftOf="@id/guideline_left2"/>
+        app:layout_constraintRight_toLeftOf="@id/guideline_left2"
+        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_mail"
@@ -260,10 +262,10 @@
         android:layout_height="wrap_content"
         android:src="@drawable/mail"
         app:backgroundTint="@color/green"
-        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top"
         app:layout_constraintBottom_toTopOf="@id/guideline_floatingBtn_bottom"
         app:layout_constraintLeft_toRightOf="@id/guideline_left2"
-        app:layout_constraintRight_toLeftOf="@id/guideline_mid"/>
+        app:layout_constraintRight_toLeftOf="@id/guideline_mid"
+        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_telegram"
@@ -271,10 +273,10 @@
         android:layout_height="wrap_content"
         android:src="@drawable/telegram"
         app:backgroundTint="@color/blue"
-        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top"
         app:layout_constraintBottom_toTopOf="@id/guideline_floatingBtn_bottom"
         app:layout_constraintLeft_toRightOf="@id/guideline_mid"
-        app:layout_constraintRight_toLeftOf="@id/guideline_right2"/>
+        app:layout_constraintRight_toLeftOf="@id/guideline_right2"
+        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_comment"
@@ -282,17 +284,17 @@
         android:layout_height="wrap_content"
         android:src="@drawable/detail_command"
         app:backgroundTint="@color/orange"
-        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top"
         app:layout_constraintBottom_toTopOf="@id/guideline_floatingBtn_bottom"
         app:layout_constraintLeft_toRightOf="@id/guideline_right2"
-        app:layout_constraintRight_toLeftOf="@id/guideline_right"/>
+        app:layout_constraintRight_toLeftOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_mid"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.48" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_left2"

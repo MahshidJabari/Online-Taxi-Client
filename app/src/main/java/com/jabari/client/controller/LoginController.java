@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.jabari.client.global.GeneralResponse;
-import com.jabari.client.global.GlobalVariables;
+import com.jabari.client.custom.GeneralResponse;
+import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.network.config.ApiClient;
 import com.jabari.client.network.config.ApiInterface;
 import com.jabari.client.network.model.User;
@@ -18,6 +18,11 @@ import retrofit2.Retrofit;
 public class LoginController {
 
     ApiInterface.LoginUserCallback loginUserCallback;
+    ApiInterface.UserVerifyCodeCallback userVerifyCodeCallback;
+
+    public LoginController(ApiInterface.UserVerifyCodeCallback userVerifyCodeCallback) {
+        this.userVerifyCodeCallback = userVerifyCodeCallback;
+    }
 
     public LoginController(ApiInterface.LoginUserCallback loginUserCallback) {
         this.loginUserCallback = loginUserCallback;
@@ -49,7 +54,24 @@ public class LoginController {
             }
         });
     }
+
+    public void VerifyCode(String PhoneNumber) {
+        Retrofit retrofit = ApiClient.getClient();
+        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+        Call<JsonObject> call = apiInterface.getVerifyCode2(PhoneNumber);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    GeneralResponse generalResponse = new GeneralResponse(response.body());
+                    userVerifyCodeCallback.onResponse(generalResponse);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                userVerifyCodeCallback.onFailure("Error!");
+            }
+        });
+    }
 }
-
-
-

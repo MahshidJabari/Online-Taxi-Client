@@ -1,6 +1,8 @@
 package com.jabari.client.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -11,30 +13,36 @@ import android.support.v4.app.SupportActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.jabari.client.R;
+import com.jabari.client.custom.GlobalVariables;
+import com.jabari.client.custom.PrefManager;
 import com.jabari.client.fragment.OnGoingFragment;
 import com.jabari.client.fragment.ScheduledFragment;
 import com.jabari.client.fragment.UnSuccessfulFragment;
-import com.jabari.client.global.GlobalVariables;
-import com.jabari.client.global.PrefManager;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private android.support.v7.widget.Toolbar toolbar;
     private FloatingActionButton fbtn_add_req;
-    private TextView tv_scheduled,tv_unsuccessful,tv_ongoing;
+    private TextView tv_scheduled, tv_unsuccessful, tv_ongoing;
     private int current_selected = 0;
     private Button btn_exit;
-    private String ongoing="ongoing",unsuccessful="unsuccessful",scheduled="scheduled";
+    private String ongoing = "ongoing", unsuccessful = "unsuccessful", scheduled = "scheduled";
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +58,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fbtn_add_req.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,RequestActivity.class));
+                startActivity(new Intent(MainActivity.this, RequestActivity.class));
 
             }
         });
 
-       }
+    }
 
-    private void setUpNavigationView(){
+    private void setUpNavigationView() {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer);
@@ -71,25 +79,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.credit_management:
-                Intent intent = new Intent(MainActivity.this,ManagementActivity.class);
+                Intent intent = new Intent(MainActivity.this, ManagementActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.req_list :
-                startActivity(new Intent(this,RequestActivity.class));
+            case R.id.req_list:
+                startActivity(new Intent(this, RequestActivity.class));
                 break;
             case R.id.activities_archive:
-                startActivity(new Intent(this,ArchiveActivity.class));
+                startActivity(new Intent(this, ArchiveActivity.class));
                 break;
             case R.id.selected_addresses:
-                startActivity(new Intent(this,AddressActivity.class));
+                startActivity(new Intent(this, AddressActivity.class));
                 break;
             case R.id.about_:
-                startActivity(new Intent(this,AboutUsActivity.class));
+                startActivity(new Intent(this, AboutUsActivity.class));
                 break;
             case R.id.score_intro:
-                startActivity(new Intent(this,IntroductionActivity.class));
+                startActivity(new Intent(this, IntroductionActivity.class));
                 break;
             case R.id.sup:
                 startActivity(new Intent(this, SupportActivity.class));
@@ -99,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void setUpTab_travelList(){
+    private void setUpTab_travelList() {
         tv_unsuccessful = findViewById(R.id.tv_unsuccessful);
         tv_scheduled = findViewById(R.id.tv_scheduled);
         tv_ongoing = findViewById(R.id.tv_ongoing);
@@ -108,28 +116,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 if (current_selected == 1) {
-                }
-                else {
+                } else {
                     tv_ongoing.setBackgroundResource(R.drawable.right_rounded_green);
                     tv_ongoing.setTextColor(getResources().getColor(R.color.white));
                     UnSelectedElse(1);
-                    removeAllFragment(new OnGoingFragment(), false,ongoing);
+                    removeAllFragment(new OnGoingFragment(), false, ongoing);
 
                 }
             }
         });
 
 
-
         tv_unsuccessful.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(current_selected == 2){}
-                else {
+                if (current_selected == 2) {
+                } else {
                     tv_unsuccessful.setBackgroundResource(R.drawable.back_middle_item_green);
                     tv_unsuccessful.setTextColor(getResources().getColor(R.color.white));
                     UnSelectedElse(2);
-                    removeAllFragment(new UnSuccessfulFragment(),false,unsuccessful);
+                    removeAllFragment(new UnSuccessfulFragment(), false, unsuccessful);
 
                 }
 
@@ -139,21 +145,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tv_scheduled.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(current_selected == 3){}
-                else {
+                if (current_selected == 3) {
+                } else {
                     tv_scheduled.setBackgroundResource(R.drawable.left_rounded_green);
                     tv_scheduled.setTextColor(getResources().getColor(R.color.white));
                     UnSelectedElse(3);
-                    removeAllFragment(new ScheduledFragment(),false,scheduled);
+                    removeAllFragment(new ScheduledFragment(), false, scheduled);
 
                 }
             }
         });
 
-     }
+    }
 
     private void UnSelectedElse(int current) {
-        switch (current_selected){
+        switch (current_selected) {
             case 1:
                 tv_ongoing.setBackgroundResource(R.color.transparent);
                 tv_ongoing.setTextColor(getResources().getColor(R.color.darkGray));
@@ -171,22 +177,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
         }
-        if(current_selected == 0){
+        if (current_selected == 0) {
             current_selected = current;
         }
     }
-    private void removeAllFragment(Fragment replaceFragment, boolean addToBackStack,String tag) {
+
+    private void removeAllFragment(Fragment replaceFragment, boolean addToBackStack, String tag) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentManager.popBackStackImmediate(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        if(addToBackStack){
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        if (addToBackStack) {
             fragmentTransaction.addToBackStack(tag);
         }
-        fragmentTransaction.replace(R.id.container_body,replaceFragment);
+        fragmentTransaction.replace(R.id.container_body, replaceFragment);
         fragmentTransaction.commitAllowingStateLoss();
     }
 
-    private void logOff(){
+    private void logOff() {
         View headerView = navigationView.getHeaderView(0);
         btn_exit = headerView.findViewById(R.id.btn_exit);
         btn_exit.setOnClickListener(new View.OnClickListener() {
@@ -194,19 +201,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 GlobalVariables.isLogin = false;
                 removePreferences();
-                startActivity(new Intent(MainActivity.this,FirstActivity.class));
+                startActivity(new Intent(MainActivity.this, FirstActivity.class));
 
             }
         });
 
     }
-    private void removePreferences(){
+
+    private void removePreferences() {
 
         PrefManager prefManager = new PrefManager(this);
         prefManager.removeToken();
         prefManager.removeUser();
-        GlobalVariables.tok="";
-        GlobalVariables.phoneUser="";
+        GlobalVariables.tok = "";
+        GlobalVariables.phoneUser = "";
 
     }
 

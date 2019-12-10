@@ -4,6 +4,7 @@ package com.jabari.client.activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.graphics.BitmapFactory;
@@ -15,11 +16,9 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,7 +41,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.jabari.client.R;
-import com.jabari.client.global.GlobalVariables;
+import com.jabari.client.custom.GlobalVariables;
+import com.jabari.client.custom.UserLocation;
 import com.karumi.dexter.BuildConfig;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -67,29 +67,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import info.androidhive.fontawesome.FontDrawable;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class RequestActivity extends AppCompatActivity {
 
-
     private static final String TAG = RequestActivity.class.getName();
-    VectorElementLayer userMarkerLayer;
+    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
+    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
+    final int REQUEST_CODE = 123;
+    final int POI_INDEX = 1;
+    final int BASE_MAP_INDEX = 0;
 
+    VectorElementLayer userMarkerLayer, startMarker, endMarker;
+    UserLocation user = new UserLocation(this);
     private List<Integer> vehicle_list;
     private List<String> vehicle_name;
     private Button btn_right, btn_left;
-    private TextView tv_vehicle_name,tv_return;
-    private EditText et_search;
-    private FloatingActionButton fab_left, fab_mid, fab_right,fab_explore;
-    private MapView mapView;
-    // used to track request permissions
-    final int REQUEST_CODE = 123;
-    // location updates interval - 1 sec
-    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 1000;
-    // fastest updates interval - 1 sec
-    // location updates will be received if another app is requesting the locations
-    // than your app can handle
-    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 1000;
+    private TextView tv_vehicle_name, tv_return;
+    private EditText search;
+    private FloatingActionButton fab_left, fab_mid, fab_right, fab_explore;
     // User's current location
     private Location userLocation;
     private FusedLocationProviderClient fusedLocationClient;
@@ -100,25 +96,46 @@ public class RequestActivity extends AppCompatActivity {
     private String lastUpdateTime;
     // boolean flag to toggle the ui
     private Boolean mRequestingLocationUpdates;
-    final int BASE_MAP_INDEX = 0;
-    final int POI_INDEX = 1;
+    private MapView map;
+    private String lat;
+    private Marker centerMarker;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_request);
-        tv_return= findViewById(R.id.tv_return);
-        tv_return.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(RequestActivity.this,MainActivity.class));
-            }
-        });
+
         setVehicle();
+        setUpSearchIcon();
+        setUpTurnBack();
+        setUpFabExplore();
+        handleInputArgs();
+
+
+    }
+
+    public void handleInputArgs() {
+        Bundle args = getIntent().getExtras();
+        if (args != null) {
+            if (!GlobalVariables.has_startLocation_choosen) {
+
+                addUserMarker(new LngLat(args.getDouble("lng"), args.getDouble("lat")));
+                //centerMarker.setPos(new LngLat(args.getDouble("lng"),args.getDouble("lat")));
+                GlobalVariables.has_startLocation_choosen = true;
+
+            }
+
+        }
+
+    }
+
+    public void setUpFabExplore() {
         fab_explore = findViewById(R.id.fbtn_explore);
-        FontDrawable drawable = new FontDrawable(this,R.string.fa_file_export_solid,true,false);
-        drawable.setTextColor(ContextCompat.getColor(this, android.R.color.holo_blue_light));
-        fab_explore.setImageDrawable(drawable);
         fab_explore.bringToFront();
         fab_explore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +143,34 @@ public class RequestActivity extends AppCompatActivity {
                 focusOnUserLocation(view);
             }
         });
-     }
+
+    }
+
+    public void setUpTurnBack() {
+        tv_return = findViewById(R.id.tv_return);
+        tv_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RequestActivity.this, MainActivity.class));
+            }
+        });
+
+    }
+
+    public void setUpSearchIcon() {
+        search = findViewById(R.id.et_search);
+        search.bringToFront();
+
+        search.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (i == KeyEvent.KEYCODE_ENTER)
+                    startSearchActivity(search.getText().toString());
+                return false;
+            }
+        });
+
+    }
 
     public void setVehicle() {
         vehicle_list = new ArrayList<>();
@@ -179,8 +223,8 @@ public class RequestActivity extends AppCompatActivity {
                 fab_left.setImageResource(vehicle_list.get((GlobalVariables.v + 2) % vehicle_list.size()));
                 tv_vehicle_name.setText(vehicle_name.get((GlobalVariables.v + 1) % vehicle_list.size()));
                 GlobalVariables.v = ((GlobalVariables.v - 1));
-                if(GlobalVariables.v < 0)
-                    GlobalVariables.v = vehicle_list.size()-1;
+                if (GlobalVariables.v < 0)
+                    GlobalVariables.v = vehicle_list.size() - 1;
 
             }
         });
@@ -189,55 +233,58 @@ public class RequestActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        // everything related to ui is initialized here
         initLayoutReferences();
+
         initLocation();
         startReceivingLocationUpdates();
     }
-    private void initLayoutReferences() {
 
-        mapView = findViewById(R.id.MapView);
-        mapView.getLayers().add(NeshanServices.createBaseMap(NeshanMapStyle.STANDARD_DAY));
-        et_search = findViewById(R.id.et_search);
-        et_search.bringToFront();
-        et_search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-        initMap();
-
-       }
-    private void initMap(){
-        // add Standard_day map to layer BASE_MAP_INDEX
-        mapView.getOptions().setZoomRange(new Range(4.5f, 18f));
-
-        // Cache base map
-        // Cache size is 10 MB
-        Layer baseMap = NeshanServices.createBaseMap(NeshanMapStyle.STANDARD_DAY, getCacheDir()+"/baseMap", 10);
-        mapView.getLayers().insert(BASE_MAP_INDEX, baseMap);
-
-        // Cache POI layer
-        // Cache size is 10 MB
-        Layer poiLayer = NeshanServices.createPOILayer(false, getCacheDir() + "/poiLayer", 10);
-        mapView.getLayers().insert(POI_INDEX, poiLayer);
-
-        // Setting map focal position to a fixed position and setting camera zoom
-        mapView.setFocalPointPosition(new LngLat(51.330743, 35.767234),0 );
-        mapView.setZoom(14,0);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startLocationUpdates();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopLocationUpdates();
+    }
+
+    private void initLayoutReferences() {
+        map = findViewById(R.id.MapView);
+        initMap();
+    }
+
+    private void startSearchActivity(String text) {
+        Intent intent = new Intent(RequestActivity.this, SearchActivity.class);
+        Bundle args = new Bundle();
+        args.putString("index", text);
+        args.putDouble("lat", map.getFocalPointPosition().getY());
+        args.putDouble("lng", map.getFocalPointPosition().getX());
+        intent.putExtras(args);
+        startActivity(intent);
+        finish();
+    }
+
+    private void initMap() {
+        // Creating a VectorElementLayer(called userMarkerLayer) to add user marker to it and adding it to map's layers
+        userMarkerLayer = NeshanServices.createVectorElementLayer();
+        map.getLayers().add(userMarkerLayer);
+
+        // add Standard_day map to layer BASE_MAP_INDEX
+        map.getOptions().setZoomRange(new Range(4.5f, 18f));
+        Layer baseMap = NeshanServices.createBaseMap(NeshanMapStyle.STANDARD_DAY, getCacheDir() + "/baseMap", 10);
+        map.getLayers().insert(BASE_MAP_INDEX, baseMap);
+        Layer poiLayer = NeshanServices.createPOILayer(false, getCacheDir() + "/poiLayer", 10);
+        map.getLayers().insert(POI_INDEX, poiLayer);
+
+        map.getLayers().insert(BASE_MAP_INDEX, NeshanServices.createBaseMap(NeshanMapStyle.STANDARD_DAY));
+
+        // Setting map focal position to a fixed position and setting camera zoom
+        map.setFocalPointPosition(new LngLat(51.330743, 35.767234), 0);
+        map.setZoom(14, 0);
+    }
 
     private void initLocation() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -249,6 +296,7 @@ public class RequestActivity extends AppCompatActivity {
                 super.onLocationResult(locationResult);
                 // location is received
                 userLocation = locationResult.getLastLocation();
+                Log.d("location", userLocation.toString());
                 lastUpdateTime = DateFormat.getTimeInstance().format(new Date());
 
                 onLocationChange();
@@ -265,13 +313,8 @@ public class RequestActivity extends AppCompatActivity {
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
         builder.addLocationRequest(locationRequest);
         locationSettingsRequest = builder.build();
-
     }
-    /**
-     * Starting location updates
-     * Check whether location settings are satisfied and then
-     * location updates will be requested
-     */
+
     private void startLocationUpdates() {
         settingsClient
                 .checkLocationSettings(locationSettingsRequest)
@@ -283,6 +326,10 @@ public class RequestActivity extends AppCompatActivity {
 
                         //noinspection MissingPermission
                         fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+                        Location location = user.getLocation();
+                        if (location != null) {
+                            Log.d("user", location.toString());
+                        }
 
                         onLocationChange();
                     }
@@ -316,6 +363,7 @@ public class RequestActivity extends AppCompatActivity {
                     }
                 });
     }
+
     public void stopLocationUpdates() {
         // Removing location updates
         fusedLocationClient
@@ -328,7 +376,7 @@ public class RequestActivity extends AppCompatActivity {
                 });
     }
 
-public void startReceivingLocationUpdates() {
+    public void startReceivingLocationUpdates() {
         // Requesting ACCESS_FINE_LOCATION using Dexter library
         Dexter.withActivity(this)
                 .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -355,7 +403,6 @@ public void startReceivingLocationUpdates() {
 
                 }).check();
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -387,20 +434,19 @@ public void startReceivingLocationUpdates() {
         startActivity(intent);
     }
 
-
     private void onLocationChange() {
-        if(userLocation != null) {
+        if (userLocation != null) {
             addUserMarker(new LngLat(userLocation.getLongitude(), userLocation.getLatitude()));
         }
     }
 
-    // This method gets a LngLat as input and adds a marker on that position
-    private void addUserMarker(LngLat loc){
+    private void addUserMarker(LngLat loc) {
         // Creating marker style. We should use an object of type MarkerStyleCreator, set all features on it
         // and then call buildStyle method on it. This method returns an object of type MarkerStyle
         MarkerStyleCreator markStCr = new MarkerStyleCreator();
-        markStCr.setSize(20f);
-        markStCr.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_location_green)));
+        markStCr.setSize(20);
+        markStCr.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap
+                (BitmapFactory.decodeResource(this.getResources(), R.drawable.user_pinned)));
         MarkerStyle markSt = markStCr.buildStyle();
 
         // Creating user marker
@@ -412,11 +458,42 @@ public void startReceivingLocationUpdates() {
         // Adding user marker to userMarkerLayer, or showing marker on map!
         userMarkerLayer.add(marker);
     }
+
+    private void addStartMarker(LngLat loc) {
+
+        MarkerStyleCreator markStCr = new MarkerStyleCreator();
+        markStCr.setSize(20);
+        markStCr.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap
+                (BitmapFactory.decodeResource(this.getResources(), R.drawable.startLocation)));
+        MarkerStyle markSt = markStCr.buildStyle();
+
+        // Creating user marker
+        Marker marker = new Marker(loc, markSt);
+
+        // Clearing userMarkerLayer
+        userMarkerLayer.clear();
+
+        // Adding user marker to userMarkerLayer, or showing marker on map!
+        userMarkerLayer.add(marker);
+
+    }
+
     public void focusOnUserLocation(View view) {
-        if(userLocation != null) {
-            mapView.setFocalPointPosition(
+        if (userLocation != null) {
+            map.setFocalPointPosition(
                     new LngLat(userLocation.getLongitude(), userLocation.getLatitude()), 0.25f);
-            mapView.setZoom(15, 0.25f);
+            map.setZoom(15, 0.25f);
         }
     }
+
+
+    @Override
+    public void onBackPressed() {
+        if (GlobalVariables.has_startLocation_choosen) {
+
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 }

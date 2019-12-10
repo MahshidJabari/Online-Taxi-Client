@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:background="@color/color06"
         android:orientation="horizontal"
-        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -64,7 +64,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.078" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -89,7 +89,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.13" />
 
 
     <EditText
@@ -97,29 +97,30 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/back_fifty_radius_white"
-        android:drawableLeft="@drawable/ic_search_dark_blue_24dp"
         android:gravity="right"
-        android:hint="@string/start"
+        android:hint="@string/search"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
+        android:textColor="@color/black"
         android:textColorHint="@color/color06"
-        android:textSize="20sp"
-        android:translationY="-30dp"
-        app:layout_constraintDimensionRatio="7"
+        android:textDirection="rtl"
+        android:textSize="16sp"
+        android:translationY="-35dp"
+        app:layout_constraintDimensionRatio="8"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline_underHeader"
-        app:layout_constraintWidth_percent="0.85" />
+        app:layout_constraintWidth_percent="0.85"></EditText>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_aboveEnd2"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.73" />
+        app:layout_constraintGuide_percent="0.77" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -146,38 +147,32 @@
         android:layout_width="1dp"
         android:layout_height="1dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.18"/>
+        app:layout_constraintGuide_percent="0.18" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fbtn_explore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/guideline_right"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:src="@drawable/outline_explore_white_24dp"
-        app:backgroundTint="@color/blue"
         android:translationX="20dp"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintVertical_bias="0.65"/>
+        app:layout_constraintLeft_toRightOf="@id/guideline_right"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65" />
+
     <org.neshan.ui.MapView
         android:id="@+id/MapView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/guide_end"
+        app:layout_constraintBottom_toTopOf="@id/guideline_aboveEnd2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guide_begin">
+        app:layout_constraintTop_toBottomOf="@id/guideline_underHeader">
 
     </org.neshan.ui.MapView>
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guide_end"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.73"/>
-
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_right"
@@ -191,14 +186,14 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.68" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_floatingBtn_bottom"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.79" />
+        app:layout_constraintGuide_percent="0.82" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_floatingBtn_right"
@@ -215,7 +210,6 @@
         app:layout_constraintGuide_percent="0.39" />
 
 
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_right"
         android:layout_width="wrap_content"
@@ -223,9 +217,9 @@
         android:translationY="5dp"
         app:backgroundTint="@color/color06"
         app:layout_constraintBottom_toTopOf="@id/guideline_floatingBtn_bottom"
-        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top"
+        app:layout_constraintLeft_toRightOf="@id/guideline_floatingBtn_right"
         app:layout_constraintRight_toLeftOf="@id/guideline_right"
-        app:layout_constraintLeft_toRightOf="@id/guideline_floatingBtn_right"/>
+        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_mid"
@@ -234,9 +228,9 @@
         android:translationY="0dp"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toTopOf="@id/guideline_floatingBtn_bottom"
-        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top"
+        app:layout_constraintLeft_toRightOf="@id/guideline_floatingBtn_left"
         app:layout_constraintRight_toLeftOf="@id/guideline_floatingBtn_right"
-        app:layout_constraintLeft_toRightOf="@id/guideline_floatingBtn_left" />
+        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_left"
@@ -245,9 +239,9 @@
         android:translationY="5dp"
         app:backgroundTint="@color/color06"
         app:layout_constraintBottom_toTopOf="@id/guideline_floatingBtn_bottom"
-        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
         app:layout_constraintRight_toLeftOf="@id/guideline_floatingBtn_left"
-        app:layout_constraintLeft_toRightOf="@id/guideline_left"/>
+        app:layout_constraintTop_toBottomOf="@id/guideline_floatingBtn_top" />
 
 
     <android.support.constraint.Guideline
@@ -263,7 +257,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.76" />
+        app:layout_constraintGuide_percent="0.81" />
 
 
     <LinearLayout
@@ -279,6 +273,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline_end2">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="20dp"
@@ -302,8 +297,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="2.4"
-            android:textAlignment="center"
-            android:text="@string/hour" />
+            android:text="@string/hour"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/btn_right"
@@ -311,13 +306,13 @@
             android:layout_height="20dp"
             android:layout_weight="0.4"
             android:background="@drawable/ic_right_nav" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_gravity="right"
             android:layout_weight="2.5"
             android:rotation="180" />
-
 
 
     </LinearLayout>
@@ -327,7 +322,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.86" />
+        app:layout_constraintGuide_percent="0.88" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -354,7 +349,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.92" />
+        app:layout_constraintGuide_percent="0.94" />
 
     <LinearLayout
         android:id="@+id/design_bottom_sheet"
@@ -364,23 +359,22 @@
         android:gravity="center"
         android:layoutDirection="rtl"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintTop_toBottomOf="@id/guideline_end">
+        app:layout_constraintHeight_percent="0.07">
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="top"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:src="@drawable/limit_icon_signup_bottom" />
 
         <TextView
             style="@style/title_text"
-            android:gravity="top"
-            android:layout_gravity="top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:gravity="top"
             android:text="@string/confirm_begin" />
 
 

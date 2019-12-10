@@ -24,7 +24,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_begin="42dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineRight"
@@ -37,12 +37,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/back_thirty_radius_white"
-        app:layout_constraintWidth_percent="0.8"
-        app:layout_constraintHeight_percent="0.8"
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintHeight_percent="0.8"
         app:layout_constraintLeft_toLeftOf="@id/guidelineLeft"
         app:layout_constraintRight_toRightOf="@id/guidelineRight"
-        app:layout_constraintTop_toTopOf="@id/guidelineTop">
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        app:layout_constraintWidth_percent="0.8">
 
         <TextView
             android:id="@+id/et_header"
@@ -170,6 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/blue"
+                    android:onClick="OnClickSendVerfiyCode"
                     android:text="@string/give_code" />
 
                 <ProgressBar
@@ -281,15 +282,14 @@
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintHorizontal_weight="0.2"
             android:elevation="20dp"
             android:src="@drawable/ic_tick"
             app:backgroundTint="@color/green"
-            app:layout_constraintTop_toTopOf="@id/guideline_floatingBtn_top"
             app:layout_constraintBottom_toTopOf="@id/guideline_floatingBtn_bottom"
+            app:layout_constraintHorizontal_weight="0.2"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
-
+            app:layout_constraintTop_toTopOf="@id/guideline_floatingBtn_top" />
 
 
         <!--|||||||||||||||||||||||||||||||||||||||||||||||||-->
