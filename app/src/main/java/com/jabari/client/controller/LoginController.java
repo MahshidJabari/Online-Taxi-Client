@@ -17,8 +17,10 @@ import retrofit2.Retrofit;
 
 public class LoginController {
 
+    public String txt;
     ApiInterface.LoginUserCallback loginUserCallback;
     ApiInterface.UserVerifyCodeCallback userVerifyCodeCallback;
+    ApiInterface.GetLawsCallback getLawsCallback;
 
     public LoginController(ApiInterface.UserVerifyCodeCallback userVerifyCodeCallback) {
         this.userVerifyCodeCallback = userVerifyCodeCallback;
@@ -26,6 +28,10 @@ public class LoginController {
 
     public LoginController(ApiInterface.LoginUserCallback loginUserCallback) {
         this.loginUserCallback = loginUserCallback;
+    }
+
+    public LoginController(ApiInterface.GetLawsCallback getLawsCallback) {
+        this.getLawsCallback = getLawsCallback;
     }
 
     public void Do(final String mobileNum, String verify_code) {
@@ -73,5 +79,28 @@ public class LoginController {
                 userVerifyCodeCallback.onFailure("Error!");
             }
         });
+    }
+
+    public String getLaws(){
+
+        Retrofit retrofit = ApiClient.getClient();
+        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+        Call<JsonObject> call = apiInterface.get_rules();
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                txt = new Gson().fromJson(response.body().get(""),String.class);
+                GeneralResponse generalResponse = new GeneralResponse(response.body());
+                getLawsCallback.onResponse(generalResponse);
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
+
+        return txt;
     }
 }

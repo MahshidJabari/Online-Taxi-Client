@@ -101,6 +101,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.sup:
                 startActivity(new Intent(this, SupportActivity.class));
+                break;
+            case R.id.financial:
+                startActivity(new Intent(this, FinancialActivity.class));
+                break;
 
 
         }

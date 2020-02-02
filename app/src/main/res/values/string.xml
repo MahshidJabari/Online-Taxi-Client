@@ -12,6 +12,8 @@
     <string name="toman">تومان</string>
     <string name="money">مبلغ</string>
     <string name="travel_code">کد سفر</string>
+    <string name="linkToSite">قوانین و مقررات</string>
+    <string name="agree">قبول دارم</string>
     <string name="travel_type">نوع سفر</string>
     <string name="return_main">بازگشت به صفحه اصلی</string>
     <string name="credit_">اعتباری</string>

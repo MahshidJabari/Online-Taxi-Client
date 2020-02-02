@@ -19,6 +19,7 @@
         app:layout_constraintVertical_bias="0">
 
         <TextView
+            android:id="@+id/tv_travel_code"
             style="@style/gray_16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -35,6 +36,7 @@
             android:background="@color/gray" />
 
         <TextView
+            android:id="@+id/tv_travel_type"
             style="@style/gray_16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -51,6 +53,7 @@
             android:background="@color/gray" />
 
         <TextView
+            android:id="@+id/tv_travel_cache"
             style="@style/gray_16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -67,6 +70,7 @@
             android:background="@color/gray" />
 
         <TextView
+            android:id="@+id/tv_travel_date"
             style="@style/gray_16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

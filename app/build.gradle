@@ -47,4 +47,5 @@ dependencies {
     implementation 'com.google.android.gms:play-services-gcm:15.0.1'
     implementation 'com.karumi:dexter:4.2.0'
     implementation 'uk.co.chrisjenx:calligraphy:2.1.0'
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
 }

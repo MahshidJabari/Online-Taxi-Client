@@ -40,6 +40,12 @@ public interface ApiInterface {
         void onFailure(String error);
     }
 
+    @GET("general/laws")
+    Call<JsonObject> get_rules();
+    interface GetLawsCallback{
+        void onResponse(GeneralResponse generalResponse);
+        void onFailure(String error);
+    }
     @Headers("Api-Key: service.PnRV9ocd8zm9QYYlJUNLJoAihE3hfy34WUZ6jcjr")
     @GET
     Call<NeshanSearch> getNeshanSearch(@Url String url);
