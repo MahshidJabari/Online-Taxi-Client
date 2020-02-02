@@ -5,10 +5,15 @@
     <string name="close">close</string>
     <string name="back">بازگشت</string>
     <string name="archive">آرشیو فعالیت ها</string>
+    <string name="financial_reports">گزارشات مالی</string>
     <string name="credit">افزایش اعتبار</string>
     <string name="pay">پرداخت</string>
     <string name="your_credit">اعتبار شما</string>
     <string name="toman">تومان</string>
+    <string name="money">مبلغ</string>
+    <string name="travel_code">کد سفر</string>
+    <string name="travel_type">نوع سفر</string>
+    <string name="return_main">بازگشت به صفحه اصلی</string>
     <string name="credit_">اعتباری</string>
     <string name="increase_credit_toman">افزایش اعتبار به تومان</string>
     <string name="enter_desired_amount">ورود مبلغ دلخواه</string>
