@@ -58,7 +58,7 @@ public class LoginController {
     public void VerifyCode(String PhoneNumber) {
         Retrofit retrofit = ApiClient.getClient();
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-        Call<JsonObject> call = apiInterface.getVerifyCode2(PhoneNumber);
+        Call<JsonObject> call = apiInterface.getVerifyCode(PhoneNumber);
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {

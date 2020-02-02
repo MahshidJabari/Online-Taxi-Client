@@ -75,12 +75,12 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onSearchItemClick(LngLat lngLat) {
 
-                Bundle bundle = new Bundle();
+             /*   Bundle bundle = new Bundle();
                 bundle.putDouble("lat", lngLat.getY());
                 bundle.putDouble("lng", lngLat.getX());
-                Intent intent = new Intent(SearchActivity.this, RequestActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
+             */   Intent intent = new Intent(SearchActivity.this, RequestActivity.class);
+               /* intent.putExtras(bundle);
+               */ startActivity(intent);
             }
         });
         recyclerView.setAdapter(adapter);

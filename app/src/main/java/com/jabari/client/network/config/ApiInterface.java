@@ -23,11 +23,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("auth/user/login/")
-    Call<ResponseBody> getVerifyCode(@Field("mobile") String PhoneNumber);
-
-    @FormUrlEncoded
-    @POST("auth/user/login/")
-    Call<JsonObject> getVerifyCode2(@Field("mobile") String PhoneNumber);
+    Call<JsonObject> getVerifyCode(@Field("mobile") String PhoneNumber);
 
     interface UserVerifyCodeCallback{
         void onResponse(GeneralResponse generalResponse);

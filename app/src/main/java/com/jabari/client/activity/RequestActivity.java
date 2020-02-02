@@ -56,8 +56,14 @@ import org.neshan.layers.Layer;
 import org.neshan.layers.VectorElementLayer;
 import org.neshan.services.NeshanMapStyle;
 import org.neshan.services.NeshanServices;
+import org.neshan.styles.AnimationStyle;
+import org.neshan.styles.AnimationStyleBuilder;
+import org.neshan.styles.AnimationType;
 import org.neshan.styles.MarkerStyle;
 import org.neshan.styles.MarkerStyleCreator;
+import org.neshan.ui.ClickData;
+import org.neshan.ui.ClickType;
+import org.neshan.ui.MapEventListener;
 import org.neshan.ui.MapView;
 import org.neshan.utils.BitmapUtils;
 import org.neshan.vectorelements.Marker;
@@ -99,6 +105,7 @@ public class RequestActivity extends AppCompatActivity {
     private MapView map;
     private String lat;
     private Marker centerMarker;
+    VectorElementLayer markerLayer;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -254,7 +261,19 @@ public class RequestActivity extends AppCompatActivity {
     private void initLayoutReferences() {
         map = findViewById(R.id.MapView);
         initMap();
+        map.setMapEventListener(new MapEventListener() {
+            @Override
+            public void onMapClicked(ClickData mapClickInfo) {
+                if (mapClickInfo.getClickType() == ClickType.CLICK_TYPE_LONG) {
+                    // by calling getClickPos(), we can get position of clicking (or tapping)
+                    LngLat clickedLocation = mapClickInfo.getClickPos();
+                    // addMarker adds a marker (pretty self explanatory :D) to the clicked location
+                    addMarker(clickedLocation);
+                }
+            }
+        });
     }
+
 
     private void startSearchActivity(String text) {
         Intent intent = new Intent(RequestActivity.this, SearchActivity.class);
@@ -459,25 +478,6 @@ public class RequestActivity extends AppCompatActivity {
         userMarkerLayer.add(marker);
     }
 
-    private void addStartMarker(LngLat loc) {
-
-        MarkerStyleCreator markStCr = new MarkerStyleCreator();
-        markStCr.setSize(20);
-        markStCr.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap
-                (BitmapFactory.decodeResource(this.getResources(), R.drawable.startLocation)));
-        MarkerStyle markSt = markStCr.buildStyle();
-
-        // Creating user marker
-        Marker marker = new Marker(loc, markSt);
-
-        // Clearing userMarkerLayer
-        userMarkerLayer.clear();
-
-        // Adding user marker to userMarkerLayer, or showing marker on map!
-        userMarkerLayer.add(marker);
-
-    }
-
     public void focusOnUserLocation(View view) {
         if (userLocation != null) {
             map.setFocalPointPosition(
@@ -486,6 +486,35 @@ public class RequestActivity extends AppCompatActivity {
         }
     }
 
+    private void addMarker(LngLat loc) {
+        // First, we should clear every marker that is currently located on map
+        markerLayer.clear();
+
+        // Creating animation for marker. We should use an object of type AnimationStyleBuilder, set
+        // all animation features on it and then call buildStyle() method that returns an object of type
+        // AnimationStyle
+        AnimationStyleBuilder animStBl = new AnimationStyleBuilder();
+        animStBl.setFadeAnimationType(AnimationType.ANIMATION_TYPE_SMOOTHSTEP);
+        animStBl.setSizeAnimationType(AnimationType.ANIMATION_TYPE_SPRING);
+        animStBl.setPhaseInDuration(0.5f);
+        animStBl.setPhaseOutDuration(0.5f);
+        AnimationStyle animSt = animStBl.buildStyle();
+
+        // Creating marker style. We should use an object of type MarkerStyleCreator, set all features on it
+        // and then call buildStyle method on it. This method returns an object of type MarkerStyle
+        MarkerStyleCreator markStCr = new MarkerStyleCreator();
+        markStCr.setSize(20f);
+        markStCr.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.location)));
+        // AnimationStyle object - that was created before - is used here
+        markStCr.setAnimationStyle(animSt);
+        MarkerStyle markSt = markStCr.buildStyle();
+
+        // Creating marker
+        Marker marker = new Marker(loc, markSt);
+
+        // Adding marker to markerLayer, or showing marker on map!
+        markerLayer.add(marker);
+    }
 
     @Override
     public void onBackPressed() {

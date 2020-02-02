@@ -48,7 +48,7 @@
             android:id="@+id/et_header"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/back_thirty_radius_blue"
+            android:background="@drawable/back_login_blue"
             android:gravity="center"
             android:text="@string/signin_client"
             android:textColor="@color/white"
@@ -152,38 +152,19 @@
                 app:layout_constraintRight_toRightOf="@id/inner_guidelineRight"
                 app:layout_constraintTop_toBottomOf="@id/view1" />
 
-            <LinearLayout
-                android:id="@+id/lin1"
+            <Button
+                android:id="@+id/btn_send"
+                style="@style/title_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/back_fifty_radius_blue"
-                android:gravity="center"
-                android:orientation="vertical"
+                android:background="@drawable/back_thirt_radius_blue"
+                android:onClick="OnClickSendVerifyCode"
+                android:text="@string/give_code"
                 app:layout_constraintLeft_toLeftOf="@id/inner_guidelineLeft"
                 app:layout_constraintRight_toRightOf="@id/inner_guidelineRight"
                 app:layout_constraintTop_toBottomOf="@id/space"
-                app:layout_constraintWidth_percent="0.6">
+                app:layout_constraintWidth_percent="0.6" />
 
-                <Button
-                    android:id="@+id/btn_send"
-                    style="@style/title_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/blue"
-                    android:onClick="OnClickSendVerfiyCode"
-                    android:text="@string/give_code" />
-
-                <ProgressBar
-                    android:id="@+id/pbLoading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="top"
-                    android:indeterminateDrawable="@drawable/progress"
-                    android:visibility="gone" />
-
-
-            </LinearLayout>
 
             <Space
                 android:id="@+id/space2"
@@ -192,7 +173,7 @@
                 app:layout_constraintHeight_percent="0.1"
                 app:layout_constraintLeft_toLeftOf="@id/inner_guidelineLeft"
                 app:layout_constraintRight_toRightOf="@id/inner_guidelineRight"
-                app:layout_constraintTop_toBottomOf="@id/lin1" />
+                app:layout_constraintTop_toBottomOf="@id/btn_send" />
 
             <EditText
                 android:id="@+id/et_validationcode"
@@ -202,7 +183,7 @@
                 android:drawableRight="@drawable/ic_lock_outline_black_24dp"
                 android:drawablePadding="10dp"
                 android:gravity="center"
-                android:hint="شماره تلفن همراه"
+                android:hint="کد تایید"
                 android:inputType="phone"
                 android:maxLines="1"
                 android:textColor="@color/black"
@@ -283,6 +264,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="20dp"
+            android:onClick="fabOnclick"
             android:src="@drawable/ic_tick"
             app:backgroundTint="@color/green"
             app:layout_constraintBottom_toTopOf="@id/guideline_floatingBtn_bottom"

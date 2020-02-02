@@ -29,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText et_phoneNum, et_verify_code;
     private Button btn_send;
     private FloatingActionButton fab_login;
-    private ProgressBar pbLoading;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -42,14 +41,21 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        setView();
+        setFab_loginUnClickable();
+
+    }
+
+    private void setView(){
         et_phoneNum = findViewById(R.id.et_phoneNum);
         et_verify_code = findViewById(R.id.et_validationcode);
         btn_send = findViewById(R.id.btn_send);
         fab_login = findViewById(R.id.btn_login);
-        pbLoading = findViewById(R.id.pbLoading);
         fab_login.bringToFront();
 
+    }
 
+    public void fabOnclick(View view) {
         fab_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,31 +74,29 @@ public class LoginActivity extends AppCompatActivity {
         if (!Pattern.matches("^0(9)\\d{9}$", phone)) {
             Toast.makeText(LoginActivity.this, "شماره ی موبایل اشتباه وارد شده!", Toast.LENGTH_LONG).show();
             et_phoneNum.getText().clear();
+            btn_send.setBackground(getResources().getDrawable(R.drawable.back_thirty_radius_gray));
             return false;
         } else
             return true;
     }
 
-    public void OnClickSendVerfiyCode(View view) {
+    public void OnClickSendVerifyCode(View view) {
         final String phoneNumber = et_phoneNum.getText().toString();
         if (!isValidPhone(phoneNumber))
             Toast.makeText(this, "Phone number is not valid!", Toast.LENGTH_SHORT);
-
-        btn_send.setVisibility(View.GONE);
-        pbLoading.setVisibility(View.VISIBLE);
 
         LoginController loginController = new LoginController(new ApiInterface.UserVerifyCodeCallback() {
             @Override
             public void onResponse(GeneralResponse generalResponse) {
                 GlobalVariables.getVerify = true;
+                setFab_loginClickable();
                 Toast.makeText(LoginActivity.this, "کد فعالسازی ارسال شد", Toast.LENGTH_LONG).show();
                 Toast.makeText(LoginActivity.this, phoneNumber.substring(6, 11), Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(String error) {
-                pbLoading.setVisibility(View.GONE);
-                btn_send.setVisibility(View.VISIBLE);
+                setFab_loginUnClickable();
                 GlobalVariables.getVerify = false;
                 Toast.makeText(LoginActivity.this, "مجددا تلاش کنید", Toast.LENGTH_LONG).show();
             }
@@ -100,12 +104,19 @@ public class LoginActivity extends AppCompatActivity {
 
         loginController.VerifyCode(phoneNumber);
 
-        if (!GlobalVariables.getVerify) {
-            pbLoading.setVisibility(View.GONE);
-            btn_send.setVisibility(View.VISIBLE);
-        }
+       }
+
+    private void setFab_loginClickable(){
+        fab_login.setBackgroundTintList(getResources().getColorStateList(R.color.green));
+        fab_login.setClickable(true);
+
     }
 
+    private void setFab_loginUnClickable(){
+
+        fab_login.setBackgroundTintList(getResources().getColorStateList(R.color.darkGray));
+        fab_login.setClickable(false);
+    }
 
     private void check_login(final String phoneNum, final String verify_code) {
 
@@ -135,41 +146,6 @@ public class LoginActivity extends AppCompatActivity {
         loginUserController.Do(phoneNum, verify_code);
     }
 
-    /*private void getVerifyCode(final String phoneNum) {
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<ResponseBody> call = apiService.getVerifyCode(phoneNum);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.isSuccessful()){
-
-                    pbLoading.setVisibility(View.GONE);
-                    btn_send.setVisibility(View.VISIBLE);
-
-                    GlobalVariables.getVerify = true;
-                    Toast.makeText(LoginActivity.this,"کد فعالسازی ارسال شد",Toast.LENGTH_LONG).show();
-                    Toast.makeText(LoginActivity.this,phoneNum.substring(6,11),Toast.LENGTH_LONG).show();
-                   }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("ESSE","OnFailure: " + t.getCause() + " | " + t.getMessage());
-                pbLoading.setVisibility(View.GONE);
-                btn_send.setVisibility(View.VISIBLE);
-                GlobalVariables.getVerify = false;
-                Toast.makeText(LoginActivity.this,"مجددا تلاش کنید",Toast.LENGTH_LONG).show();
-
-            }
-          });
-
-        if(!GlobalVariables.getVerify){
-            pbLoading.setVisibility(View.GONE);
-            btn_send.setVisibility(View.VISIBLE);
-           }
-
-    }
-*/
     private void saveLoginPreferences(String token, String user) {
 
         PrefManager prefManager = new PrefManager(getBaseContext());
