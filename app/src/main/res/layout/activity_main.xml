@@ -9,7 +9,7 @@
     android:background="#001D25"
     android:fitsSystemWindows="true"
     android:layoutDirection="rtl"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.main.MainActivity">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/rel_above"

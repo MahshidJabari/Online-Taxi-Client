@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jabari.client.R;
-import com.jabari.client.activity.SearchActivity;
+import com.jabari.client.activity.main.SearchActivity;
 import com.jabari.client.network.model.Item;
 import com.jabari.client.network.model.Location;
 

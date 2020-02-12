@@ -41,10 +41,13 @@
 
             <TextView
                 android:id="@+id/tv_return"
-                style="@style/tv_return"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="right"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="4"
                 app:layout_constraintLeft_toRightOf="@id/tv_title"
@@ -53,14 +56,16 @@
                 app:layout_constraintWidth_percent="0.2" />
 
             <ImageView
+                android:id="@+id/img_cancel"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:src="@drawable/ic_chevron_right_white_24dp"
+                android:layout_height="match_parent"
+                android:onClick="OnCancelClicked"
+                android:src="@drawable/ic_close_white_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/tv_return"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.1" />
+                app:layout_constraintWidth_percent="0.06" />
 
 
         </android.support.constraint.ConstraintLayout>
@@ -107,26 +112,30 @@
             android:orientation="horizontal"
             android:translationY="-30dp"
             android:weightSum="2"
-            app:layout_constraintDimensionRatio="7"
+            app:layout_constraintHeight_percent="0.17"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline_underHeader"
-            app:layout_constraintWidth_percent="0.8">
+            app:layout_constraintWidth_percent="0.75">
 
             <TextView
                 style="@style/common_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:text="@string/travel_category" />
 
             <TextView
                 android:id="@+id/tv_travel_type"
-                style="@style/common_text"
+                style="@style/common_text_white"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_expand_more_white_24dp"
+                android:layout_gravity="center"
+                android:layout_weight="1.2"
+                android:background="@drawable/left_rounded_green"
+                android:drawableEnd="@drawable/ic_expand_more_white_24dp"
+                android:gravity="left"
+                android:paddingTop="10dp"
                 android:text="پیک موتوری" />
 
         </LinearLayout>
@@ -154,6 +163,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layoutDirection="rtl"
                 android:orientation="vertical"
                 android:weightSum="3"
                 app:layout_constraintLeft_toRightOf="@id/guide_inner_ver"
@@ -365,24 +375,27 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guidelineMid"
-        app:layout_constraintWidth_percent="0.8">
+        app:layout_constraintWidth_percent="0.75">
 
         <TextView
             style="@style/common_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1.8"
+            android:layout_weight="1.6"
+            android:layoutDirection="rtl"
             android:text="@string/stop_between" />
 
         <TextView
             style="@style/common_text_white"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.2"
+            android:layout_weight="1.4"
             android:background="@drawable/left_rounded_green"
-            android:drawableLeft="@drawable/ic_expand_more_white_24dp"
+            android:drawableEnd="@drawable/ic_expand_more_white_24dp"
             android:gravity="center"
+            android:layoutDirection="rtl"
+            android:paddingRight="40dp"
             android:text="@string/does_not_have" />
 
     </LinearLayout>
@@ -393,7 +406,7 @@
         android:layout_height="0dp"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
-        android:padding="10dp"
+        android:translationY="-20dp"
         android:weightSum="6"
         app:layout_constraintHeight_percent="0.07"
         app:layout_constraintHorizontal_bias="0.5"
@@ -451,12 +464,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/lin5"
+        android:id="@+id/lin_date_label"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
+        android:translationY="-20dp"
         android:weightSum="4"
         app:layout_constraintHeight_percent="0.05"
         app:layout_constraintHorizontal_bias="0.5"
@@ -490,17 +504,18 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/lin6"
+        android:id="@+id/lin_date"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:layoutDirection="rtl"
+        android:translationY="-20dp"
         android:weightSum="4"
         app:layout_constraintHeight_percent="0.06"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lin5"
+        app:layout_constraintTop_toBottomOf="@id/lin_date_label"
         app:layout_constraintWidth_percent="0.8">
 
         <TextView
@@ -543,11 +558,10 @@
         android:id="@+id/v2"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="10dp"
         android:background="@color/gray"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lin6"
+        app:layout_constraintTop_toBottomOf="@id/lin_date"
         app:layout_constraintWidth_percent="0.8" />
 
     <LinearLayout
@@ -568,20 +582,76 @@
             style="@style/common_text_white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:background="@drawable/back_fifteen_radius_blue"
+            android:onClick="OnSupportClicked"
             android:text="@string/call_suppprt" />
 
         <Button
+            android:id="@+id/btn_gift_code"
             style="@style/common_text_white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
             android:layout_weight="1"
             android:background="@drawable/back_fifteen_radius_green"
+            android:onClick="OnGiftCodeButtonClicked"
             android:text="@string/enter_discount_code" />
 
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v3"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/gray"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lin8"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <LinearLayout
+        android:id="@+id/lin_travel_cache"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:weightSum="3"
+        app:layout_constraintBottom_toTopOf="@id/guideline_aboveEnd"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lin8"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintWidth_percent="0.8">
+
+        <TextView
+            style="@style/common_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:text="@string/travel_credit" />
+
+        <TextView
+            android:id="@+id/tv_travel_cache"
+            style="@style/text_green"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="10000" />
+
+        <TextView
+            style="@style/text_green"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/toman" />
 
     </LinearLayout>
 

@@ -19,25 +19,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.FirstActivity">
+        <activity android:name=".activity.main.FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ManagementActivity"/>
-        <activity android:name=".activity.RequestActivity"/>
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.finance.ManagementActivity"/>
+        <activity android:name=".activity.main.RequestActivity"/>
+        <activity android:name=".activity.main.MainActivity"/>
         <activity android:name=".activity.AddressActivity"/>
         <activity android:name=".activity.AboutUsActivity"/>
         <activity android:name=".activity.IntroductionActivity"/>
-        <activity android:name=".activity.DetailsActivity"/>
-        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.main.DetailsActivity"/>
+        <activity android:name=".activity.account.LoginActivity" />
         <activity android:name=".activity.ArchiveActivity"/>
         <activity android:name=".activity.SupportActivity"/>
-        <activity android:name=".activity.SearchActivity"/>
-        <activity android:name=".activity.FinancialActivity"/>
+        <activity android:name=".activity.main.SearchActivity"/>
+        <activity android:name=".activity.finance.FinancialActivity"/>
+        <activity android:name=".activity.finance.GiftCardActivity"/>
+        <activity android:name=".activity.account.ProfileActivity"/>
+        <activity android:name=".activity.finance.IncreaseCreditActivity"/>
     </application>
 
 </manifest>

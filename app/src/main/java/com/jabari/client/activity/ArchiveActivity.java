@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.jabari.client.R;
+import com.jabari.client.activity.main.MainActivity;
 import com.jabari.client.adapter.ArchiveAdapter;
 import com.jabari.client.network.model.Travel;
 

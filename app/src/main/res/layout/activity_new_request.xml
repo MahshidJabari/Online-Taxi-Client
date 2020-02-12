@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color02"
-    tools:context=".activity.RequestActivity">
+    tools:context=".activity.main.RequestActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
@@ -66,23 +66,18 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.078" />
 
-    <LinearLayout
+
+    <View
+        android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/color02"
+        android:background="@drawable/curve_shape_dark_blue"
         app:layout_constraintBottom_toTopOf="@id/guideline_underHeader"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline_middle">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/curve_shape_dark_blue">
-
-        </View>
-
-    </LinearLayout>
+    </View>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_underHeader"
@@ -99,11 +94,15 @@
         android:background="@drawable/back_fifty_radius_white"
         android:gravity="right"
         android:hint="@string/search"
+        android:inputType="text"
         android:layoutDirection="rtl"
+        android:lines="1"
+        android:maxLines="1"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
+        android:singleLine="true"
         android:textColor="@color/black"
         android:textColorHint="@color/color06"
         android:textDirection="rtl"
@@ -113,34 +112,29 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline_underHeader"
-        app:layout_constraintWidth_percent="0.85"></EditText>
+        app:layout_constraintWidth_percent="0.85" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_aboveEnd2"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.77" />
+        app:layout_constraintGuide_percent="0.83" />
 
-    <LinearLayout
+
+    <View
+        android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/color02"
+        android:background="@drawable/curve_shape_dark_blue"
+        android:scaleX="-1"
+        android:scaleY="-1"
         app:layout_constraintBottom_toTopOf="@id/guideline_end2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline_aboveEnd2">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/curve_shape_dark_blue"
-            android:scaleX="-1"
-            android:scaleY="-1">
-
-        </View>
-
-    </LinearLayout>
+    </View>
 
     <android.support.constraint.Guideline
         android:id="@+id/guide_begin"
@@ -161,18 +155,30 @@
         app:layout_constraintLeft_toRightOf="@id/guideline_right"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65" />
+        app:layout_constraintVertical_bias="0.7" />
 
-    <org.neshan.ui.MapView
-        android:id="@+id/MapView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline_aboveEnd2"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/guideline_end2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline_underHeader">
+        app:layout_constraintTop_toBottomOf="@id/guideline_middle">
 
-    </org.neshan.ui.MapView>
+        <include
+            android:id="@+id/lin_progress"
+            layout="@layout/progress_layout" />
+
+        <org.neshan.ui.MapView
+            android:id="@+id/MapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </org.neshan.ui.MapView>
+
+    </LinearLayout>
+
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_right"
@@ -186,14 +192,14 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.7" />
+        app:layout_constraintGuide_percent="0.79" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_floatingBtn_bottom"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.82" />
+        app:layout_constraintGuide_percent="0.86" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_floatingBtn_right"
@@ -257,7 +263,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.81" />
+        app:layout_constraintGuide_percent="0.87" />
 
 
     <LinearLayout
@@ -297,7 +303,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="2.4"
-            android:text="@string/hour"
+            android:text="ماشین"
             android:textAlignment="center" />
 
         <Button
@@ -322,7 +328,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.88" />
+        app:layout_constraintGuide_percent="0.92" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -338,7 +344,11 @@
             android:layout_height="wrap_content"
             android:background="@drawable/curve_shape_green"
             android:scaleX="-1"
-            android:scaleY="-1">
+            android:scaleY="-1"
+            app:layout_constraintBottom_toTopOf="@id/guideline_end"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_aboveEnd">
 
         </View>
 
@@ -349,7 +359,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.94" />
+        app:layout_constraintGuide_percent="0.96" />
 
     <LinearLayout
         android:id="@+id/design_bottom_sheet"
@@ -359,7 +369,7 @@
         android:gravity="center"
         android:layoutDirection="rtl"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.07">
+        app:layout_constraintHeight_percent="0.05">
 
         <ImageView
             android:layout_width="20dp"
