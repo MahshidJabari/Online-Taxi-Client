@@ -1,4 +1,4 @@
-package com.jabari.client.activity;
+package com.jabari.client.activity.help;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,7 +9,8 @@ import com.jabari.client.R;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class SupportActivity extends AppCompatActivity {
+public class AboutUsActivity extends AppCompatActivity {
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
@@ -18,6 +19,6 @@ public class SupportActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_support);
+        setContentView(R.layout.acativity_aboutus);
     }
 }

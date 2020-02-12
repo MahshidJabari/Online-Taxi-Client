@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jabari.client.R;
-import com.jabari.client.activity.SupportActivity;
+import com.jabari.client.activity.help.SupportActivity;
 import com.jabari.client.activity.finance.GiftCardActivity;
 import com.suke.widget.SwitchButton;
 

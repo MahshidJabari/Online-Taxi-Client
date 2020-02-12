@@ -49,9 +49,8 @@
 
     </style>
 
-    <style name="gray_16">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">16sp</item>
+    <style name="gray_14">
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/darkGray</item>
 
     </style>

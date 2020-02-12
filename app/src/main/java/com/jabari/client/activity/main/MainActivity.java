@@ -19,10 +19,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.jabari.client.R;
-import com.jabari.client.activity.AboutUsActivity;
-import com.jabari.client.activity.AddressActivity;
-import com.jabari.client.activity.ArchiveActivity;
-import com.jabari.client.activity.IntroductionActivity;
+import com.jabari.client.activity.help.AboutUsActivity;
+import com.jabari.client.activity.report.AddressActivity;
+import com.jabari.client.activity.report.ArchiveActivity;
+import com.jabari.client.activity.finance.IntroductionActivity;
 import com.jabari.client.activity.finance.FinancialActivity;
 import com.jabari.client.activity.finance.ManagementActivity;
 import com.jabari.client.custom.GlobalVariables;

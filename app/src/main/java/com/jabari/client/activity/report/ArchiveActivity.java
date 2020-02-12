@@ -1,4 +1,4 @@
-package com.jabari.client.activity;
+package com.jabari.client.activity.report;
 
 import android.content.Context;
 import android.content.Intent;

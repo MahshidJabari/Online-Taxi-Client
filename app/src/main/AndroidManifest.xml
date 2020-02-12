@@ -29,18 +29,19 @@
         <activity android:name=".activity.finance.ManagementActivity"/>
         <activity android:name=".activity.main.RequestActivity"/>
         <activity android:name=".activity.main.MainActivity"/>
-        <activity android:name=".activity.AddressActivity"/>
-        <activity android:name=".activity.AboutUsActivity"/>
-        <activity android:name=".activity.IntroductionActivity"/>
+        <activity android:name=".activity.report.AddressActivity"/>
+        <activity android:name=".activity.help.AboutUsActivity"/>
+        <activity android:name=".activity.finance.IntroductionActivity"/>
         <activity android:name=".activity.main.DetailsActivity"/>
         <activity android:name=".activity.account.LoginActivity" />
-        <activity android:name=".activity.ArchiveActivity"/>
-        <activity android:name=".activity.SupportActivity"/>
+        <activity android:name=".activity.report.ArchiveActivity"/>
+        <activity android:name=".activity.help.SupportActivity"/>
         <activity android:name=".activity.main.SearchActivity"/>
         <activity android:name=".activity.finance.FinancialActivity"/>
         <activity android:name=".activity.finance.GiftCardActivity"/>
         <activity android:name=".activity.account.ProfileActivity"/>
         <activity android:name=".activity.finance.IncreaseCreditActivity"/>
+        <activity android:name=".activity.finance.PaymentActivity"/>
     </application>
 
 </manifest>

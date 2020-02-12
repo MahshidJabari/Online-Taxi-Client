@@ -18,6 +18,11 @@
     <string name="travel_type">نوع سفر</string>
     <string name="return_main">بازگشت به صفحه اصلی</string>
     <string name="credit_">اعتباری</string>
+    <string name="payment_gateway">درگاه پرداخت</string>
+    <string name="username">نام کاربر</string>
+    <string name="melat">ملت</string>
+    <string name="transaction_number">شماره تراکنش</string>
+    <string name="payment_text"> تا اطلاع ثانوی همه پرداخت ها از درگاه ملت قابل پرداخت است. </string>
     <string name="increase_credit_toman">افزایش اعتبار به تومان</string>
     <string name="enter_desired_amount">ورود مبلغ دلخواه</string>
     <string name="increase_credit">افزایش اعتبار به مبلغ</string>
