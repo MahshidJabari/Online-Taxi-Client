@@ -6,13 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.jabari.client.R;
-import com.jabari.client.activity.help.SupportActivity;
 import com.jabari.client.activity.finance.GiftCardActivity;
+import com.jabari.client.activity.help.SupportActivity;
 import com.suke.widget.SwitchButton;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -23,6 +25,7 @@ public class DetailsActivity extends AppCompatActivity {
     private LinearLayout lin_date, lin_date_label, lin_travel_cache;
     private TextView tv_travel_cache;
     private Button btn_gift_code;
+    private Spinner hour_spinner, min_spinner, stop_spinner, vehicle_spinner;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -36,6 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         setUpViews();
         onCheckedChanged();
+        setUpSpinners();
 
     }
 
@@ -50,6 +54,36 @@ public class DetailsActivity extends AppCompatActivity {
         lin_travel_cache = findViewById(R.id.lin_travel_cache);
         tv_travel_cache = findViewById(R.id.tv_travel_cache);
         btn_gift_code = findViewById(R.id.btn_gift_code);
+
+    }
+
+    private void setUpSpinners() {
+        min_spinner = findViewById(R.id.min_spin);
+        hour_spinner = findViewById(R.id.hour_spin);
+        stop_spinner = findViewById(R.id.stop_spin);
+        vehicle_spinner = findViewById(R.id.vehicle_spin);
+
+        ArrayAdapter<CharSequence> min_adapter = ArrayAdapter.createFromResource(this, R.array.min_arrays,
+                R.layout.spinner_item_dark);
+        min_adapter.setDropDownViewResource(R.layout.spinner_dark_text);
+        min_spinner.setAdapter(min_adapter);
+
+        ArrayAdapter<CharSequence> hour_adapter = ArrayAdapter.createFromResource(this, R.array.hour_arrays,
+                R.layout.spinner_item_dark);
+        hour_adapter.setDropDownViewResource(R.layout.spinner_dark_text);
+        hour_spinner.setAdapter(hour_adapter);
+
+        ArrayAdapter<CharSequence> stop_adapter = ArrayAdapter.createFromResource(this, R.array.stop_arrays,
+                android.R.layout.simple_spinner_item);
+        stop_adapter.setDropDownViewResource(R.layout.spinner_dark_text);
+        stop_spinner.setAdapter(stop_adapter);
+
+        ArrayAdapter<CharSequence> vehicle_adapter = ArrayAdapter.createFromResource(this, R.array.vehicle_arrays,
+                R.layout.spinner_item);
+        vehicle_adapter.setDropDownViewResource(R.layout.spinner_dark_text);
+        vehicle_spinner.setAdapter(vehicle_adapter);
+
+
     }
 
     public void onCheckedChanged() {
@@ -79,5 +113,6 @@ public class DetailsActivity extends AppCompatActivity {
     public void OnSupportClicked(View view) {
         startActivity(new Intent(DetailsActivity.this, SupportActivity.class));
     }
+
 
 }

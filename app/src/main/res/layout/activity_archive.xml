@@ -136,7 +136,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:paddingRight="20dp"
+                android:paddingRight="@dimen/tv_padding"
+                android:paddingLeft="@dimen/tv_padding"
                 android:text="@string/successful_travels" />
 
 
@@ -166,8 +167,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="@dimen/text_padding"
+                android:paddingRight="@dimen/text_padding"
                 android:text="@string/travel"
                 android:textDirection="rtl" />
 
@@ -184,10 +185,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:paddingRight="20dp"
-                android:text="@string/successful_travels" />
-
-
+                android:paddingRight="@dimen/tv_padding"
+                android:text="@string/unsuccessful_travel"/>
         </LinearLayout>
 
         <LinearLayout

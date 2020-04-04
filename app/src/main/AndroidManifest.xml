@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.finance.ManagementActivity"/>
-        <activity android:name=".activity.main.RequestActivity"/>
+        <activity android:name=".activity.main.StartPosActivity"/>
         <activity android:name=".activity.main.MainActivity"/>
         <activity android:name=".activity.report.AddressActivity"/>
         <activity android:name=".activity.help.AboutUsActivity"/>
@@ -42,6 +42,7 @@
         <activity android:name=".activity.account.ProfileActivity"/>
         <activity android:name=".activity.finance.IncreaseCreditActivity"/>
         <activity android:name=".activity.finance.PaymentActivity"/>
+        <activity android:name=".activity.main.EndPosActivity"/>
     </application>
 
 </manifest>

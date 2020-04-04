@@ -20,7 +20,7 @@
 
         <TextView
             android:id="@+id/tv_travel_code"
-            style="@style/gray_16"
+            style="@style/gray_bold_16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/tv_travel_type"
-            style="@style/gray_16"
+            style="@style/gray_bold_16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -54,7 +54,7 @@
 
         <TextView
             android:id="@+id/tv_travel_cache"
-            style="@style/gray_16"
+            style="@style/gray_bold_16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -71,7 +71,7 @@
 
         <TextView
             android:id="@+id/tv_travel_date"
-            style="@style/gray_16"
+            style="@style/gray_bold_16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

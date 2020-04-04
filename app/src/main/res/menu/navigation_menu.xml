@@ -3,56 +3,76 @@
     <group
         android:id="@+id/credit"
         android:checkableBehavior="single">
-    <item android:id="@+id/credit_management" android:title="مدیریت اعتبار" android:icon="@drawable/credit_manag"/>
-      </group>
-    <group
-        android:id="@+id/req"
-        android:checkableBehavior="single">
-        <item android:id="@+id/req_list" android:title="لیست درخواست ها" android:icon="@drawable/req_list"/>
-
+        <item
+            android:id="@+id/credit_management"
+            android:icon="@drawable/credit_manag"
+            android:title="مدیریت اعتبار" />
     </group>
     <group
         android:id="@+id/archive"
         android:checkableBehavior="single">
-        <item android:id="@+id/activities_archive" android:title="آرشیو فعالیت ها" android:icon="@drawable/archive"/>
+        <item
+            android:id="@+id/activities_archive"
+            android:icon="@drawable/archive"
+            android:title="آرشیو فعالیت ها" />
 
     </group>
     <group
         android:id="@+id/address"
         android:checkableBehavior="single">
-        <item android:id="@+id/selected_addresses" android:title="آدرس های منتخب" android:icon="@drawable/selected_addresses"/>
+        <item
+            android:id="@+id/selected_addresses"
+            android:icon="@drawable/selected_addresses"
+            android:title="آدرس های منتخب" />
     </group>
     <group
         android:id="@+id/financial"
         android:checkableBehavior="single">
-        <item android:id="@+id/financial_reports" android:title="گزارشات مالی" android:icon="@drawable/financial_reports"/>
+        <item
+            android:id="@+id/financial_reports"
+            android:icon="@drawable/financial_reports"
+            android:title="گزارشات مالی" />
     </group>
     <group
         android:id="@+id/score"
         android:checkableBehavior="single">
-        <item android:id="@+id/score_intro" android:title="امتیاز معرفی" android:icon="@drawable/score_intro"/>
+        <item
+            android:id="@+id/score_intro"
+            android:icon="@drawable/score_intro"
+            android:title="امتیاز معرفی" />
     </group>
     <group
         android:id="@+id/discount"
         android:checkableBehavior="single">
-        <item android:id="@+id/charging_with_discount_code" android:title="شارژ با کد تخفیف" android:icon="@drawable/discount_code_consultation"/>
+        <item
+            android:id="@+id/charging_with_discount_code"
+            android:icon="@drawable/discount_code_consultation"
+            android:title="شارژ با کد تخفیف" />
     </group>
     <group
         android:id="@+id/support"
         android:checkableBehavior="single">
-        <item android:id="@+id/sup" android:title="پشتیبانی" android:icon="@drawable/support"/>
+        <item
+            android:id="@+id/sup"
+            android:icon="@drawable/support"
+            android:title="پشتیبانی" />
     </group>
     <group
         android:id="@+id/about"
         android:checkableBehavior="single">
-        <item android:id="@+id/about_" android:title="درباره ی ما" android:icon="@drawable/about"/>
+        <item
+            android:id="@+id/about_"
+            android:icon="@drawable/about"
+            android:title="درباره ی ما" />
     </group>
     <group
         android:id="@+id/join_us"
         android:checkableBehavior="single">
-        <item android:id="@+id/join" android:title="به سفیران بپیوندید" android:icon="@drawable/joinus"/>
+        <item
+            android:id="@+id/join"
+            android:icon="@drawable/joinus"
+            android:title="به سفیران بپیوندید" />
     </group>
-
 
 
 </menu>

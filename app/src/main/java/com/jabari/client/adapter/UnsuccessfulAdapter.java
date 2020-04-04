@@ -45,24 +45,24 @@ public class UnsuccessfulAdapter extends
         holder.tv_time.setText(travelList.get(i).getTime());
         holder.tv_payment_amount.setText(travelList.get(i).getTransfer_payment());
         if(!holder.switch_.isChecked()){
-            holder.tv_phone.setText(travelList.get(i).getSender_location());
+         /*   holder.tv_phone.setText(travelList.get(i).getSender_location());
             holder.tv_phone.setCompoundDrawablesWithIntrinsicBounds(0,0,
                     R.drawable.ic_phone_in_talk_green_24dp,0);
             holder.tv_name.setText(travelList.get(i).getSender_name());
             holder.tv_name.setCompoundDrawablesWithIntrinsicBounds(0,0,
-                    R.drawable.ic_person_green_24dp,0);
+                    R.drawable.ic_person_green_24dp,0);*/
             holder.tv_location.setText(travelList.get(i).getSender_location());
             holder.tv_location.setCompoundDrawablesWithIntrinsicBounds(0,0,
                     R.drawable.ic_location_green,0);
 
         }
         else if(holder.switch_.isChecked()){
-            holder.tv_phone.setText(travelList.get(i).getRecirer_phone());
+            /*holder.tv_phone.setText(travelList.get(i).getRecirer_phone());
             holder.tv_phone.setCompoundDrawablesWithIntrinsicBounds(0,0,
                     R.drawable.ic_phone_orange,0);
             holder.tv_name.setText(travelList.get(i).getReciever_name());
             holder.tv_name.setCompoundDrawablesWithIntrinsicBounds(0,0,
-                    R.drawable.ic_person_orange,0);
+                    R.drawable.ic_person_orange,0);*/
             holder.tv_location.setText(travelList.get(i).getReciever_location());
             holder.tv_location.setCompoundDrawablesWithIntrinsicBounds(0,0,
                     R.drawable.ic_location_orange,0);
@@ -79,7 +79,7 @@ public class UnsuccessfulAdapter extends
 
     public class UnsuccessfulViewHolder extends RecyclerView.ViewHolder{
         private TextView tv_time,tv_date,tv_payment_type,tv_payment_amount,
-                tv_payment_company,tv_location,tv_name,tv_phone,tv_detail,tv_take_back;
+                tv_payment_company,tv_location,tv_detail,tv_take_back;
         private Button btn_delete,btn_retry;
         private com.suke.widget.SwitchButton switch_;
 
@@ -93,11 +93,10 @@ public class UnsuccessfulAdapter extends
             tv_payment_company = itemView.findViewById(R.id.tv_payment_comp);
             tv_take_back = itemView.findViewById(R.id.tv_take_back);
             tv_location = itemView.findViewById(R.id.tv_location);
-            tv_name = itemView.findViewById(R.id.tv_name);
+           /* tv_name = itemView.findViewById(R.id.tv_name);
             tv_phone = itemView.findViewById(R.id.tv_phone);
-            tv_detail = itemView.findViewById(R.id.tv_detail);
+*/            tv_detail = itemView.findViewById(R.id.tv_detail);
 
-            btn_delete = itemView.findViewById(R.id.btn_delete);
             btn_retry = itemView.findViewById(R.id.btn_retry);
 
             switch_ = itemView.findViewById(R.id.switch_destination_start);

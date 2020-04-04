@@ -79,9 +79,9 @@ import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class RequestActivity extends AppCompatActivity {
+public class EndPosActivity extends AppCompatActivity {
 
-    private static final String TAG = RequestActivity.class.getName();
+    private static final String TAG = StartPosActivity.class.getName();
     private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
     private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
     final int REQUEST_CODE = 123;
@@ -93,7 +93,7 @@ public class RequestActivity extends AppCompatActivity {
     private List<Integer> vehicle_list;
     private List<String> vehicle_name;
     private Button btn_right, btn_left;
-    private TextView tv_vehicle_name, tv_return, tv_title;
+    private TextView tv_vehicle_name;
     private EditText search;
     private FloatingActionButton fab_left, fab_mid, fab_right, fab_explore;
     // User's current location
@@ -107,7 +107,7 @@ public class RequestActivity extends AppCompatActivity {
     // boolean flag to toggle the ui
     private Boolean mRequestingLocationUpdates;
     private MapView map;
-    private LinearLayout lin_progress, lin_above;
+    private LinearLayout lin_progress;
     private View v, v2;
 
     @Override
@@ -118,15 +118,13 @@ public class RequestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_request);
+        setContentView(R.layout.activity_end);
 
         setVehicle();
         setUpSearchIcon();
-        setUpTurnBack();
         setUpFabExplore();
         initLayoutReferences();
         initLocation();
-        lin_progress.setVisibility(View.GONE);
         startReceivingLocationUpdates();
         handleInputArgs();
 
@@ -145,15 +143,9 @@ public class RequestActivity extends AppCompatActivity {
 
     }
 
-    public void setUpTurnBack() {
-        tv_return = findViewById(R.id.tv_return);
-        tv_return.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(RequestActivity.this, MainActivity.class));
-            }
-        });
-
+    public void setUpBack(View View) {
+        GlobalVariables.end = null;
+        startActivity(new Intent(EndPosActivity.this, StartPosActivity.class));
     }
 
     public void setUpSearchIcon() {
@@ -177,7 +169,6 @@ public class RequestActivity extends AppCompatActivity {
 
     public void setVehicle() {
         lin_progress = findViewById(R.id.lin_progress);
-        tv_title = findViewById(R.id.tv_title);
 
         vehicle_list = new ArrayList<>();
         vehicle_name = new ArrayList<>();
@@ -260,7 +251,6 @@ public class RequestActivity extends AppCompatActivity {
                     // by calling getClickPos(), we can get position of clicking (or tapping)
                     LngLat clickedLocation = mapClickInfo.getClickPos();
                     // addMarker adds a marker (pretty self explanatory :D) to the clicked location
-                    addMarker(clickedLocation);
                 }
             }
         });
@@ -271,7 +261,7 @@ public class RequestActivity extends AppCompatActivity {
 
         userMarkerLayer = NeshanServices.createVectorElementLayer();
         startMarker = NeshanServices.createVectorElementLayer();
-            lineLayer = NeshanServices.createVectorElementLayer();
+        lineLayer = NeshanServices.createVectorElementLayer();
         map.getLayers().add(startMarker);
         map.getLayers().add(userMarkerLayer);
         map.getLayers().add(lineLayer);
@@ -351,7 +341,7 @@ public class RequestActivity extends AppCompatActivity {
                                     // Show the dialog by calling startResolutionForResult(), and check the
                                     // result in onActivityResult().
                                     ResolvableApiException rae = (ResolvableApiException) e;
-                                    rae.startResolutionForResult(RequestActivity.this, REQUEST_CODE);
+                                    rae.startResolutionForResult(EndPosActivity.this, REQUEST_CODE);
                                 } catch (IntentSender.SendIntentException sie) {
                                     Log.i(TAG, "PendingIntent unable to execute request.");
                                 }
@@ -361,7 +351,7 @@ public class RequestActivity extends AppCompatActivity {
                                         "fixed here. Fix in Settings.";
                                 Log.e(TAG, errorMessage);
 
-                                Toast.makeText(RequestActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                                Toast.makeText(EndPosActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                         }
 
                         onLocationChange();
@@ -473,7 +463,7 @@ public class RequestActivity extends AppCompatActivity {
     }
 
     private void startSearchActivity(String text) {
-        Intent intent = new Intent(RequestActivity.this, SearchActivity.class);
+        Intent intent = new Intent(EndPosActivity.this, SearchActivity.class);
         Bundle args = new Bundle();
         args.putString("index", text);
         args.putDouble("lat", map.getFocalPointPosition().getY());
@@ -486,22 +476,10 @@ public class RequestActivity extends AppCompatActivity {
     public void handleInputArgs() {
         Bundle args = getIntent().getExtras();
         if (args != null) {
-            if (!GlobalVariables.startLocation_chose) {
-
-                GlobalVariables.start = new LngLat(args.getDouble("lng"), args.getDouble("lat"));
-                addMarker(GlobalVariables.start);
-                focusOnLocation(GlobalVariables.start);
-                GlobalVariables.startLocation_chose = true;
-
-            } else if (GlobalVariables.startLocation_chose) {
-
-                tv_title.setText("انتخاب مقصد");
-                GlobalVariables.end = new LngLat(args.getDouble("lng"), args.getDouble("lat"));
-                addMarker(GlobalVariables.start);
-                addMarker(GlobalVariables.end);
-                drawLineGeom(GlobalVariables.start, GlobalVariables.end);
-
-            }
+            GlobalVariables.end = new LngLat(args.getDouble("lng"), args.getDouble("lat"));
+            addMarker(GlobalVariables.start);
+            addMarker(GlobalVariables.end);
+            drawLineGeom(GlobalVariables.start, GlobalVariables.end);
 
         }
 
@@ -559,15 +537,18 @@ public class RequestActivity extends AppCompatActivity {
         return lineStCr.buildStyle();
     }
 
+    private void Calculate(){
+
+
+    }
     @Override
     public void onBackPressed() {
-        if (GlobalVariables.startLocation_chose) {
+        GlobalVariables.end = null;
+        super.onBackPressed();
+    }
 
-            GlobalVariables.start = null;
-            GlobalVariables.end = null;
-        } else {
-            super.onBackPressed();
-        }
+    public void OnLocationSendListener(View view) {
+        startActivity(new Intent(EndPosActivity.this, DetailsActivity.class));
     }
 
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color02"
-    tools:context=".activity.main.RequestActivity">
+    tools:context=".activity.main.StartPosActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
@@ -39,6 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="right"
+            android:onClick="setUpBack"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="4"
             app:layout_constraintLeft_toRightOf="@id/tv_title"
@@ -50,6 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
+            android:onClick="setUpBack"
             android:src="@drawable/ic_chevron_right_white_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/tv_return"
@@ -89,30 +91,24 @@
 
     <EditText
         android:id="@+id/et_search"
+        style="@style/text_black_15"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/back_fifty_radius_white"
-        android:gravity="right"
+        android:gravity="start"
         android:hint="@string/search"
         android:inputType="text"
         android:layoutDirection="rtl"
-        android:lines="1"
-        android:maxLines="1"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
+        android:padding="@dimen/text_padding"
         android:singleLine="true"
-        android:textColor="@color/black"
-        android:textColorHint="@color/color06"
+        android:text="@string/search"
         android:textDirection="rtl"
-        android:textSize="16sp"
         android:translationY="-35dp"
         app:layout_constraintDimensionRatio="8"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline_underHeader"
-        app:layout_constraintWidth_percent="0.85" />
+        app:layout_constraintWidth_percent="0.85"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_aboveEnd2"
@@ -385,7 +381,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:gravity="top"
-            android:text="@string/confirm_begin" />
+            android:onClick="OnLocationSendListener"
+            android:text="@string/confirm_end" />
 
 
     </LinearLayout>

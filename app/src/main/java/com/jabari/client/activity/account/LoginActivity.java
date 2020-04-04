@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText et_phoneNum, et_verify_code;
     private Button btn_send;
-    private TextView tv_laws;
     private FloatingActionButton fab_login;
     private CheckBox checkBox;
 
@@ -48,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         setView();
         setFab_loginUnClickable();
-        getLawsOnclick();
 
     }
 
@@ -58,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
         btn_send = findViewById(R.id.btn_send);
         fab_login = findViewById(R.id.btn_login);
         fab_login.bringToFront();
-        tv_laws = findViewById(R.id.tv_laws);
         checkBox = findViewById(R.id.checkbox);
 
     }
@@ -169,42 +166,30 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void getLawsOnclick() {
-
-        tv_laws.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                showLawsDialog(getLaws());
-            }
-        });
-    }
-
-    public void showLawsDialog(String laws) {
-
-        if (laws != null) {
-            final Dialog dialog = new Dialog(this);
-            dialog.setContentView(R.layout.alertdialog);
-            TextView body = dialog.findViewById(R.id.tv_dialog);
-            body.setText(laws);
-            Button button = dialog.findViewById(R.id.btn_ok);
-            dialog.show();
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-                }
-            });
-        } else
-            Toasty.error(LoginActivity.this, "خطا در بارگذاری اطلاعات", Toasty.LENGTH_LONG).show();
-
-    }
-
-    private String getLaws() {
+    public void getLaws(View view) {
 
         ApiInterface.GetLawsCallback getLawsCallback = new ApiInterface.GetLawsCallback() {
             @Override
-            public void onResponse(GeneralResponse generalResponse) {
+            public void onResponse(GeneralResponse generalResponse, String laws) {
+                if (generalResponse.getSuccess()) {
+                    if (laws != null) {
+                        final Dialog dialog = new Dialog(LoginActivity.this);
+                        dialog.setContentView(R.layout.alertdialog);
+                        TextView body = dialog.findViewById(R.id.tv_dialog);
+                        body.setText(laws);
+                        Button button = dialog.findViewById(R.id.btn_ok);
+                        dialog.show();
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                            }
+                        });
+                    } else
+                        Toasty.error(LoginActivity.this, "قوانین و مقررات یافت نشد!", Toasty.LENGTH_LONG).show();
+
+                } else
+                    Toasty.error(LoginActivity.this, "خطا در برقراری ارتباط!", Toasty.LENGTH_LONG).show();
 
             }
 
@@ -214,6 +199,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         LoginController loginLawController = new LoginController(getLawsCallback);
-        return loginLawController.getLaws();
+        loginLawController.getLaws();
     }
 }

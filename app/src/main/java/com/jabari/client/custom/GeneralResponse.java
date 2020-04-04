@@ -8,8 +8,8 @@ public class GeneralResponse {
     private Boolean success;
     private String Message;
     public GeneralResponse(JsonObject body) {
-        Message = new Gson().fromJson(body.get("message"), String.class);
-        success = new Gson().fromJson(body.get("success"), Boolean.class);
+        setMessage(new Gson().fromJson(body.get("message"), String.class));
+        setSuccess(new Gson().fromJson(body.get("success"), Boolean.class));
     }
 
     public Boolean getSuccess() {

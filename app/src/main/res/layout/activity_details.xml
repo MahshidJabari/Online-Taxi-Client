@@ -122,21 +122,15 @@
                 style="@style/common_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"
+                android:layout_weight="0.9"
                 android:text="@string/travel_category" />
 
-            <TextView
-                android:id="@+id/tv_travel_type"
-                style="@style/common_text_white"
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/vehicle_spin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1.2"
-                android:background="@drawable/left_rounded_green"
-                android:drawableEnd="@drawable/ic_expand_more_white_24dp"
-                android:gravity="left"
-                android:paddingTop="10dp"
-                android:text="پیک موتوری" />
+                android:layout_weight="1.1"
+                android:entries="@array/vehicle_arrays" />
 
         </LinearLayout>
 
@@ -227,12 +221,13 @@
                         android:id="@+id/swt_back"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        app:sb_checked_color="@color/blue" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:layoutDirection="rtl"
                         android:text="@string/have"
@@ -267,12 +262,14 @@
                         android:id="@+id/swt_pay_way"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        app:sb_checked="true"
+                        app:sb_checked_color="@color/blue" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:layoutDirection="rtl"
                         android:text="@string/credit_"
@@ -307,12 +304,13 @@
                         android:id="@+id/swt_pay_company"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        app:sb_checked_color="@color/blue" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:layoutDirection="rtl"
                         android:text="@string/destination"
@@ -386,17 +384,17 @@
             android:layoutDirection="rtl"
             android:text="@string/stop_between" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/stop_spin"
             style="@style/common_text_white"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.4"
             android:background="@drawable/left_rounded_green"
-            android:drawableEnd="@drawable/ic_expand_more_white_24dp"
+            android:entries="@array/stop_arrays"
             android:gravity="center"
             android:layoutDirection="rtl"
-            android:paddingRight="40dp"
-            android:text="@string/does_not_have" />
+            android:paddingStart="60dp" />
 
     </LinearLayout>
 
@@ -420,8 +418,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="3"
-            android:drawableRight="@drawable/ic_date_range_pink_24dp"
+            android:layout_weight="3.5"
+            android:drawableStart="@drawable/ic_date_range_pink_24dp"
             android:drawablePadding="10dp"
             android:gravity="right"
             android:text="@string/scheduling" />
@@ -442,10 +440,13 @@
         <com.suke.widget.SwitchButton
             android:id="@+id/swt_scheduling"
             style="@style/common_text"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1" />
+            android:layout_weight="0.3"
+            app:sb_checked="true"
+            app:sb_checked_color="@color/blue"
+            app:sb_uncheckcircle_color="@color/blue" />
 
         <TextView
             android:layout_width="0dp"
@@ -471,7 +472,8 @@
         android:layoutDirection="rtl"
         android:orientation="horizontal"
         android:translationY="-20dp"
-        android:weightSum="4"
+        android:visibility="invisible"
+        android:weightSum="3"
         app:layout_constraintHeight_percent="0.05"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -483,7 +485,7 @@
             style="@style/common_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:text="@string/date" />
 
         <TextView
@@ -510,7 +512,8 @@
         android:gravity="center"
         android:layoutDirection="rtl"
         android:translationY="-20dp"
-        android:weightSum="4"
+        android:visibility="invisible"
+        android:weightSum="3"
         app:layout_constraintHeight_percent="0.06"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -524,32 +527,32 @@
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="2"
+            android:layout_weight="1.08"
             android:background="@drawable/border_ten_radius_gray"
             android:gravity="center"
             android:text="@string/date" />
 
-        <TextView
-            style="@style/common_text"
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/min_spin"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/border_ten_radius_gray"
+            android:layout_weight="0.96"
+            android:entries="@array/min_arrays"
             android:gravity="center"
-            android:text="42" />
+            android:theme="@style/dark_back_spinner" />
 
-        <TextView
-            style="@style/common_text"
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/hour_spin"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/border_ten_radius_gray"
+            android:layout_weight="0.96"
+            android:entries="@array/hour_arrays"
             android:gravity="center"
-            android:text="22" />
+            android:theme="@style/dark_back_spinner" />
 
 
     </LinearLayout>
@@ -561,7 +564,7 @@
         android:background="@color/gray"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lin_date"
+        app:layout_constraintTop_toBottomOf="@id/lin_date_label"
         app:layout_constraintWidth_percent="0.8" />
 
     <LinearLayout
@@ -618,7 +621,6 @@
         android:layout_height="0dp"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
-        android:visibility="gone"
         android:weightSum="3"
         app:layout_constraintBottom_toTopOf="@id/guideline_aboveEnd"
         app:layout_constraintHeight_percent="0.07"
@@ -660,7 +662,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.88" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -687,7 +689,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <LinearLayout
         android:layout_width="match_parent"

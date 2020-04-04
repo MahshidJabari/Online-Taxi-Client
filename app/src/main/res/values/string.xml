@@ -21,12 +21,14 @@
     <string name="payment_gateway">درگاه پرداخت</string>
     <string name="username">نام کاربر</string>
     <string name="melat">ملت</string>
+    <string name="profile">پروفایل</string>
     <string name="transaction_number">شماره تراکنش</string>
     <string name="payment_text"> تا اطلاع ثانوی همه پرداخت ها از درگاه ملت قابل پرداخت است. </string>
     <string name="increase_credit_toman">افزایش اعتبار به تومان</string>
     <string name="enter_desired_amount">ورود مبلغ دلخواه</string>
     <string name="increase_credit">افزایش اعتبار به مبلغ</string>
     <string name="successful_travels">سفرهای موفق</string>
+    <string name="unsuccessful_travel">سفرهای ناموفق</string>
     <string name="travel">سفر</string>
     <string name="travel_credit">مبلغ قابل پرداخت</string>
     <string name="total_payments">جمع پرداختی ها</string>
@@ -51,6 +53,7 @@
     <string name="show_setting">اعلان تنظیمات</string>
     <string name="charge_with_gift_code">شارژ حساب با کد هدیه</string>
     <string name="gift_card_text">جهت شارژ حساب خود کد هدیه را در بخش زیر وارد کنید.</string>
+    <string name="intro_cod_text">جهت شارژ حساب خود کد معرف را در بخش زیر وارد کنید.</string>
     <string name="unsuccessful">ناموفق</string>
     <string name="scheduled">زمانبندی شده</string>
     <string name="finding">درحال یافتن نزدیک ترین سفیر!</string>
@@ -73,9 +76,12 @@
     <string name="achieved_score">اعتبار کسب شده</string>
     <string name="score">امتیاز</string>
     <string name="confirm_begin">تایید مبدا</string>
+    <string name="confirm_end">تایید مقصد</string>
     <string name="send_req">ارسال درخواست</string>
+    <string name="add_new_address">افزودن آدرس جدید</string>
     <string name="travel_category">نوع سفر</string>
     <string name="come_back">برگشت</string>
+    <string name="favorite_address_text">تا این لحظه هیچ آدرس منتخبی ثبت نشده است. برای ثبت اولین آدرس منتخب خود دکمه افزودن آدرس جدید را بفشارید </string>
     <string name="have">دارد</string>
     <string name="does_not_have">ندارد</string>
     <string name="stop_between">توقف در مسیر</string>
@@ -102,5 +108,57 @@
     <string name="user_location_permission_not_granted">برای ادامه ی مراحل لطفا مکان یاب خود را روشن کنید!</string>
     <string name="exit">خروج</string>
 
+    <string-array name="hour_arrays">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>00</item>
+    </string-array>
+    <string-array name="min_arrays">
+        <item>00</item>
+        <item>05</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+    </string-array>
+
+    <string-array name="stop_arrays">
+        <item>دارد</item>
+        <item>ندارد</item>
+    </string-array>
+    <string-array name="vehicle_arrays">
+        <item>پیک موتوری</item>
+        <item>تاکسی موتور</item>
+        <item>سواری</item>
+        <item>وانت سنگین</item>
+        <item>وانت بار</item>
+    </string-array>
 
 </resources>

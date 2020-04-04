@@ -3,9 +3,12 @@ package com.jabari.client.network.config;
 
 import com.google.gson.JsonObject;
 import com.jabari.client.custom.GeneralResponse;
+import com.jabari.client.entities.Request;
 import com.jabari.client.network.model.Item;
 import com.jabari.client.network.model.NeshanSearch;
 import com.jabari.client.network.model.User;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +46,7 @@ public interface ApiInterface {
     @GET("general/laws")
     Call<JsonObject> get_rules();
     interface GetLawsCallback{
-        void onResponse(GeneralResponse generalResponse);
+        void onResponse(GeneralResponse generalResponse,String laws);
         void onFailure(String error);
     }
     @Headers("Api-Key: service.PnRV9ocd8zm9QYYlJUNLJoAihE3hfy34WUZ6jcjr")
@@ -53,5 +56,10 @@ public interface ApiInterface {
         void onResponse(List<Item> itemList);
         void onFailure(String err);
     }
-
+    @POST
+    Call<Request> calculate(Request request);
+    interface CalculateCallback{
+        void onResponse();
+        void onFailure(String err);
+    }
 }

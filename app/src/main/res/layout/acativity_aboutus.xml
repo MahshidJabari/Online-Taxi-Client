@@ -78,40 +78,36 @@
 
     <Button
         android:id="@+id/btn_update"
+        style="@style/white_bold_16"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/back_fifteen_radius_blue"
         android:drawableStart="@drawable/ic_refresh_white_24dp"
         android:layoutDirection="rtl"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:text="@string/search_for_update"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_version"
         app:layout_constraintVertical_bias="0.15"
-        app:layout_constraintWidth_percent="0.4" />
+        app:layout_constraintWidth_percent="0.45" />
 
     <Button
+        style="@style/white_bold_16"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/back_fifteen_radius_green"
         android:drawableStart="@drawable/ic_phone_in_talk_white_24dp"
         android:layoutDirection="rtl"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:text="@string/call_suppprt"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_update"
         app:layout_constraintVertical_bias="0.2"
-        app:layout_constraintWidth_percent="0.4" />
+        app:layout_constraintWidth_percent="0.45" />
 
 
 </android.support.constraint.ConstraintLayout>

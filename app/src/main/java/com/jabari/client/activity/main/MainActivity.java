@@ -19,12 +19,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.jabari.client.R;
+import com.jabari.client.activity.finance.FinancialActivity;
+import com.jabari.client.activity.finance.IntroductionActivity;
+import com.jabari.client.activity.finance.ManagementActivity;
 import com.jabari.client.activity.help.AboutUsActivity;
 import com.jabari.client.activity.report.AddressActivity;
 import com.jabari.client.activity.report.ArchiveActivity;
-import com.jabari.client.activity.finance.IntroductionActivity;
-import com.jabari.client.activity.finance.FinancialActivity;
-import com.jabari.client.activity.finance.ManagementActivity;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.custom.PrefManager;
 import com.jabari.client.fragment.OnGoingFragment;
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fbtn_add_req.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, RequestActivity.class));
+                startActivity(new Intent(MainActivity.this, StartPosActivity.class));
 
             }
         });
@@ -89,9 +89,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.credit_management:
                 Intent intent = new Intent(MainActivity.this, ManagementActivity.class);
                 startActivity(intent);
-                break;
-            case R.id.req_list:
-                startActivity(new Intent(this, RequestActivity.class));
                 break;
             case R.id.activities_archive:
                 startActivity(new Intent(this, ArchiveActivity.class));

@@ -148,6 +148,7 @@
         android:layout_height="wrap_content"
         android:text="@string/increase_credit_toman"
         android:textAlignment="center"
+        android:translationY="-10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lin1"
@@ -159,6 +160,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
         android:gravity="center"
+        android:layoutDirection="rtl"
         android:weightSum="3"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -170,12 +172,11 @@
             style="@style/button_credit"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:background="@drawable/back_twenty_radius_gray"
-            android:text="10/000"
-            android:textAlignment="center"
-            android:textDirection="ltr" />
+            android:text="30/000"
+            android:textAlignment="center" />
 
         <Button
             style="@style/button_credit"
@@ -192,11 +193,13 @@
             style="@style/button_credit"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:background="@drawable/back_twenty_radius_gray"
-            android:text="30/000"
-            android:textAlignment="center" />
+            android:text="10/000"
+            android:textAlignment="center"
+            android:textDirection="ltr" />
+
 
     </LinearLayout>
 
@@ -206,6 +209,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
+        android:layoutDirection="rtl"
         android:weightSum="3"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -214,16 +218,15 @@
         app:layout_constraintWidth_percent="0.75">
 
         <Button
-            android:id="@+id/btn_fifty"
+            android:id="@+id/btn_two_hundred"
             style="@style/button_credit"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:background="@drawable/back_twenty_radius_gray"
-            android:text="50/000"
-            android:textAlignment="center"
-            android:textDirection="ltr" />
+            android:text="200/000"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/btn_hundred"
@@ -238,15 +241,17 @@
             android:textAlignment="center" />
 
         <Button
-            android:id="@+id/btn_two_hundred"
+            android:id="@+id/btn_fifty"
             style="@style/button_credit"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:background="@drawable/back_twenty_radius_gray"
-            android:text="200/000"
-            android:textAlignment="center" />
+            android:text="50/000"
+            android:textAlignment="center"
+            android:textDirection="ltr" />
+
 
     </LinearLayout>
 
@@ -257,7 +262,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/back_twenty_radius_gray"
         android:gravity="center"
-        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHeight_percent="0.06"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lin3"
@@ -275,7 +280,7 @@
         android:id="@+id/view3"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:background="@color/gray"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -290,7 +295,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:weightSum="5"
-        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHeight_percent="0.06"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view3"
@@ -325,7 +330,7 @@
         android:id="@+id/view4"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/margin_border"
         android:background="@color/gray"
         android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -378,12 +383,23 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/margin_border"
+        android:background="@color/gray"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lin6"
+        app:layout_constraintWidth_percent="0.75" />
+
     <android.support.constraint.Guideline
         android:id="@+id/guideline_aboveEnd"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.88" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -417,9 +433,17 @@
         android:layout_height="0dp"
         android:background="@color/green"
         android:gravity="center"
+        android:layoutDirection="rtl"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintTop_toBottomOf="@id/guideline_end">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/limit_icon_signup_bottom" />
 
         <TextView
             style="@style/title_text"
@@ -429,12 +453,6 @@
             android:gravity="top"
             android:text="@string/pay" />
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/limit_icon_signup_bottom" />
     </LinearLayout>
 
 

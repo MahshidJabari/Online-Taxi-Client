@@ -81,7 +81,7 @@ public class LoginController {
         });
     }
 
-    public String getLaws(){
+    public String getLaws() {
 
         Retrofit retrofit = ApiClient.getClient();
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
@@ -89,14 +89,17 @@ public class LoginController {
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.body() != null) {
+                    txt = new Gson().fromJson(response.body().get("laws"), String.class);
 
-                txt = new Gson().fromJson(response.body().get(""),String.class);
-                GeneralResponse generalResponse = new GeneralResponse(response.body());
-                getLawsCallback.onResponse(generalResponse);
+                    GeneralResponse generalResponse = new GeneralResponse(response.body());
+                    getLawsCallback.onResponse(generalResponse, txt);
+                }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
+                getLawsCallback.onFailure("خطا در برقراری ارتباط");
 
             }
         });

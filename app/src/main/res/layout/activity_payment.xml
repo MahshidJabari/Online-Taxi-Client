@@ -229,17 +229,17 @@
                     style="@style/text_green"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_gravity="start"
+                    android:gravity="center"
                     android:text="@string/toman" />
 
                 <TextView
                     style="@style/text_green"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:layout_marginStart="10dp"
                     android:layout_gravity="end"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center"
                     android:text="@string/toman" />
 
             </LinearLayout>
@@ -373,9 +373,17 @@
         android:layout_height="0dp"
         android:background="@color/green"
         android:gravity="center"
+        android:layoutDirection="rtl"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintTop_toBottomOf="@id/guideline_end">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/limit_icon_signup_bottom" />
 
         <TextView
             style="@style/title_text"
@@ -385,12 +393,6 @@
             android:gravity="top"
             android:text="@string/pay" />
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/limit_icon_signup_bottom" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -78,7 +78,7 @@ public class SearchActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putDouble("lat", lngLat.getY());
                 bundle.putDouble("lng", lngLat.getX());
-                Intent intent = new Intent(SearchActivity.this, RequestActivity.class);
+                Intent intent = new Intent(SearchActivity.this, StartPosActivity.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

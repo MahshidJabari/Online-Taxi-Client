@@ -22,5 +22,6 @@
     <color name="color08">#f5f5f5</color>
     <color name="color09">#fafafa</color>
     <color name="color10">#757575</color>
+    <color name="dark">#001D25</color>
     <color name="transparent">#00000000</color>
 </resources>
