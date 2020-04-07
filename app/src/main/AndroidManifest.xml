@@ -35,6 +35,7 @@
         <activity android:name=".activity.main.DetailsActivity"/>
         <activity android:name=".activity.account.LoginActivity" />
         <activity android:name=".activity.report.ArchiveActivity"/>
+        <activity android:name=".activity.main.SendRequestActivity"/>
         <activity android:name=".activity.help.SupportActivity"/>
         <activity android:name=".activity.main.SearchActivity"/>
         <activity android:name=".activity.finance.FinancialActivity"/>

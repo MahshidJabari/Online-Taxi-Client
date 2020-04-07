@@ -1,22 +1,52 @@
 package com.jabari.client.entities;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Request {
 
-
+    @SerializedName("lat")
+    @Expose
     private String lat;
+    @SerializedName("lng")
+    @Expose
     private String lng;
+
+    @SerializedName("dlat")
+    @Expose
     private String dlat;
+    @SerializedName("dlng")
+    @Expose
     private String dlng;
-    private String vehicle;
-    private String cost;
+    @SerializedName("vehicle")
+    @Expose
+    private int vehicle;
+    @SerializedName("stop")
+    @Expose
+    private int stop;
+    @SerializedName("haveReturn")
+    @Expose
+    private int haveReturn;
+    @SerializedName("cashPayment")
+    @Expose
+    private int cashPayment;
+    @SerializedName("payByRequest")
+    @Expose
+    private int payByRequest;
+    @SerializedName("destinationAddress")
+    @Expose
+    private String destinationAddress;
+    @SerializedName("locationAddress")
+    @Expose
+    private String locationAddress;
+    @SerializedName("message")
+    private String message;
 
-    public String getCost() {
-        return cost;
+
+    public String getMessage() {
+        return message;
     }
 
-    public void setCost(String cost) {
-        this.cost = cost;
-    }
 
     public String getLat() {
         return lat;
@@ -50,15 +80,61 @@ public class Request {
         this.dlng = dlng;
     }
 
-    public String getVehicle() {
+    public int getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(String vehicle) {
+    public void setVehicle(int vehicle) {
         this.vehicle = vehicle;
     }
 
+    public int getStop() {
+        return stop;
+    }
+
+    public void setStop(int stop) {
+        this.stop = stop;
+    }
+
+    public int getHaveReturn() {
+        return haveReturn;
+    }
+
+    public void setHaveReturn(int haveReturn) {
+        this.haveReturn = haveReturn;
+    }
+
+    public int getCashPayment() {
+        return cashPayment;
+    }
+
+    public void setCashPayment(int cashPayment) {
+        this.cashPayment = cashPayment;
+    }
+
+    public int getPayByRequest() {
+        return payByRequest;
+    }
+
+    public void setPayByRequest(int payByRequest) {
+        this.payByRequest = payByRequest;
+    }
+
+    public String getDestinationAddress() {
+        return destinationAddress;
+    }
+
+    public void setDestinationAddress(String destinationAddress) {
+        this.destinationAddress = destinationAddress;
+    }
+
+    public String getLocationAddress() {
+        return locationAddress;
+    }
+
+    public void setLocationAddress(String locationAddress) {
+        this.locationAddress = locationAddress;
+    }
+
+
 }
-
-
-

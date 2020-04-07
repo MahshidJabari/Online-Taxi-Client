@@ -14,12 +14,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class DoSearchController {
+public class SearchController {
 
     List<Item> items;
     ApiInterface.SearchCallback searchCallBack;
 
-    public DoSearchController(ApiInterface.SearchCallback searchCallback) {
+    public SearchController(ApiInterface.SearchCallback searchCallback) {
 
         this.searchCallBack = searchCallback;
     }

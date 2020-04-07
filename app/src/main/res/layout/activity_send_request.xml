@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color08">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#001D25"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/color06"
+            android:orientation="horizontal"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/title_text"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/send_req"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5"
+                app:layout_constraintWidth_percent="0.4" />
+
+            <TextView
+                android:id="@+id/tv_return"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="right"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="4"
+                app:layout_constraintLeft_toRightOf="@id/tv_title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5"
+                app:layout_constraintWidth_percent="0.2" />
+
+            <ImageView
+                android:id="@+id/img_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:onClick="OnCancelClicked"
+                android:src="@drawable/ic_close_white_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/tv_return"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.06" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_middle"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#001D25"
+            app:layout_constraintBottom_toTopOf="@id/guideline_underHeader"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_middle">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/curve_shape_dark_blue">
+
+            </View>
+
+        </LinearLayout>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_underHeader"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/lin1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/back_twenty_white"
+            android:layoutDirection="rtl"
+            android:translationY="-28dp"
+            app:layout_constraintHeight_percent="0.28"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_underHeader"
+            app:layout_constraintWidth_percent="0.85">
+
+            <TextView
+                android:id="@+id/tv"
+                style="@style/common_text"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:paddingStart="@dimen/tv_padding"
+                android:paddingEnd="@dimen/tv_padding"
+                android:text="@string/start"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv"
+                app:layout_constraintVertical_bias="0">
+
+                <EditText
+                    android:id="@+id/et_start_loc"
+                    style="@style/dark_blue_16"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3.6"
+                    android:background="@color/transparent"
+                    android:drawableStart="@drawable/ic_location_green"
+                    android:paddingStart="@dimen/tv_padding" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/ic_edit_dark_blue_24dp"
+                    android:paddingEnd="@dimen/tv_padding" />
+            </LinearLayout>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.38" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/color08"
+        app:layout_constraintBottom_toTopOf="@id/guidelineMid"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/curve_shape_dark">
+
+        </View>
+
+    </LinearLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineMid"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.42" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/mid_cons"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/back_twenty_white"
+        android:orientation="vertical"
+        android:translationY="-140dp"
+        app:layout_constraintHeight_percent="0.23"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guidelineMid"
+        app:layout_constraintWidth_percent="0.85">
+
+        <TextView
+            android:id="@+id/tv2"
+            style="@style/common_text"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:paddingStart="@dimen/tv_padding"
+            android:paddingEnd="@dimen/tv_padding"
+            android:text="@string/destination"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
+
+        <LinearLayout
+            android:id="@+id/lin"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv2"
+            app:layout_constraintVertical_bias="0">
+
+            <EditText
+                android:id="@+id/et_destination"
+                style="@style/dark_blue_16"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.6"
+                android:drawableStart="@drawable/ic_location_orange"
+                android:paddingStart="@dimen/tv_padding" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"
+                android:background="@drawable/ic_edit_dark_blue_24dp"
+                android:paddingEnd="@dimen/tv_padding" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/title_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/back_fifty_radius_blue"
+            android:gravity="center"
+            android:text="@string/add_new_destination"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintTop_toBottomOf="@id/lin"
+            app:layout_constraintVertical_bias="1" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/lin2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:translationY="-130dp"
+        android:weightSum="2"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mid_cons"
+        app:layout_constraintWidth_percent="0.85">
+
+        <Button
+            style="@style/common_text_white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/back_fifteen_radius_blue"
+            android:drawableStart="@drawable/ic_list_white_24dp"
+            android:onClick="onDetailClicked"
+            android:paddingStart="3dp"
+            android:text="@string/req_details" />
+
+        <Button
+            android:id="@+id/btn_gift_code"
+            style="@style/common_text_white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/back_fifteen_radius_green"
+            android:drawableStart="@drawable/ic_credit_card_white_24dp"
+            android:onClick="OnGiftCodeButtonClicked"
+            android:paddingStart="5dp"
+            android:text="@string/increase_credit_" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:translationY="-120dp"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lin2"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent="0.8">
+
+        <TextView
+            style="@style/gray_bold_16"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.65"
+            android:gravity="start"
+            android:text="@string/vehicle_type"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_vehicle_name"
+            style="@style/dark_blue_16"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.35"
+            android:gravity="end"
+            android:text="@string/vehicle_type"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="@color/gray"
+        android:translationY="-150dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lin3"
+        app:layout_constraintWidth_percent="0.85" />
+
+    <LinearLayout
+        android:id="@+id/lin4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:translationY="-130dp"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent="0.8">
+
+        <TextView
+            style="@style/gray_bold_16"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.65"
+            android:gravity="start"
+            android:text="@string/payment_way"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_payment_way"
+            style="@style/dark_blue_16"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.35"
+            android:gravity="end"
+            android:text="@string/payment_way"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="@color/gray"
+        android:translationY="-150dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lin4"
+        app:layout_constraintWidth_percent="0.85" />
+
+    <LinearLayout
+        android:id="@+id/lin5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:translationY="-130dp"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view1"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent="0.8">
+
+        <TextView
+            style="@style/gray_bold_16"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:gravity="start"
+            android:text="@string/payable"
+            android:textSize="18sp" />
+
+        <TextView
+            style="@style/text_blue_14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:gravity="start"
+            android:onClick="OnDiscountClicked"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:text="@string/discount" />
+
+        <TextView
+            android:id="@+id/tv_payment"
+            style="@style/dark_blue_16"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="@string/payable"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_aboveEnd"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.88" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/color08"
+        app:layout_constraintBottom_toTopOf="@id/guideline_end"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_aboveEnd">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/curve_shape_green"
+            android:scaleX="-1"
+            android:scaleY="-1">
+
+        </View>
+
+    </LinearLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_end"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/green"
+        android:gravity="center"
+        android:layoutDirection="rtl"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintTop_toBottomOf="@id/guideline_end">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="top"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/limit_icon_signup_bottom" />
+
+        <TextView
+            style="@style/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:onClick="SendRequest"
+            android:text="@string/send_req" />
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

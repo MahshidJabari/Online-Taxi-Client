@@ -70,6 +70,7 @@
     <style name="text_blue_14">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/blue</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="title_text">

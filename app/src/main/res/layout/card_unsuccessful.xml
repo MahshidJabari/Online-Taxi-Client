@@ -412,7 +412,7 @@
             android:layoutDirection="rtl"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="@string/request"
+            android:text="@string/cost"
             android:textColor="@color/color06"
             android:textSize="16dp"
             android:textStyle="bold" />

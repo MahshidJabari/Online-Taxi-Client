@@ -15,6 +15,7 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -42,8 +43,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.jabari.client.R;
+import com.jabari.client.controller.RequestController;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.custom.UserLocation;
+import com.jabari.client.entities.Cost;
+import com.jabari.client.network.config.ApiInterface;
 import com.karumi.dexter.BuildConfig;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -77,6 +81,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class EndPosActivity extends AppCompatActivity {
@@ -108,6 +113,7 @@ public class EndPosActivity extends AppCompatActivity {
     private Boolean mRequestingLocationUpdates;
     private MapView map;
     private LinearLayout lin_progress;
+    private ConstraintLayout cons_start;
     private View v, v2;
 
     @Override
@@ -169,7 +175,7 @@ public class EndPosActivity extends AppCompatActivity {
 
     public void setVehicle() {
         lin_progress = findViewById(R.id.lin_progress);
-
+        cons_start = findViewById(R.id.cons_end_loc);
         vehicle_list = new ArrayList<>();
         vehicle_name = new ArrayList<>();
         vehicle_list.add(R.drawable.motor);
@@ -177,9 +183,9 @@ public class EndPosActivity extends AppCompatActivity {
         vehicle_list.add(R.drawable.car);
         vehicle_list.add(R.drawable.van);
         vehicle_list.add(R.drawable.van2);
-        vehicle_name.add("تاکسی موتور");
         vehicle_name.add("پیک موتوری");
-        vehicle_name.add(" سواری");
+        vehicle_name.add("تاکسی موتور");
+        vehicle_name.add("سواری");
         vehicle_name.add("وانت سنگین");
         vehicle_name.add("وانت بار");
 
@@ -254,6 +260,9 @@ public class EndPosActivity extends AppCompatActivity {
                 }
             }
         });
+        lin_progress.setVisibility(View.GONE);
+        cons_start.setVisibility(View.VISIBLE);
+
     }
 
     private void initMap() {
@@ -477,11 +486,13 @@ public class EndPosActivity extends AppCompatActivity {
         Bundle args = getIntent().getExtras();
         if (args != null) {
             GlobalVariables.end = new LngLat(args.getDouble("lng"), args.getDouble("lat"));
+            GlobalVariables.endLoc = args.getString("address");
             addMarker(GlobalVariables.start);
             addMarker(GlobalVariables.end);
             drawLineGeom(GlobalVariables.start, GlobalVariables.end);
 
-        }
+        } else
+            Toasty.error(EndPosActivity.this, "با خطا مواجه شد!", Toasty.LENGTH_LONG).show();
 
     }
 
@@ -537,10 +548,28 @@ public class EndPosActivity extends AppCompatActivity {
         return lineStCr.buildStyle();
     }
 
-    private void Calculate(){
+    private void Calculate(Cost cost) {
 
+        ApiInterface.CalculateCallback calculateCallback = new ApiInterface.CalculateCallback() {
+            @Override
+            public void onResponse(String calculated) {
 
+                GlobalVariables.calculated = calculated;
+                startActivity(new Intent(EndPosActivity.this, SendRequestActivity.class));
+
+            }
+
+            @Override
+            public void onFailure(String err) {
+                Toasty.error(EndPosActivity.this, "درخواست با خطا مواجه شد!", Toasty.LENGTH_SHORT).show();
+                Toasty.info(EndPosActivity.this, "مجددا تلاش کنید!", Toasty.LENGTH_LONG).show();
+
+            }
+        };
+        RequestController requestController = new RequestController(calculateCallback);
+        requestController.calculate(cost);
     }
+
     @Override
     public void onBackPressed() {
         GlobalVariables.end = null;
@@ -548,7 +577,14 @@ public class EndPosActivity extends AppCompatActivity {
     }
 
     public void OnLocationSendListener(View view) {
-        startActivity(new Intent(EndPosActivity.this, DetailsActivity.class));
+        Cost cost = new Cost();
+        cost.setLat(String.valueOf(GlobalVariables.start.getX()));
+        cost.setLng(String.valueOf(GlobalVariables.start.getY()));
+        cost.setDlat(String.valueOf(GlobalVariables.end.getX()));
+        cost.setDlng(String.valueOf(GlobalVariables.end.getY()));
+        cost.setVehicle(GlobalVariables.v);
+        Calculate(cost);
+
     }
 
 }

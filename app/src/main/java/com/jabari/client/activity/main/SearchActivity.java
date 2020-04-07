@@ -11,7 +11,8 @@ import android.widget.Toast;
 
 import com.jabari.client.R;
 import com.jabari.client.adapter.SearchAdapter;
-import com.jabari.client.controller.DoSearchController;
+import com.jabari.client.controller.SearchController;
+import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.network.config.ApiInterface;
 import com.jabari.client.network.model.Item;
 
@@ -62,32 +63,40 @@ public class SearchActivity extends AppCompatActivity {
                 Toast.makeText(SearchActivity.this, "ارتباط برقرار نشد!", Toast.LENGTH_SHORT).show();
             }
         };
-        DoSearchController controller = new DoSearchController(searchCallback);
+        SearchController controller = new SearchController(searchCallback);
         controller.Do(term, lat, lng);
 
     }
 
-    private void setUpSearchRecycler(List<Item> list) {
+    private void setUpSearchRecycler(final List<Item> list) {
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView = findViewById(R.id.search_recycler);
         recyclerView.setLayoutManager(manager);
         adapter = new SearchAdapter(this, recyclerView, list, new SearchActivity.IOnSearchItemListener() {
             @Override
-            public void onSearchItemClick(LngLat lngLat) {
+            public void onSearchItemClick(LngLat lngLat,String address) {
 
                 Bundle bundle = new Bundle();
                 bundle.putDouble("lat", lngLat.getY());
                 bundle.putDouble("lng", lngLat.getX());
-                Intent intent = new Intent(SearchActivity.this, StartPosActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                bundle.putString("address",address);
+                if (GlobalVariables.start == null) {
+                    Intent intent = new Intent(SearchActivity.this, StartPosActivity.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(SearchActivity.this, EndPosActivity.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+
+                }
             }
         });
         recyclerView.setAdapter(adapter);
     }
 
     public interface IOnSearchItemListener {
-        void onSearchItemClick(LngLat lngLat);
-    }
+        void onSearchItemClick(LngLat lngLat,String address);
+        }
 
 }

@@ -25,12 +25,15 @@ import com.jabari.client.activity.finance.ManagementActivity;
 import com.jabari.client.activity.help.AboutUsActivity;
 import com.jabari.client.activity.report.AddressActivity;
 import com.jabari.client.activity.report.ArchiveActivity;
+import com.jabari.client.controller.LoginController;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.custom.PrefManager;
 import com.jabari.client.fragment.OnGoingFragment;
 import com.jabari.client.fragment.ScheduledFragment;
 import com.jabari.client.fragment.UnSuccessfulFragment;
+import com.jabari.client.network.config.ApiInterface;
 
+import es.dmoral.toasty.Toasty;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setUpNavigationView();
         setUpTab_travelList();
+        getCurrentUser();
 
         logOff();
         fbtn_add_req = findViewById(R.id.btn_login);
@@ -198,6 +202,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         fragmentTransaction.replace(R.id.container_body, replaceFragment);
         fragmentTransaction.commitAllowingStateLoss();
+    }
+
+    private void getCurrentUser() {
+
+        ApiInterface.getCurrentUserCallback getCurrentUserCallback = new ApiInterface.getCurrentUserCallback() {
+            @Override
+            public void onResponse() {
+
+            }
+
+            @Override
+            public void onFailure(String err) {
+
+                if (err.equals("expired"))
+                    Toasty.error(MainActivity.this, "لطفا از حساب کاربری خود خارج شوید و مجددا وارد شوید", Toasty.LENGTH_LONG).show();
+                if (err.equals("connection"))
+                    Toasty.error(MainActivity.this, "خطا در برقراری ارتباط!", Toasty.LENGTH_LONG).show();
+            }
+        };
+        LoginController loginController = new LoginController(getCurrentUserCallback);
+        loginController.getCurrentUser();
     }
 
     private void logOff() {

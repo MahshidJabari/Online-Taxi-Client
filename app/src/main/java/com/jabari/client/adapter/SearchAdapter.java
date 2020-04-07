@@ -72,7 +72,8 @@ public class SearchAdapter extends
         public void onClick(View view) {
             Location location = resultList.get(getAdapterPosition()).getLocation();
             LngLat lngLat = new LngLat(location.getX(), location.getY());
-            iOnSearchItemListener.onSearchItemClick(lngLat);
+            String address = resultList.get(getAdapterPosition()).getAddress();
+            iOnSearchItemListener.onSearchItemClick(lngLat, address);
         }
     }
 

@@ -480,6 +480,7 @@ public class StartPosActivity extends AppCompatActivity {
         if (args != null) {
 
             GlobalVariables.start = new LngLat(args.getDouble("lng"), args.getDouble("lat"));
+            GlobalVariables.startLoc = args.getString("address");
             addMarker(GlobalVariables.start);
             focusOnLocation(GlobalVariables.start);
 

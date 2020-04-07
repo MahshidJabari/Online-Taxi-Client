@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.jabari.client.custom.GeneralResponse;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.network.config.ApiClient;
 import com.jabari.client.network.config.ApiInterface;
@@ -21,6 +20,7 @@ public class LoginController {
     ApiInterface.LoginUserCallback loginUserCallback;
     ApiInterface.UserVerifyCodeCallback userVerifyCodeCallback;
     ApiInterface.GetLawsCallback getLawsCallback;
+    ApiInterface.getCurrentUserCallback getCurrentUserCallback;
 
     public LoginController(ApiInterface.UserVerifyCodeCallback userVerifyCodeCallback) {
         this.userVerifyCodeCallback = userVerifyCodeCallback;
@@ -34,6 +34,10 @@ public class LoginController {
         this.getLawsCallback = getLawsCallback;
     }
 
+    public LoginController(ApiInterface.getCurrentUserCallback getCurrentUserCallback) {
+        this.getCurrentUserCallback = getCurrentUserCallback;
+    }
+
     public void Do(final String mobileNum, String verify_code) {
         User user = new User();
         user.setMobileNum(mobileNum);
@@ -44,13 +48,12 @@ public class LoginController {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
-                    GeneralResponse generalResponse = new GeneralResponse(response.body());
                     User user = new Gson().fromJson(response.body().get("user"), User.class);
                     String token = new Gson().fromJson(response.body().get("jwtAccessToken"), String.class);
                     GlobalVariables.tok = token;
                     Log.d("tok", token);
 
-                    loginUserCallback.onResponse(generalResponse, user, token);
+                    loginUserCallback.onResponse(user, token);
                 }
             }
 
@@ -69,8 +72,7 @@ public class LoginController {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
-                    GeneralResponse generalResponse = new GeneralResponse(response.body());
-                    userVerifyCodeCallback.onResponse(generalResponse);
+                    userVerifyCodeCallback.onResponse();
                 }
             }
 
@@ -92,8 +94,7 @@ public class LoginController {
                 if (response.body() != null) {
                     txt = new Gson().fromJson(response.body().get("laws"), String.class);
 
-                    GeneralResponse generalResponse = new GeneralResponse(response.body());
-                    getLawsCallback.onResponse(generalResponse, txt);
+                    getLawsCallback.onResponse(txt);
                 }
             }
 
@@ -105,5 +106,31 @@ public class LoginController {
         });
 
         return txt;
+    }
+
+    public void getCurrentUser() {
+        Retrofit retrofit = ApiClient.getClient();
+        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+        Call<JsonObject> call = apiInterface.getCurrentUser();
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.body() != null) {
+                    boolean success = new Gson().fromJson(response.body().get("success"), Boolean.class);
+                    if (success)
+                        getCurrentUserCallback.onResponse();
+                    else
+                        getCurrentUserCallback.onFailure("expired");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                getCurrentUserCallback.onFailure("connection");
+
+            }
+        });
+
     }
 }

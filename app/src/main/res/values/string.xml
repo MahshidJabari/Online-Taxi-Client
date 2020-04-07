@@ -38,7 +38,7 @@
     <string name="version">نسخه: 1/5/3</string>
     <string name="search_for_update">بررسی بروز رسانی</string>
     <string name="call_suppprt">تماس با پشتیبانی</string>
-    <string name="request">درخواست مجدد</string>
+    <string name="cost">درخواست مجدد</string>
     <string name="details">جزئیات</string>
     <string name="new_req">درخواست جدید</string>
     <string name="online_payment">پرداخت آنلاین</string>
@@ -78,6 +78,8 @@
     <string name="confirm_begin">تایید مبدا</string>
     <string name="confirm_end">تایید مقصد</string>
     <string name="send_req">ارسال درخواست</string>
+    <string name="add_new_destination">افزودن مقصد جدید</string>
+    <string name="increase_credit_">افزایش اعتبار</string>
     <string name="add_new_address">افزودن آدرس جدید</string>
     <string name="travel_category">نوع سفر</string>
     <string name="come_back">برگشت</string>
@@ -99,7 +101,7 @@
     <string name="req_details">جزئیات درخواست</string>
     <string name="vehicle_type">نوع حمل و نقل</string>
     <string name="motor">پیک موتوری</string>
-    <string name="discount">(کد تخفیف ؟)</string>
+    <string name="discount">کد تخفیف ؟</string>
     <string name="payable">قابل پرداخت</string>
     <string name="signin">تایید و ورود</string>
     <string name="give_code">دریافت کد تایید</string>

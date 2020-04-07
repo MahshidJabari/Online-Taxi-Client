@@ -130,7 +130,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
-                android:entries="@array/vehicle_arrays" />
+                android:background="@drawable/left_rounded_green"
+                android:entries="@array/vehicle_arrays"
+                android:paddingStart="40dp" />
 
         </LinearLayout>
 
@@ -211,7 +213,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layoutDirection="rtl"
-                        android:text="@string/does_not_have"
+                        android:text="@string/have"
                         android:textColor="@color/darkGray"
                         android:textDirection="rtl"
                         android:textSize="20sp"
@@ -230,7 +232,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:layoutDirection="rtl"
-                        android:text="@string/have"
+                        android:text="@string/does_not_have"
                         android:textColor="@color/darkGray"
                         android:textDirection="rtl"
                         android:textSize="20sp"
@@ -386,7 +388,6 @@
 
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/stop_spin"
-            style="@style/common_text_white"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.4"
@@ -696,24 +697,29 @@
         android:layout_height="0dp"
         android:background="@color/green"
         android:gravity="center"
+        android:layoutDirection="rtl"
+        android:onClick="SendRequest"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintTop_toBottomOf="@id/guideline_end">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="top"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/limit_icon_signup_bottom" />
 
         <TextView
             style="@style/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
+            android:layout_gravity="top"
+            android:onClick="OnContinueClick"
             android:text="@string/confirm_continue" />
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/limit_icon_signup_bottom" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

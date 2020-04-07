@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.jabari.client.R;
 import com.jabari.client.activity.finance.GiftCardActivity;
 import com.jabari.client.activity.help.SupportActivity;
+import com.jabari.client.custom.GlobalVariables;
 import com.suke.widget.SwitchButton;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -54,6 +55,8 @@ public class DetailsActivity extends AppCompatActivity {
         lin_travel_cache = findViewById(R.id.lin_travel_cache);
         tv_travel_cache = findViewById(R.id.tv_travel_cache);
         btn_gift_code = findViewById(R.id.btn_gift_code);
+
+        tv_travel_cache.setText(GlobalVariables.calculated);
 
     }
 
@@ -102,6 +105,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void OnCancelClicked(View view) {
 
+
         startActivity(new Intent(DetailsActivity.this, MainActivity.class));
 
     }
@@ -112,6 +116,54 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void OnSupportClicked(View view) {
         startActivity(new Intent(DetailsActivity.this, SupportActivity.class));
+    }
+
+    public void OnContinueClick(View view) {
+
+
+        if (swb_back.isChecked())
+            GlobalVariables.HaveReturn = 1;
+        else
+            GlobalVariables.HaveReturn = 0;
+        if (swb_pay_way.isChecked())
+            GlobalVariables.CashPayment = 1;
+        else
+            GlobalVariables.CashPayment = 0;
+        if (swb_pay_company.isChecked())
+            GlobalVariables.PayByRequest = 0;
+        else
+            GlobalVariables.PayByRequest = 1;
+        String vehicle = vehicle_spinner.getSelectedItem().toString();
+        switch (vehicle) {
+            case "پیک موتوری":
+                GlobalVariables.vehicle = 1;
+                break;
+            case "تاکسی موتور":
+                GlobalVariables.vehicle = 2;
+                break;
+            case "سواری":
+                GlobalVariables.vehicle = 3;
+                break;
+            case "وانت سنگین":
+                GlobalVariables.vehicle = 4;
+                break;
+
+            case "وانت بار":
+                GlobalVariables.vehicle = 5;
+                break;
+
+        }
+        String stop = stop_spinner.getSelectedItem().toString();
+        switch (stop) {
+            case "دارد":
+                GlobalVariables.haveStop = 1;
+                break;
+            case "ندارد":
+                GlobalVariables.haveStop = 0;
+                break;
+
+        }
+        startActivity(new Intent(DetailsActivity.this, SendRequestActivity.class));
     }
 
 

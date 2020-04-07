@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.jabari.client.R;
 import com.jabari.client.activity.main.MainActivity;
 import com.jabari.client.controller.LoginController;
-import com.jabari.client.custom.GeneralResponse;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.custom.PrefManager;
 import com.jabari.client.network.config.ApiInterface;
@@ -95,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
 
         LoginController loginController = new LoginController(new ApiInterface.UserVerifyCodeCallback() {
             @Override
-            public void onResponse(GeneralResponse generalResponse) {
+            public void onResponse() {
                 GlobalVariables.getVerify = true;
                 setFab_loginClickable();
                 Toast.makeText(LoginActivity.this, "کد فعالسازی ارسال شد", Toast.LENGTH_LONG).show();
@@ -132,15 +131,13 @@ public class LoginActivity extends AppCompatActivity {
         ApiInterface.LoginUserCallback loginUserCallback = new ApiInterface.LoginUserCallback() {
 
             @Override
-            public void onResponse(GeneralResponse generalResponse, User user, String token) {
+            public void onResponse(User user, String token) {
 
 
-                if (generalResponse.getSuccess()) {
+                saveLoginPreferences(token, String.valueOf(user.getMobileNum()));
 
-                    saveLoginPreferences(token, String.valueOf(user.getMobileNum()));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                }
             }
 
             @Override
@@ -170,31 +167,29 @@ public class LoginActivity extends AppCompatActivity {
 
         ApiInterface.GetLawsCallback getLawsCallback = new ApiInterface.GetLawsCallback() {
             @Override
-            public void onResponse(GeneralResponse generalResponse, String laws) {
-                if (generalResponse.getSuccess()) {
-                    if (laws != null) {
-                        final Dialog dialog = new Dialog(LoginActivity.this);
-                        dialog.setContentView(R.layout.alertdialog);
-                        TextView body = dialog.findViewById(R.id.tv_dialog);
-                        body.setText(laws);
-                        Button button = dialog.findViewById(R.id.btn_ok);
-                        dialog.show();
-                        button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialog.dismiss();
-                            }
-                        });
-                    } else
-                        Toasty.error(LoginActivity.this, "قوانین و مقررات یافت نشد!", Toasty.LENGTH_LONG).show();
-
+            public void onResponse(String laws) {
+                if (laws != null) {
+                    final Dialog dialog = new Dialog(LoginActivity.this);
+                    dialog.setContentView(R.layout.alertdialog);
+                    TextView body = dialog.findViewById(R.id.tv_dialog);
+                    body.setText(laws);
+                    Button button = dialog.findViewById(R.id.btn_ok);
+                    dialog.show();
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
                 } else
-                    Toasty.error(LoginActivity.this, "خطا در برقراری ارتباط!", Toasty.LENGTH_LONG).show();
+                    Toasty.error(LoginActivity.this, "قوانین و مقررات یافت نشد!", Toasty.LENGTH_LONG).show();
 
             }
 
             @Override
             public void onFailure(String error) {
+                Toasty.error(LoginActivity.this, "خطا در برقراری ارتباط!", Toasty.LENGTH_LONG).show();
+
 
             }
         };
