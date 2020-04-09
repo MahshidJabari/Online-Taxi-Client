@@ -118,8 +118,8 @@ public class LoginController {
                 if (response.body() != null) {
                     boolean success = new Gson().fromJson(response.body().get("success"), Boolean.class);
                     if (success) {
-                        String credit = new Gson().fromJson(response.body().get("credit"), String.class);
-                        getCurrentUserCallback.onResponse(credit);
+                        User user = new Gson().fromJson(response.body().get("user"), User.class);
+                        getCurrentUserCallback.onResponse(user);
                     } else
                         getCurrentUserCallback.onFailure("expired");
 

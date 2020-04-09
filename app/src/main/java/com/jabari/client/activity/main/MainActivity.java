@@ -33,6 +33,7 @@ import com.jabari.client.fragment.OnGoingFragment;
 import com.jabari.client.fragment.ScheduledFragment;
 import com.jabari.client.fragment.UnSuccessfulFragment;
 import com.jabari.client.network.config.ApiInterface;
+import com.jabari.client.network.model.User;
 
 import es.dmoral.toasty.Toasty;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setUpTab_travelList();
         getCurrentUser();
 
-        logOff();
         fbtn_add_req = findViewById(R.id.btn_login);
         fbtn_add_req.bringToFront();
         fbtn_add_req.setOnClickListener(new View.OnClickListener() {
@@ -209,10 +209,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ApiInterface.getCurrentUserCallback getCurrentUserCallback = new ApiInterface.getCurrentUserCallback() {
             @Override
-            public void onResponse(String credit) {
+            public void onResponse(User user) {
 
-                GlobalVariables.credit = credit;
-            }
+                GlobalVariables.credit = user.getCredit();
+//                GlobalVariables.phone = user.getMobileNum();
+                GlobalVariables.firstName = user.getFirstName();
+                GlobalVariables.lastName = user.getLastName();
+                GlobalVariables.mail = user.getEmail();            }
 
             @Override
             public void onFailure(String err) {
@@ -226,21 +229,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Log.d("token",GlobalVariables.tok);
         LoginController loginController = new LoginController(getCurrentUserCallback);
         loginController.getCurrentUser();
-    }
-
-    private void logOff() {
-        View headerView = navigationView.getHeaderView(0);
-        btn_exit = headerView.findViewById(R.id.btn_exit);
-        btn_exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GlobalVariables.isLogin = false;
-                removePreferences();
-                startActivity(new Intent(MainActivity.this, FirstActivity.class));
-
-            }
-        });
-
     }
 
     private void removePreferences() {

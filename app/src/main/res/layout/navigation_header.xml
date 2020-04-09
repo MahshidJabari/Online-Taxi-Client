@@ -19,6 +19,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -45,16 +46,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_exit"
-            style="@style/common_text_white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="#001D25"
-            android:text="@string/exit" />
 
     </RelativeLayout>
 

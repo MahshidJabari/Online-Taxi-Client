@@ -99,7 +99,7 @@ public interface ApiInterface {
     Call<JsonObject> getCurrentUser();
 
     interface getCurrentUserCallback {
-        void onResponse(String credit);
+        void onResponse(User user);
 
         void onFailure(String error);
     }

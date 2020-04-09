@@ -20,4 +20,9 @@ public class GlobalVariables {
     public static String startLoc;
     public static String endLoc;
     public static String credit;
+    public static String phone;
+    public static String firstName;
+    public static String lastName;
+    public static String mail;
+    public static boolean editable = false;
 }
