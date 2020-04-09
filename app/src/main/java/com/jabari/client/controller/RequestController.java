@@ -1,7 +1,7 @@
 package com.jabari.client.controller;
 
-import com.jabari.client.entities.Cost;
-import com.jabari.client.entities.Request;
+import com.jabari.client.network.model.Cost;
+import com.jabari.client.network.model.Request;
 import com.jabari.client.network.config.ApiClient;
 import com.jabari.client.network.config.ApiInterface;
 

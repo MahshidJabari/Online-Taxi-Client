@@ -119,10 +119,11 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_credit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:paddingLeft="10dp"
+            android:paddingEnd="10dp"
             android:text="0"
             android:textColor="@color/green"
             android:textDirection="ltr"
@@ -133,7 +134,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:paddingLeft="10dp"
+            android:paddingEnd="10dp"
             android:text="@string/toman"
             android:textColor="@color/green"
             android:textSize="20sp"

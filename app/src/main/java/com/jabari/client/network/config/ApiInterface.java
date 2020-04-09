@@ -2,8 +2,8 @@ package com.jabari.client.network.config;
 
 
 import com.google.gson.JsonObject;
-import com.jabari.client.entities.Cost;
-import com.jabari.client.entities.Request;
+import com.jabari.client.network.model.Cost;
+import com.jabari.client.network.model.Request;
 import com.jabari.client.network.model.Item;
 import com.jabari.client.network.model.NeshanSearch;
 import com.jabari.client.network.model.User;
@@ -99,7 +99,7 @@ public interface ApiInterface {
     Call<JsonObject> getCurrentUser();
 
     interface getCurrentUserCallback {
-        void onResponse();
+        void onResponse(String credit);
 
         void onFailure(String error);
     }

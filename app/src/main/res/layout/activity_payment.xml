@@ -168,7 +168,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="@string/payment_gateway" />
+                android:text="@string/payment_gateway"
+                android:visibility="gone" />
 
             <View
                 android:layout_width="match_parent"
@@ -181,7 +182,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/username" />
+                android:text="@string/username"
+                android:visibility="gone" />
 
             <View
                 android:layout_width="match_parent"
@@ -194,7 +196,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/transaction_number" />
+                android:text="@string/transaction_number"
+                android:visibility="gone" />
 
 
         </LinearLayout>
@@ -257,7 +260,8 @@
                 android:gravity="center"
                 android:layoutDirection="rtl"
                 android:orientation="vertical"
-                android:text="@string/payment_gateway">
+                android:text="@string/payment_gateway"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/gray_14"
@@ -313,7 +317,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/username" />
+                android:text="@string/username"
+                android:visibility="gone" />
 
             <View
                 android:layout_width="match_parent"
@@ -326,7 +331,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/transaction_number" />
+                android:text="@string/transaction_number"
+                android:visibility="gone" />
 
 
         </LinearLayout>
@@ -390,8 +396,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:onClick="OnPaymentClick"
             android:gravity="top"
+            android:onClick="OnPaymentClick"
             android:text="@string/pay" />
 
     </LinearLayout>

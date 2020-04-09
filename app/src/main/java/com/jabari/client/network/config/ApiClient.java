@@ -87,7 +87,7 @@ public class ApiClient {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
-                    .client(UnsafeHttp().build())
+//                    .client(UnsafeHttp().build())
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

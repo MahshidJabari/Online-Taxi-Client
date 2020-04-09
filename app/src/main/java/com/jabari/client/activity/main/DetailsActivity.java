@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.jabari.client.R;
 import com.jabari.client.activity.finance.GiftCardActivity;
-import com.jabari.client.activity.help.SupportActivity;
+import com.jabari.client.activity.help.SupActivity;
 import com.jabari.client.custom.GlobalVariables;
 import com.suke.widget.SwitchButton;
 
@@ -115,7 +115,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void OnSupportClicked(View view) {
-        startActivity(new Intent(DetailsActivity.this, SupportActivity.class));
+        startActivity(new Intent(DetailsActivity.this, SupActivity.class));
     }
 
     public void OnContinueClick(View view) {

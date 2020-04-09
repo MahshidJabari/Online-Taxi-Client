@@ -13,7 +13,7 @@ import com.jabari.client.activity.finance.GiftCardActivity;
 import com.jabari.client.activity.finance.IncreaseCreditActivity;
 import com.jabari.client.controller.RequestController;
 import com.jabari.client.custom.GlobalVariables;
-import com.jabari.client.entities.Request;
+import com.jabari.client.network.model.Request;
 import com.jabari.client.network.config.ApiInterface;
 
 public class SendRequestActivity extends AppCompatActivity {

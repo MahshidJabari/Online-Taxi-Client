@@ -46,7 +46,7 @@ import com.jabari.client.R;
 import com.jabari.client.controller.RequestController;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.custom.UserLocation;
-import com.jabari.client.entities.Cost;
+import com.jabari.client.network.model.Cost;
 import com.jabari.client.network.config.ApiInterface;
 import com.karumi.dexter.BuildConfig;
 import com.karumi.dexter.Dexter;

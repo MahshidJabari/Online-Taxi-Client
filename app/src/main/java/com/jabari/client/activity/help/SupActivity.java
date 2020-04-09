@@ -9,7 +9,7 @@ import com.jabari.client.R;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class SupportActivity extends AppCompatActivity {
+public class SupActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

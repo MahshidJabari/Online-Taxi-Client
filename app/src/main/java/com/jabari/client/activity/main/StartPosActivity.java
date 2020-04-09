@@ -11,7 +11,6 @@ import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -84,7 +83,7 @@ public class StartPosActivity extends AppCompatActivity {
     final int POI_INDEX = 1;
     final int BASE_MAP_INDEX = 0;
 
-    VectorElementLayer userMarkerLayer, startMarker, endMarker, lineLayer;
+    VectorElementLayer userMarkerLayer, startMarker, lineLayer;
     UserLocation user = new UserLocation(this);
     private List<Integer> vehicle_list;
     private List<String> vehicle_name;
@@ -104,7 +103,7 @@ public class StartPosActivity extends AppCompatActivity {
     private Boolean mRequestingLocationUpdates;
     private MapView map;
     private ConstraintLayout cons_start;
-    private LinearLayout lin_progress, lin_above;
+    private LinearLayout lin_progress;
     private View v, v2;
 
     @Override
@@ -247,9 +246,15 @@ public class StartPosActivity extends AppCompatActivity {
             public void onMapClicked(ClickData mapClickInfo) {
                 if (mapClickInfo.getClickType() == ClickType.CLICK_TYPE_LONG) {
                     // by calling getClickPos(), we can get position of clicking (or tapping)
-                    LngLat clickedLocation = mapClickInfo.getClickPos();
-                    // addMarker adds a marker (pretty self explanatory :D) to the clicked location
+                    LngLat startLoc = mapClickInfo.getClickPos();
+                    Log.d("start", String.valueOf(startLoc));
                 }
+            }
+        });
+        map.setMapEventListener(new MapEventListener(){
+            @Override
+            public void onMapMoved(){
+                super.onMapMoved();
             }
         });
     }
@@ -275,8 +280,9 @@ public class StartPosActivity extends AppCompatActivity {
 
         // Setting map focal position to a fixed position and setting camera zoom
         map.setFocalPointPosition(new LngLat(51.330743, 35.767234), 0);
+        addMarker(new LngLat(51.330743, 35.767234));
         map.setZoom(14, 0);
-        }
+    }
 
     private void initLocation() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -308,7 +314,6 @@ public class StartPosActivity extends AppCompatActivity {
         lin_progress.setVisibility(View.GONE);
         cons_start.setVisibility(View.VISIBLE);
 
-        
 
     }
 

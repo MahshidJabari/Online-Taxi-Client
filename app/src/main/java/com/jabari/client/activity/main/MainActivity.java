@@ -9,10 +9,10 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.SupportActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +23,7 @@ import com.jabari.client.activity.finance.FinancialActivity;
 import com.jabari.client.activity.finance.IntroductionActivity;
 import com.jabari.client.activity.finance.ManagementActivity;
 import com.jabari.client.activity.help.AboutUsActivity;
+import com.jabari.client.activity.help.SupActivity;
 import com.jabari.client.activity.report.AddressActivity;
 import com.jabari.client.activity.report.ArchiveActivity;
 import com.jabari.client.controller.LoginController;
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(this, IntroductionActivity.class));
                 break;
             case R.id.sup:
-                startActivity(new Intent(this, SupportActivity.class));
+                startActivity(new Intent(this, SupActivity.class));
                 break;
             case R.id.financial:
                 startActivity(new Intent(this, FinancialActivity.class));
@@ -208,8 +209,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ApiInterface.getCurrentUserCallback getCurrentUserCallback = new ApiInterface.getCurrentUserCallback() {
             @Override
-            public void onResponse() {
+            public void onResponse(String credit) {
 
+                GlobalVariables.credit = credit;
             }
 
             @Override
@@ -221,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toasty.error(MainActivity.this, "خطا در برقراری ارتباط!", Toasty.LENGTH_LONG).show();
             }
         };
+        Log.d("token",GlobalVariables.tok);
         LoginController loginController = new LoginController(getCurrentUserCallback);
         loginController.getCurrentUser();
     }

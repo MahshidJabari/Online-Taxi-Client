@@ -19,4 +19,5 @@ public class GlobalVariables {
     public static int haveStop = 0;
     public static String startLoc;
     public static String endLoc;
+    public static String credit;
 }

@@ -117,9 +117,10 @@ public class LoginController {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body() != null) {
                     boolean success = new Gson().fromJson(response.body().get("success"), Boolean.class);
-                    if (success)
-                        getCurrentUserCallback.onResponse();
-                    else
+                    if (success) {
+                        String credit = new Gson().fromJson(response.body().get("credit"), String.class);
+                        getCurrentUserCallback.onResponse(credit);
+                    } else
                         getCurrentUserCallback.onFailure("expired");
 
                 }
