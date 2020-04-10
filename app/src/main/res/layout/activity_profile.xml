@@ -158,6 +158,7 @@
             android:drawableStart="@drawable/ic_person_outline_black_24dp"
             android:layoutDirection="rtl"
             android:translationY="-40dp"
+            android:editable="false"
             app:layout_constraintHeight_percent="0.15"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -200,8 +201,8 @@
             app:layout_constraintTop_toBottomOf="@id/et_email"
             app:layout_constraintWidth_percent="0.6" />
 
-        <EditText
-            android:id="@+id/et_phoneNum"
+        <TextView
+            android:id="@+id/tv_phoneNum"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/transparent"
@@ -222,7 +223,7 @@
             android:translationY="-40dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_phoneNum"
+            app:layout_constraintTop_toBottomOf="@id/tv_phoneNum"
             app:layout_constraintWidth_percent="0.6" />
 
 

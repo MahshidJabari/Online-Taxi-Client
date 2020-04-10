@@ -16,9 +16,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jabari.client.R;
+import com.jabari.client.activity.account.ProfileActivity;
 import com.jabari.client.activity.finance.FinancialActivity;
 import com.jabari.client.activity.finance.IntroductionActivity;
 import com.jabari.client.activity.finance.ManagementActivity;
@@ -45,9 +47,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle toggle;
     private android.support.v7.widget.Toolbar toolbar;
     private FloatingActionButton fbtn_add_req;
-    private TextView tv_scheduled, tv_unsuccessful, tv_ongoing;
+    private TextView tv_scheduled, tv_unsuccessful, tv_ongoing, tv_mail;
     private int current_selected = 0;
-    private Button btn_exit;
+    private LinearLayout lin_profile;
     private String ongoing = "ongoing", unsuccessful = "unsuccessful", scheduled = "scheduled";
 
     @Override
@@ -86,6 +88,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        tv_mail = headerView.findViewById(R.id.tv_mail);
+        lin_profile = headerView.findViewById(R.id.lin_profile);
+        tv_mail.setText(GlobalVariables.mail);
+        lin_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+            }
+        });
     }
 
     @Override
@@ -215,7 +227,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                GlobalVariables.phone = user.getMobileNum();
                 GlobalVariables.firstName = user.getFirstName();
                 GlobalVariables.lastName = user.getLastName();
-                GlobalVariables.mail = user.getEmail();            }
+                GlobalVariables.mail = user.getEmail();
+            }
 
             @Override
             public void onFailure(String err) {
@@ -226,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toasty.error(MainActivity.this, "خطا در برقراری ارتباط!", Toasty.LENGTH_LONG).show();
             }
         };
-        Log.d("token",GlobalVariables.tok);
+        Log.d("token", GlobalVariables.tok);
         LoginController loginController = new LoginController(getCurrentUserCallback);
         loginController.getCurrentUser();
     }

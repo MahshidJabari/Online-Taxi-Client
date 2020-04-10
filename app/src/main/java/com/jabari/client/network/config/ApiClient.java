@@ -36,7 +36,7 @@ public class ApiClient {
                     Request originalRequest = chain.request();
 
                     Request.Builder builder = originalRequest.newBuilder()
-                            .addHeader(".Authorization",
+                            .addHeader("Authorization",
                                     GlobalVariables.tok);
                     Request newRequest = builder.build();
                     return chain.proceed(newRequest);

@@ -122,8 +122,11 @@ public class LoginController {
                         getCurrentUserCallback.onResponse(user);
                     } else
                         getCurrentUserCallback.onFailure("expired");
-
                 }
+                else
+                    Log.d("response","null");
+
+
             }
 
             @Override
