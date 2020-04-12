@@ -13,11 +13,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,6 +21,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -42,6 +42,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jabari.client.R;
 import com.jabari.client.controller.RequestController;
 import com.jabari.client.custom.GlobalVariables;
@@ -93,7 +94,7 @@ public class EndPosActivity extends AppCompatActivity {
     final int POI_INDEX = 1;
     final int BASE_MAP_INDEX = 0;
 
-    VectorElementLayer userMarkerLayer, startMarker, endMarker, lineLayer;
+    VectorElementLayer userMarkerLayer, endMarker, lineLayer;
     UserLocation user = new UserLocation(this);
     private List<Integer> vehicle_list;
     private List<String> vehicle_name;
@@ -255,9 +256,18 @@ public class EndPosActivity extends AppCompatActivity {
             public void onMapClicked(ClickData mapClickInfo) {
                 if (mapClickInfo.getClickType() == ClickType.CLICK_TYPE_LONG) {
                     // by calling getClickPos(), we can get position of clicking (or tapping)
-                    LngLat clickedLocation = mapClickInfo.getClickPos();
-                    // addMarker adds a marker (pretty self explanatory :D) to the clicked location
+                    GlobalVariables.end = map.getFocalPointPosition();
+                    addMarker(map.getFocalPointPosition(),R.drawable.ic_location_green);
+
                 }
+            }
+        });
+        map.setMapEventListener(new MapEventListener() {
+            @Override
+            public void onMapMoved() {
+                super.onMapMoved();
+                addMarker(map.getFocalPointPosition(),R.drawable.location);
+                Log.d("lnglat", map.getFocalPointPosition().toString());
             }
         });
         lin_progress.setVisibility(View.GONE);
@@ -269,9 +279,9 @@ public class EndPosActivity extends AppCompatActivity {
         // Creating a VectorElementLayer(called userMarkerLayer) to add user marker to it and adding it to map's layers
 
         userMarkerLayer = NeshanServices.createVectorElementLayer();
-        startMarker = NeshanServices.createVectorElementLayer();
+        endMarker = NeshanServices.createVectorElementLayer();
         lineLayer = NeshanServices.createVectorElementLayer();
-        map.getLayers().add(startMarker);
+        map.getLayers().add(endMarker);
         map.getLayers().add(userMarkerLayer);
         map.getLayers().add(lineLayer);
 
@@ -485,40 +495,40 @@ public class EndPosActivity extends AppCompatActivity {
     public void handleInputArgs() {
         Bundle args = getIntent().getExtras();
         if (args != null) {
+            focusOnLocation(new LngLat(args.getDouble("lng"), args.getDouble("lat")));
             GlobalVariables.end = new LngLat(args.getDouble("lng"), args.getDouble("lat"));
             GlobalVariables.endLoc = args.getString("address");
-            addMarker(GlobalVariables.start);
-            addMarker(GlobalVariables.end);
+            addMarker(GlobalVariables.start,R.drawable.user_pinned);
+            addMarker(GlobalVariables.end,R.drawable.location);
             drawLineGeom(GlobalVariables.start, GlobalVariables.end);
 
-        } else
-            Toasty.error(EndPosActivity.this, "با خطا مواجه شد!", Toasty.LENGTH_LONG).show();
+        }
+
 
     }
 
     public void focusOnLocation(LngLat location) {
-        if (startMarker != null) {
+        if (endMarker != null) {
             map.setFocalPointPosition(location, 0.25f);
             map.setZoom(15, 0.25f);
         }
     }
 
-    private void addMarker(LngLat loc) {
+    private void addMarker(LngLat loc,int drawable) {
 
 
         MarkerStyleCreator markStCr = new MarkerStyleCreator();
         markStCr.setSize(40f);
-        markStCr.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap(BitmapFactory.decodeResource(getResources(),
-                R.drawable.location)));
+        markStCr.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap(BitmapFactory.decodeResource(getResources(), drawable)));
 
         MarkerStyle markSt = markStCr.buildStyle();
 
         // Creating marker
         Marker marker = new Marker(loc, markSt);
 
-        startMarker.clear();
+        endMarker.clear();
         // Adding marker to markerLayer, or showing marker on map!
-        startMarker.add(marker);
+        endMarker.add(marker);
     }
 
     public LineGeom drawLineGeom(LngLat start, LngLat end) {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color06">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/color08"
@@ -14,7 +14,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/color06"
@@ -76,9 +76,9 @@
                 app:layout_constraintWidth_percent="0.1" />
 
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_middle"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
@@ -103,14 +103,14 @@
 
         </LinearLayout>
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_underHeader"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.25" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_mid"
             android:layout_width="wrap_content"
             android:layout_height="1dp"
@@ -136,7 +136,7 @@
                 android:elevation="6dp"
                 android:scaleType="center" />
 
-            <android.support.design.widget.FloatingActionButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btn_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -156,9 +156,9 @@
             android:layout_height="0dp"
             android:background="@color/transparent"
             android:drawableStart="@drawable/ic_person_outline_black_24dp"
+            android:editable="false"
             android:layoutDirection="rtl"
             android:translationY="-40dp"
-            android:editable="false"
             app:layout_constraintHeight_percent="0.15"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -227,9 +227,9 @@
             app:layout_constraintWidth_percent="0.6" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -254,7 +254,7 @@
 
     </LinearLayout>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineMid"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -361,7 +361,7 @@
         app:layout_constraintWidth_percent="0.7" />
 
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_aboveEnd"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -388,7 +388,7 @@
 
     </LinearLayout>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_end"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -426,4 +426,4 @@
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

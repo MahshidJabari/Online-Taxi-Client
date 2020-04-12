@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +7,7 @@
     android:background="@color/color09"
     tools:context=".activity.finance.ManagementActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/color06"
@@ -57,9 +57,9 @@
             app:layout_constraintWidth_percent="0.1" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_middle"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
 
     </LinearLayout>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_underHeader"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -395,7 +395,7 @@
         app:layout_constraintTop_toBottomOf="@id/lin6"
         app:layout_constraintWidth_percent="0.75" />
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_aboveEnd"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -422,7 +422,7 @@
 
     </LinearLayout>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_end"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -457,4 +457,4 @@
     </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,10 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color08">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#001D25"
@@ -13,7 +13,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/color06"
@@ -68,9 +68,9 @@
                 app:layout_constraintWidth_percent="0.06" />
 
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_middle"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
@@ -81,6 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="#001D25"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@id/guideline_underHeader"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -93,9 +94,18 @@
 
             </View>
 
+            <Spinner
+                android:id="@+id/vehicle_spin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.1"
+                android:background="@drawable/left_rounded_green"
+                android:entries="@array/vehicle_arrays"
+                android:paddingStart="40dp" />
+
         </LinearLayout>
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_underHeader"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
@@ -124,19 +134,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
                 android:text="@string/travel_category" />
-
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/vehicle_spin"
+            <Spinner
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1.1"
-                android:background="@drawable/left_rounded_green"
-                android:entries="@array/vehicle_arrays"
-                android:paddingStart="40dp" />
+                android:layout_gravity="end"
+                android:background="@drawable/left_rounded_green"/>
 
         </LinearLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/mid_cons"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -149,7 +156,7 @@
             app:layout_constraintTop_toBottomOf="@id/lin1"
             app:layout_constraintWidth_percent="0.8">
 
-            <android.support.constraint.Guideline
+            <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guide_inner_ver"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
@@ -325,12 +332,12 @@
                 </LinearLayout>
 
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -355,7 +362,7 @@
 
     </LinearLayout>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineMid"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -386,7 +393,7 @@
             android:layoutDirection="rtl"
             android:text="@string/stop_between" />
 
-        <android.support.v7.widget.AppCompatSpinner
+        <Spinner
             android:id="@+id/stop_spin"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -533,7 +540,7 @@
             android:gravity="center"
             android:text="@string/date" />
 
-        <android.support.v7.widget.AppCompatSpinner
+        <Spinner
             android:id="@+id/min_spin"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -544,7 +551,7 @@
             android:gravity="center"
             android:theme="@style/dark_back_spinner" />
 
-        <android.support.v7.widget.AppCompatSpinner
+        <Spinner
             android:id="@+id/hour_spin"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -658,7 +665,7 @@
 
     </LinearLayout>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_aboveEnd"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -685,7 +692,7 @@
 
     </LinearLayout>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_end"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -722,4 +729,4 @@
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

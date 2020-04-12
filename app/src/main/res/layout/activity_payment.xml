@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#001D25">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/color06"
@@ -56,9 +56,9 @@
             app:layout_constraintWidth_percent="0.1" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_middle"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
 
     </LinearLayout>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_underHeader"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
         app:layout_constraintGuide_percent="0.15" />
 
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_cons"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -117,9 +117,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.3" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/color08"
@@ -133,7 +133,7 @@
         app:layout_constraintVertical_bias="0"
         app:layout_constraintWidth_percent="0.8">
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_horizontal_mid"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
@@ -337,10 +337,10 @@
 
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_aboveEnd"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -367,7 +367,7 @@
 
     </LinearLayout>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_end"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -402,4 +402,4 @@
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
