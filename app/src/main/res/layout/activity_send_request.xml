@@ -151,9 +151,11 @@
                     android:layout_weight="3.6"
                     android:background="@color/transparent"
                     android:drawableStart="@drawable/ic_location_green"
+                    android:editable="false"
                     android:paddingStart="@dimen/tv_padding" />
 
                 <ImageView
+                    android:id="@+id/img_edit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -208,7 +210,7 @@
         android:background="@drawable/back_twenty_white"
         android:orientation="vertical"
         android:translationY="-140dp"
-        app:layout_constraintHeight_percent="0.23"
+        app:layout_constraintHeight_percent="0.22"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guidelineMid"
@@ -249,9 +251,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3.6"
                 android:drawableStart="@drawable/ic_location_orange"
+                android:editable="false"
                 android:paddingStart="@dimen/tv_padding" />
 
             <ImageView
+                android:id="@+id/img_edit_destination"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -267,6 +271,7 @@
             android:background="@drawable/back_fifty_radius_blue"
             android:gravity="center"
             android:text="@string/add_new_destination"
+            android:onClick="AddDestination"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent="0.35"
             app:layout_constraintTop_toBottomOf="@id/lin"

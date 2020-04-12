@@ -24,5 +24,7 @@ public class GlobalVariables {
     public static String firstName;
     public static String lastName;
     public static String mail;
-    public static boolean editable = false;
+    public static String id;
+    public static boolean hasReceivedResponse = false;
+    public static boolean requestSent = false;
 }

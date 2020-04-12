@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.jabari.client.R;
 import com.jabari.client.activity.main.MainActivity;
+import com.jabari.client.activity.main.SendRequestActivity;
 import com.jabari.client.custom.GlobalVariables;
 
 public class IncreaseCreditActivity extends AppCompatActivity {
@@ -56,6 +57,10 @@ public class IncreaseCreditActivity extends AppCompatActivity {
                 startActivity(new Intent(IncreaseCreditActivity.this, PaymentActivity.class));
             }
         });
+    }
+
+    public void OnBack(View view) {
+        startActivity(new Intent(IncreaseCreditActivity.this, SendRequestActivity.class));
     }
 
 }

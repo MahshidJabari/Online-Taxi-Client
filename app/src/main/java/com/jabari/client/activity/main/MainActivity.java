@@ -3,6 +3,7 @@ package com.jabari.client.activity.main;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.jabari.client.activity.help.SupActivity;
 import com.jabari.client.activity.report.AddressActivity;
 import com.jabari.client.activity.report.ArchiveActivity;
 import com.jabari.client.controller.LoginController;
+import com.jabari.client.controller.RequestController;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.custom.PrefManager;
 import com.jabari.client.fragment.OnGoingFragment;
@@ -65,8 +67,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setUpNavigationView();
         setUpTab_travelList();
+        setView();
         getCurrentUser();
+        checkRequest();
 
+
+    }
+
+    private void setView() {
         fbtn_add_req = findViewById(R.id.btn_login);
         fbtn_add_req.bringToFront();
         fbtn_add_req.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-
     }
 
     private void setUpNavigationView() {
@@ -225,10 +232,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onResponse(User user) {
 
                 GlobalVariables.credit = user.getCredit();
-//                GlobalVariables.phone = user.getMobileNum();
                 GlobalVariables.firstName = user.getFirstName();
                 GlobalVariables.lastName = user.getLastName();
                 GlobalVariables.mail = user.getEmail();
+                GlobalVariables.id = user.getId();
             }
 
             @Override
@@ -245,13 +252,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         loginController.getCurrentUser();
     }
 
-    private void removePreferences() {
+    private void checkRequest() {
 
-        PrefManager prefManager = new PrefManager(this);
-        prefManager.removeToken();
-        prefManager.removeUser();
-        GlobalVariables.tok = "";
-        GlobalVariables.phoneUser = "";
+        if (GlobalVariables.requestSent) {
+            while (!GlobalVariables.hasReceivedResponse) {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ApiInterface.checkCallback checkCallback = new ApiInterface.checkCallback() {
+                            @Override
+                            public void onResponse(boolean success) {
+                                if (success) {
+                                    GlobalVariables.hasReceivedResponse = true;
+                                    Toasty.success(MainActivity.this, "راننده پیدا شد!", Toasty.LENGTH_LONG).show();
+                                    Toasty.success(MainActivity.this, "راننده درحال آمدن به سمت شماست!", Toasty.LENGTH_LONG).show();
+
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(String error) {
+
+                            }
+                        };
+                        RequestController requestController = new RequestController(checkCallback);
+                        requestController.check_payment(GlobalVariables.id);
+                    }
+
+                }, 250);
+            }
+        }
 
     }
 

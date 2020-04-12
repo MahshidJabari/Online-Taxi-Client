@@ -42,7 +42,14 @@
         <activity android:name=".activity.finance.GiftCardActivity"/>
         <activity android:name=".activity.account.ProfileActivity"/>
         <activity android:name=".activity.finance.IncreaseCreditActivity"/>
-        <activity android:name=".activity.finance.PaymentActivity"/>
+        <activity android:name=".activity.finance.PaymentActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="return" android:host="digipeyk_client"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.main.EndPosActivity"/>
     </application>
 

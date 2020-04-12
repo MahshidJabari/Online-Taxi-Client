@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#001D25">
@@ -38,6 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="right"
+            android:onClick="OnBack"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="4"
             app:layout_constraintLeft_toRightOf="@id/tv_title"
@@ -49,6 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
+            android:onClick="OnBack"
             android:src="@drawable/ic_chevron_right_white_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/tv_return"
@@ -159,7 +162,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="@color/darkGray" />
 
             <TextView
@@ -249,7 +252,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="@color/darkGray" />
 
             <LinearLayout
@@ -382,13 +385,16 @@
         android:layoutDirection="rtl"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintTop_toBottomOf="@id/guideline_end">
+        app:layout_constraintTop_toBottomOf="@id/guideline_end"
+        app:layout_constraintVertical_bias="0.076"
+        tools:layout_editor_absoluteX="0dp">
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_marginEnd="10dp"
+            android:onClick="OnPaymentClick"
             android:src="@drawable/limit_icon_signup_bottom" />
 
         <TextView

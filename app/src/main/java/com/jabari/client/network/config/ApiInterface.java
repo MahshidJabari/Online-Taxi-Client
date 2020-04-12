@@ -103,4 +103,24 @@ public interface ApiInterface {
 
         void onFailure(String error);
     }
+
+    @FormUrlEncoded
+    @POST("bank/request")
+    Call<JsonObject> pay(@Field("amount") String calculated);
+
+    interface payCallback {
+        void onResponse(String url);
+
+        void onFailure(String error);
+    }
+
+    @FormUrlEncoded
+    @POST("user/request/result")
+    Call<JsonObject> check_request(@Field("amount") String calculated);
+
+    interface checkCallback {
+        void onResponse(boolean success);
+
+        void onFailure(String error);
+    }
 }

@@ -1,5 +1,7 @@
 package com.jabari.client.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.jabari.client.network.model.Cost;
 import com.jabari.client.network.model.Request;
 import com.jabari.client.network.config.ApiClient;
@@ -14,6 +16,8 @@ public class RequestController {
 
     ApiInterface.CalculateCallback calculateCallback;
     ApiInterface.sendRequestCallback sendRequestCallback;
+    ApiInterface.payCallback payCallback;
+    ApiInterface.checkCallback checkCallback;
 
     public RequestController(ApiInterface.CalculateCallback calculateCallback) {
         this.calculateCallback = calculateCallback;
@@ -21,6 +25,14 @@ public class RequestController {
 
     public RequestController(ApiInterface.sendRequestCallback sendRequestCallback) {
         this.sendRequestCallback = sendRequestCallback;
+    }
+
+    public RequestController(ApiInterface.payCallback payCallback) {
+        this.payCallback = payCallback;
+    }
+
+    public RequestController(ApiInterface.checkCallback checkCallback) {
+        this.checkCallback = checkCallback;
     }
 
     public void calculate(Cost cost) {
@@ -79,4 +91,50 @@ public class RequestController {
 
     }
 
+    public void pay(String cost) {
+        Retrofit retrofit = ApiClient.getClient();
+        ApiInterface apiInterfaces = retrofit.create(ApiInterface.class);
+        Call<JsonObject> call = apiInterfaces.pay(cost);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        String url = new Gson().fromJson(response.body().get("url"), String.class);
+                        payCallback.onResponse(url);
+                    } else payCallback.onFailure("null");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                payCallback.onResponse("connection");
+            }
+        });
+    }
+
+
+    public void check_payment(String id) {
+        Retrofit retrofit = ApiClient.getClient();
+        ApiInterface apiInterfaces = retrofit.create(ApiInterface.class);
+        Call<JsonObject> call = apiInterfaces.check_request(id);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful())
+                    if (response.body() != null) {
+                        boolean success = new Gson().fromJson(response.body().get("success"), Boolean.class);
+                        checkCallback.onResponse(success);
+
+                    }
+
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                checkCallback.onFailure("connection");
+            }
+        });
+
+    }
 }

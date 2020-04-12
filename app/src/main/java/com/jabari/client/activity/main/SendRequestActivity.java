@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -16,11 +17,15 @@ import com.jabari.client.controller.RequestController;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.network.model.Request;
 import com.jabari.client.network.config.ApiInterface;
+import com.jabari.client.network.model.Travel;
+
+import es.dmoral.toasty.Toasty;
 
 public class SendRequestActivity extends AppCompatActivity {
 
     private EditText et_start_location, et_destination;
     private TextView tv_payment_way, tv_vehicle_name, tv_payment;
+    private ImageView img_edit, imgEdit_destination;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,6 +33,7 @@ public class SendRequestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_send_request);
 
         setViews();
+        setVehicle();
     }
 
     public void onDetailClicked(View view) {
@@ -40,11 +46,17 @@ public class SendRequestActivity extends AppCompatActivity {
         tv_payment = findViewById(R.id.tv_payment);
         tv_payment_way = findViewById(R.id.tv_payment_way);
         tv_vehicle_name = findViewById(R.id.tv_vehicle_name);
+        img_edit = findViewById(R.id.img_edit);
+        imgEdit_destination = findViewById(R.id.img_edit_destination);
         tv_payment.setText(GlobalVariables.calculated);
+
         if (GlobalVariables.CashPayment == 1)
             tv_payment_way.setText("نقدی");
         else
             tv_payment_way.setText("اعتباری");
+    }
+
+    private void setVehicle() {
         switch (GlobalVariables.v) {
             case 0:
                 tv_vehicle_name.setText("پیک موتوری");
@@ -62,11 +74,31 @@ public class SendRequestActivity extends AppCompatActivity {
                 tv_vehicle_name.setText("وانت بار");
                 break;
         }
+
+    }
+
+    private void editAddresses() {
+        img_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                et_start_location.setEnabled(true);
+            }
+        });
+        imgEdit_destination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                et_destination.setEnabled(true);
+            }
+        });
     }
 
     public void OnDiscountClicked(View view) {
         startActivity(new Intent(SendRequestActivity.this, GiftCardActivity.class));
 
+    }
+
+    public void AddDestination(View view) {
+        Toasty.error(SendRequestActivity.this, "این ویژگی در نسخه های بعدی ارائه می شود!", Toasty.LENGTH_LONG).show();
     }
 
     public void SendRequest(View view) {
@@ -99,6 +131,7 @@ public class SendRequestActivity extends AppCompatActivity {
             @Override
             public void onResponse(String message) {
 
+                GlobalVariables.requestSent = true;
                 startActivity(new Intent(SendRequestActivity.this, IncreaseCreditActivity.class));
 
             }
