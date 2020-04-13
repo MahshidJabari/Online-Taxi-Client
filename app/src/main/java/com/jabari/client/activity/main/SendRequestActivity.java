@@ -14,6 +14,7 @@ import com.jabari.client.R;
 import com.jabari.client.activity.finance.GiftCardActivity;
 import com.jabari.client.activity.finance.IncreaseCreditActivity;
 import com.jabari.client.controller.RequestController;
+import com.jabari.client.custom.DigitConverter;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.network.model.Request;
 import com.jabari.client.network.config.ApiInterface;
@@ -34,6 +35,7 @@ public class SendRequestActivity extends AppCompatActivity {
 
         setViews();
         setVehicle();
+        editAddresses();
     }
 
     public void onDetailClicked(View view) {
@@ -48,7 +50,7 @@ public class SendRequestActivity extends AppCompatActivity {
         tv_vehicle_name = findViewById(R.id.tv_vehicle_name);
         img_edit = findViewById(R.id.img_edit);
         imgEdit_destination = findViewById(R.id.img_edit_destination);
-        tv_payment.setText(GlobalVariables.calculated);
+        tv_payment.setText(DigitConverter.convert(GlobalVariables.calculated));
 
         if (GlobalVariables.CashPayment == 1)
             tv_payment_way.setText("نقدی");
@@ -78,18 +80,8 @@ public class SendRequestActivity extends AppCompatActivity {
     }
 
     private void editAddresses() {
-        img_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                et_start_location.setEnabled(true);
-            }
-        });
-        imgEdit_destination.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                et_destination.setEnabled(true);
-            }
-        });
+        et_start_location.setText(GlobalVariables.startLoc);
+        et_destination.setText(GlobalVariables.endLoc);
     }
 
     public void OnDiscountClicked(View view) {

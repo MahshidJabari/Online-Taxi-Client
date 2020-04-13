@@ -33,7 +33,6 @@ import com.jabari.client.activity.report.ArchiveActivity;
 import com.jabari.client.controller.LoginController;
 import com.jabari.client.controller.RequestController;
 import com.jabari.client.custom.GlobalVariables;
-import com.jabari.client.custom.PrefManager;
 import com.jabari.client.fragment.OnGoingFragment;
 import com.jabari.client.fragment.ScheduledFragment;
 import com.jabari.client.fragment.UnSuccessfulFragment;

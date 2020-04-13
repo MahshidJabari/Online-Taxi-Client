@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.jabari.client.R;
 import com.jabari.client.activity.main.MainActivity;
 import com.jabari.client.activity.main.SendRequestActivity;
+import com.jabari.client.custom.DigitConverter;
 import com.jabari.client.custom.GlobalVariables;
 
 public class IncreaseCreditActivity extends AppCompatActivity {
@@ -38,7 +39,7 @@ public class IncreaseCreditActivity extends AppCompatActivity {
         view.bringToFront();
         tv_calculated = findViewById(R.id.tv_calculated);
         btn_online_payment.bringToFront();
-        tv_calculated.setText(GlobalVariables.calculated);
+        tv_calculated.setText(DigitConverter.convert(GlobalVariables.calculated));
     }
 
     private void cachePaymentOnClickListener() {

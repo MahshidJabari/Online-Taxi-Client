@@ -534,6 +534,7 @@ public class EndPosActivity extends AppCompatActivity {
     public LineGeom drawLineGeom(LngLat start, LngLat end) {
         // we clear every line that is currently on map
         lineLayer.clear();
+        endMarker.clear();
         // Adding some LngLat points to a LngLatVector
         LngLatVector lngLatVector = new LngLatVector();
         lngLatVector.add(start);

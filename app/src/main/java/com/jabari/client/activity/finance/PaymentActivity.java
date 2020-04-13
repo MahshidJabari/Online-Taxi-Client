@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.jabari.client.R;
 import com.jabari.client.controller.RequestController;
+import com.jabari.client.custom.DigitConverter;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.network.config.ApiInterface;
 import com.zarinpal.ewallets.purchase.ZarinPal;
@@ -36,7 +37,7 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void setView() {
         tv_payment_cache = findViewById(R.id.tv_payment_cache);
-        tv_payment_cache.setText(GlobalVariables.calculated);
+        tv_payment_cache.setText(DigitConverter.convert(GlobalVariables.calculated));
 
     }
 

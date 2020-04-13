@@ -151,7 +151,6 @@
                     android:layout_weight="3.6"
                     android:background="@color/transparent"
                     android:drawableStart="@drawable/ic_location_green"
-                    android:editable="false"
                     android:paddingStart="@dimen/tv_padding" />
 
                 <ImageView
@@ -250,8 +249,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3.6"
+                android:background="@color/transparent"
                 android:drawableStart="@drawable/ic_location_orange"
-                android:editable="false"
                 android:paddingStart="@dimen/tv_padding" />
 
             <ImageView

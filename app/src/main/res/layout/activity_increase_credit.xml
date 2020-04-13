@@ -154,7 +154,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45" />
+        app:layout_constraintGuide_percent="0.42" />
 
 
     <View
@@ -175,7 +175,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.52" />
 
     <Button
         android:id="@+id/btn_online_payment"
@@ -185,8 +185,9 @@
         android:background="@drawable/back_fifteen_radius_blue"
         android:drawableStart="@drawable/ic_credit_card_white_24dp"
         android:layoutDirection="rtl"
+       android:drawablePadding="@dimen/text_padding"
         android:text="@string/online_payment"
-        android:translationY="-20dp"
+        android:translationY="-30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.06"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -202,8 +203,10 @@
         android:layout_height="wrap_content"
         android:background="@drawable/back_fifteen_radius_green"
         android:drawableStart="@drawable/ic_credit_card_white_24dp"
+        android:drawablePadding="@dimen/text_padding"
         android:layoutDirection="rtl"
         android:text="@string/cache_payment"
+        android:translationY="-5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintLeft_toLeftOf="parent"
