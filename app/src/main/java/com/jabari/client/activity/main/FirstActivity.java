@@ -55,7 +55,7 @@ public class FirstActivity extends AppCompatActivity {
             return false;
         } else if (!TextUtils.isEmpty(token)) {
             GlobalVariables.tok = token;
-            GlobalVariables.phoneUser = userPhoneNum;
+            GlobalVariables.phone = userPhoneNum;
 
         }
         return true;
@@ -67,7 +67,7 @@ public class FirstActivity extends AppCompatActivity {
         prefManager.removeToken();
         prefManager.removeUser();
         GlobalVariables.tok = "";
-        GlobalVariables.phoneUser = "";
+        GlobalVariables.phone = "";
 
     }
 

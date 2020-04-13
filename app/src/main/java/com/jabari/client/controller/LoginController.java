@@ -20,7 +20,6 @@ public class LoginController {
     ApiInterface.LoginUserCallback loginUserCallback;
     ApiInterface.UserVerifyCodeCallback userVerifyCodeCallback;
     ApiInterface.GetLawsCallback getLawsCallback;
-    ApiInterface.getCurrentUserCallback getCurrentUserCallback;
 
     public LoginController(ApiInterface.UserVerifyCodeCallback userVerifyCodeCallback) {
         this.userVerifyCodeCallback = userVerifyCodeCallback;
@@ -34,9 +33,7 @@ public class LoginController {
         this.getLawsCallback = getLawsCallback;
     }
 
-    public LoginController(ApiInterface.getCurrentUserCallback getCurrentUserCallback) {
-        this.getCurrentUserCallback = getCurrentUserCallback;
-    }
+
 
     public void Do(final String mobileNum, String verify_code) {
         User user = new User();
@@ -108,33 +105,5 @@ public class LoginController {
         return txt;
     }
 
-    public void getCurrentUser() {
-        Retrofit retrofit = ApiClient.getClient();
-        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-        Call<JsonObject> call = apiInterface.getCurrentUser();
-        call.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if (response.body() != null) {
-                    boolean success = new Gson().fromJson(response.body().get("success"), Boolean.class);
-                    if (success) {
-                        User user = new Gson().fromJson(response.body().get("user"), User.class);
-                        getCurrentUserCallback.onResponse(user);
-                    } else
-                        getCurrentUserCallback.onFailure("expired");
-                }
-                else
-                    Log.d("response","null");
 
-
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                getCurrentUserCallback.onFailure("connection");
-
-            }
-        });
-
-    }
 }

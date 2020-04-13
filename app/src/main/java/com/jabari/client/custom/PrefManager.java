@@ -10,6 +10,7 @@ public class PrefManager {
     private static final String IS_USER = "user";
     private static final String PREF_NAME = "his-welcome";
     private static final String IS_Phone = "phone";
+    private static final String BITMAP = "BITMAP";
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context _context;
@@ -62,6 +63,14 @@ public class PrefManager {
     public void removeUser() {
         editor.remove(IS_USER);
         editor.commit();
+    }
+    public void setBitmapString (String bits){
+        editor.putString(BITMAP,bits);
+        editor.commit();
+    }
+    public String getBitmap(){
+        String result = "";
+        return pref.getString(BITMAP,result);
     }
 
 

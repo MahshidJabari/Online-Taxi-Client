@@ -10,13 +10,16 @@ import com.jabari.client.network.model.User;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Url;
 
 public interface ApiInterface {
@@ -99,7 +102,7 @@ public interface ApiInterface {
     Call<JsonObject> getCurrentUser();
 
     interface getCurrentUserCallback {
-        void onResponse(User user);
+        void onResponse(User user, String id);
 
         void onFailure(String error);
     }
@@ -119,6 +122,40 @@ public interface ApiInterface {
     Call<JsonObject> check_request(@Field("amount") String calculated);
 
     interface checkCallback {
+        void onResponse(boolean success);
+
+        void onFailure(String error);
+    }
+
+    @GET("general/support")
+    Call<JsonObject> call_support();
+
+    interface callSupportCallback {
+        void onResponse(String phone);
+
+        void onFailure(String error);
+    }
+
+    @Multipart
+    @POST("image")
+    Call<JsonObject> upload_image(@Part MultipartBody.Part image);
+
+    interface uploadImageCallback {
+        void onResponse(String url);
+
+        void onFailure(String error);
+    }
+
+    @FormUrlEncoded
+    @PUT("user")
+    Call<JsonObject> update_user_info(@Field("age") int age,
+                                @Field("bio") String bio,
+                                @Field("email") String email,
+                                @Field("gender") boolean gender,
+                                @Field("name") String name,
+                                @Field("avatar") String url);
+
+    interface updateUserCallback {
         void onResponse(boolean success);
 
         void onFailure(String error);

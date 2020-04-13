@@ -25,6 +25,8 @@ public class User {
     String lastName;
     @SerializedName("addressList")
     List<String> addressList;
+    @SerializedName("avatar")
+    String avatar;
 
     public String getEmail() {
         return email;
@@ -57,6 +59,14 @@ public class User {
 
     public void setCreditToPay(int creditToPay) {
         this.creditToPay = creditToPay;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getIntroduceCode() {

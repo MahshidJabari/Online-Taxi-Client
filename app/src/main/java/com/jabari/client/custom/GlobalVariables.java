@@ -6,7 +6,6 @@ public class GlobalVariables {
 
     public static int v = 0;
     public static String tok = "";
-    public static String phoneUser = "";
     public static Boolean isLogin = false;
     public static Boolean getVerify = false;
     public static LngLat start;
@@ -27,4 +26,5 @@ public class GlobalVariables {
     public static String id;
     public static boolean hasReceivedResponse = false;
     public static boolean requestSent = false;
+
 }

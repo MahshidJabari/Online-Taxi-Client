@@ -32,6 +32,7 @@ import com.jabari.client.activity.report.AddressActivity;
 import com.jabari.client.activity.report.ArchiveActivity;
 import com.jabari.client.controller.LoginController;
 import com.jabari.client.controller.RequestController;
+import com.jabari.client.controller.UserController;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.fragment.OnGoingFragment;
 import com.jabari.client.fragment.ScheduledFragment;
@@ -228,13 +229,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ApiInterface.getCurrentUserCallback getCurrentUserCallback = new ApiInterface.getCurrentUserCallback() {
             @Override
-            public void onResponse(User user) {
+            public void onResponse(User user, String id) {
 
                 GlobalVariables.credit = user.getCredit();
                 GlobalVariables.firstName = user.getFirstName();
                 GlobalVariables.lastName = user.getLastName();
                 GlobalVariables.mail = user.getEmail();
-                GlobalVariables.id = user.getId();
+                GlobalVariables.id = id;
+
             }
 
             @Override
@@ -246,9 +248,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toasty.error(MainActivity.this, "خطا در برقراری ارتباط!", Toasty.LENGTH_LONG).show();
             }
         };
-        Log.d("token", GlobalVariables.tok);
-        LoginController loginController = new LoginController(getCurrentUserCallback);
-        loginController.getCurrentUser();
+
+        UserController userController = new UserController(getCurrentUserCallback);
+        userController.getCurrentUser();
     }
 
     private void checkRequest() {

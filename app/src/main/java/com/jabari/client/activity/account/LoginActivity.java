@@ -153,13 +153,13 @@ public class LoginActivity extends AppCompatActivity {
         loginUserController.Do(phoneNum, verify_code);
     }
 
-    private void saveLoginPreferences(String token, String user) {
+    private void saveLoginPreferences(String token, String phone) {
 
         PrefManager prefManager = new PrefManager(getBaseContext());
         prefManager.setToken(token);
-        prefManager.setPhoneNum(user);
+        prefManager.setPhoneNum(phone);
         GlobalVariables.tok = token;
-        GlobalVariables.phoneUser = user;
+        GlobalVariables.phone = phone;
         GlobalVariables.isLogin = true;
 
 

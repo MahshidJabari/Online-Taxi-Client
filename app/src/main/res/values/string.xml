@@ -16,6 +16,10 @@
     <string name="agree">قبول دارم</string>
     <string name="loading">لطفا صبر کنید!</string>
     <string name="travel_type">نوع سفر</string>
+    <string name="select_action">انتخاب کنید</string>
+    <string name="select_photo">انتخاب عکس از گالری</string>
+    <string name="capture_photo">گرفتن عکس با دوربین</string>
+    <string name="save_photo">میخواهید عکس را ارسال کنید؟</string>
     <string name="return_main">بازگشت به صفحه اصلی</string>
     <string name="credit_">اعتباری</string>
     <string name="payment_gateway">درگاه پرداخت</string>
@@ -49,6 +53,9 @@
     <string name="discount_code">کد معرف: </string>
     <string name="exit_profile">خروج از حساب</string>
     <string name="save">ثبت</string>
+    <string name="save_info">ثبت اطلاعات</string>
+    <string name="edit_info">ویرایش</string>
+    <string name="send">ارسال</string>
     <string name="profile_text">تا اطلاع ثانوی امکان تغییر شماره تلفن همراه توسط کاربران وجود ندارد.</string>
     <string name="show_setting">اعلان تنظیمات</string>
     <string name="charge_with_gift_code">شارژ حساب با کد هدیه</string>

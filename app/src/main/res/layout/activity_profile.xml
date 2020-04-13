@@ -25,18 +25,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/img_edit"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="@dimen/margin_border"
-                android:gravity="center"
-                android:src="@drawable/ic_edit_white_24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.08" />
-
             <TextView
                 android:id="@+id/tv_title"
                 style="@style/title_text"
@@ -58,6 +46,7 @@
                 style="@style/tv_return"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:onClick="OnBack"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="4"
                 app:layout_constraintLeft_toRightOf="@id/tv_title"
@@ -69,6 +58,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
+                android:onClick="OnBack"
                 android:src="@drawable/ic_chevron_right_white_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/tv_return"
@@ -122,6 +112,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layoutDirection="rtl"
             android:orientation="vertical"
             android:translationY="-40dp"
             app:layout_constraintRight_toLeftOf="@id/guideline_mid"
@@ -140,10 +131,11 @@
                 android:id="@+id/btn_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="start"
                 android:layout_marginTop="-50dp"
                 android:backgroundTint="@color/green"
                 android:elevation="20dp"
+                android:onClick="showPictureDialog"
                 android:scaleType="center"
                 android:src="@drawable/ic_camera_alt_black_24dp" />
 
@@ -156,7 +148,6 @@
             android:layout_height="0dp"
             android:background="@color/transparent"
             android:drawableStart="@drawable/ic_person_outline_black_24dp"
-            android:editable="false"
             android:layoutDirection="rtl"
             android:translationY="-40dp"
             app:layout_constraintHeight_percent="0.15"
@@ -283,8 +274,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableStart="@drawable/ic_edit_dark_blue_24dp"
             android:gravity="center"
-            android:text="@string/discount_code" />
+            android:onClick="setEditable"
+            android:text="@string/edit_info" />
 
         <TextView
             style="@style/title_text"
@@ -297,6 +290,7 @@
             android:drawablePadding="10dp"
             android:gravity="end"
             android:layoutDirection="rtl"
+            android:onClick="updateUserClicked"
             android:paddingStart="10dp"
             android:paddingTop="15dp"
             android:paddingEnd="10dp"
@@ -350,6 +344,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
+        android:layoutDirection="rtl"
         android:text="@string/profile_text"
         android:translationY="-10dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_aboveEnd"
