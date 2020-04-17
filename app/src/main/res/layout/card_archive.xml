@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_border"
         android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@id/view1">
 
@@ -145,7 +145,7 @@
         android:layout_marginTop="@dimen/margin_border"
         android:layoutDirection="rtl"
         android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@id/view2">
 
@@ -217,6 +217,7 @@
             style="@style/dark_blue_16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_border"
             android:background="@drawable/border_fifteen_radius_green"
             android:drawableStart="@drawable/ic_list_dark_blue"
             android:layoutDirection="rtl"
@@ -230,6 +231,7 @@
             style="@style/dark_blue_16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_border"
             android:background="@drawable/border_fifteen_radius_green"
             android:drawableStart="@drawable/ic_refresh_dark_blue"
             android:text="@string/cost"

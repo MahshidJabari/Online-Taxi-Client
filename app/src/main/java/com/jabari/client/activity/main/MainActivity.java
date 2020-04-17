@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -30,7 +29,6 @@ import com.jabari.client.activity.help.AboutUsActivity;
 import com.jabari.client.activity.help.SupActivity;
 import com.jabari.client.activity.report.AddressActivity;
 import com.jabari.client.activity.report.ArchiveActivity;
-import com.jabari.client.controller.LoginController;
 import com.jabari.client.controller.RequestController;
 import com.jabari.client.controller.UserController;
 import com.jabari.client.custom.GlobalVariables;
@@ -286,6 +284,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
     }
-
 
 }

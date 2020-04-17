@@ -19,6 +19,7 @@ public class UnSuccessfulFragment extends Fragment {
     private RecyclerView recyclerView;
     private UnsuccessfulAdapter adapter;
     private ArrayList<UnsuccessfulTravel> travels;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,20 +41,19 @@ public class UnSuccessfulFragment extends Fragment {
         travels.add(travel);
         travels.add(travel);
 
-        setUpRecyclerView(travels,recyclerView);
+        setUpRecyclerView(travels, recyclerView);
 
         return view;
 
     }
 
-    private void setUpRecyclerView(ArrayList<UnsuccessfulTravel> travels,RecyclerView recyclerView){
+    private void setUpRecyclerView(ArrayList<UnsuccessfulTravel> travels, RecyclerView recyclerView) {
         LinearLayoutManager manager = new LinearLayoutManager
-                (this.getContext(),LinearLayoutManager.HORIZONTAL,false);
+                (this.getContext(), LinearLayoutManager.HORIZONTAL, false);
 
-        adapter = new UnsuccessfulAdapter(this.getContext(),recyclerView,travels);
+        adapter = new UnsuccessfulAdapter(this.getContext(), recyclerView, travels);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
-
 
 
     }

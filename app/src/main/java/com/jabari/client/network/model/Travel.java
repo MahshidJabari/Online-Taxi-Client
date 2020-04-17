@@ -4,15 +4,26 @@ import com.google.gson.annotations.SerializedName;
 
 public class Travel {
 
-
+    @SerializedName("date")
     String date;
     String sender_name;
+    @SerializedName("locationAddress")
     String sender_location;
     String sender_phone;
     String reciever_name;
+    @SerializedName("destinationAddress")
     String reciever_location;
     String recirer_phone;
+    @SerializedName("id")
+    String id;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getDate() {
         return date;

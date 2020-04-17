@@ -29,7 +29,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
-                android:text="@string/details"
+                android:text="@string/send_req"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="4"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -94,14 +94,6 @@
 
             </View>
 
-            <Spinner
-                android:id="@+id/vehicle_spin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:background="@drawable/left_rounded_green"
-                android:entries="@array/vehicle_arrays"
-                android:paddingStart="40dp" />
 
         </LinearLayout>
 
@@ -134,12 +126,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
                 android:text="@string/travel_category" />
+
             <Spinner
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.1"
                 android:layout_gravity="end"
-                android:background="@drawable/left_rounded_green"/>
+                android:layout_weight="1.1"
+                android:background="@drawable/left_rounded_green" />
 
         </LinearLayout>
 

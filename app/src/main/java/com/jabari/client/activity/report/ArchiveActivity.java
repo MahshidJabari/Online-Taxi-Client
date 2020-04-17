@@ -42,13 +42,13 @@ public class ArchiveActivity extends AppCompatActivity {
 
         Travel travel = new Travel();
         travel.setDate("1397/8/22");
-        travel.setSender_name("محمدرضا اکبری");
         travel.setSender_location("ولیعصر،میدان ولیعصر،پلاک 2،واحد5");
-        travel.setSender_phone("0990 537 4633");
         travel.setReciever_location("ولیعصر،میدان ولیعصر،پلاک 3،واحد5");
+        /*travel.setSender_name("محمدرضا اکبری");
+        travel.setSender_phone("0990 537 4633");
         travel.setReciever_name("محمدرضا اکبری");
         travel.setRecirer_phone("0912 421 7230");
-
+*/
         travels = new ArrayList<>();
         travels.add(travel);
         travels.add(travel);
@@ -64,6 +64,10 @@ public class ArchiveActivity extends AppCompatActivity {
                 startActivity(new Intent(ArchiveActivity.this, MainActivity.class));
             }
         });
+    }
+
+    private void getTravelList(){
+
     }
 
     private void setUpRecyclerView(ArrayList<Travel> travelList) {

@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -40,12 +39,8 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -61,11 +56,9 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-import org.neshan.core.Bounds;
+
 import org.neshan.core.LngLat;
 import org.neshan.core.Range;
-import org.neshan.core.ViewportBounds;
-import org.neshan.core.ViewportPosition;
 import org.neshan.layers.Layer;
 import org.neshan.layers.VectorElementLayer;
 import org.neshan.services.NeshanMapStyle;
@@ -119,7 +112,6 @@ public class StartPosActivity extends AppCompatActivity {
     private LinearLayout lin_progress;
     private View v, v2;
 
-    private GoogleMap gMap;
 
     @Override
     protected void attachBaseContext(Context newBase) {

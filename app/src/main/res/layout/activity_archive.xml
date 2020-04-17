@@ -96,7 +96,7 @@
         android:background="@drawable/back_thirty_radius_white"
         android:orientation="vertical"
         android:translationY="-30dp"
-        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintHeight_percent="0.12"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline_underHeader"
@@ -108,7 +108,7 @@
             android:layout_height="0dp"
             android:orientation="horizontal"
             android:weightSum="4"
-            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintHeight_percent="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -118,8 +118,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="@dimen/tv_padding"
+                android:paddingRight="@dimen/tv_padding"
                 android:text="@string/travel"
                 android:textDirection="rtl" />
 
@@ -143,17 +143,7 @@
 
         </LinearLayout>
 
-        <View
-            android:id="@+id/view1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray"
-            app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lin_in1" />
-
-        <LinearLayout
+        <!--<LinearLayout
             android:id="@+id/lin_in2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -188,7 +178,7 @@
                 android:paddingRight="@dimen/tv_padding"
                 android:text="@string/unsuccessful_travel"/>
         </LinearLayout>
-
+-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -197,14 +187,16 @@
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:weightSum="4"
-            app:layout_constraintHeight_percent="0.4"
-            app:layout_constraintTop_toBottomOf="@id/lin_in2">
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/lin_in1">
 
             <TextView
                 style="@style/common_text_white"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="@dimen/tv_padding"
+                android:paddingRight="@dimen/tv_padding"
                 android:text="@string/toman"
                 android:textDirection="rtl" />
 

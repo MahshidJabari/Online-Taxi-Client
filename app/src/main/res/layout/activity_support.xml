@@ -100,21 +100,38 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline_underHeader">
 
-        <TextView
-            android:id="@+id/tv_q1"
-            style="@style/common_text_dark_blue"
+        <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/expand_text_view"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/back_fifty_radius_white"
-            android:drawableLeft="@drawable/ic_expand_more_dark_blue_24dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/q1"
-            android:textAlignment="viewEnd" />
+            expandableTextView:animDuration="200"
+            expandableTextView:maxCollapsedLines="4">
+
+            <TextView
+                android:id="@id/expandable_text"
+                style="@style/common_text_dark_blue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/white"
+                android:text="@string/q1" />
+
+            <ImageButton
+                android:id="@id/expand_collapse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:background="@drawable/ic_expand_more_dark_blue_24dp"
+                android:padding="16dp" />
+        </com.ms.square.android.expandabletextview.ExpandableTextView>
+
 
     </ScrollView>
 

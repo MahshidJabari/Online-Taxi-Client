@@ -6,6 +6,7 @@ import com.jabari.client.network.model.Cost;
 import com.jabari.client.network.model.Request;
 import com.jabari.client.network.model.Item;
 import com.jabari.client.network.model.NeshanSearch;
+import com.jabari.client.network.model.Travel;
 import com.jabari.client.network.model.User;
 
 import java.util.List;
@@ -149,14 +150,24 @@ public interface ApiInterface {
     @FormUrlEncoded
     @PUT("user")
     Call<JsonObject> update_user_info(@Field("age") int age,
-                                @Field("bio") String bio,
-                                @Field("email") String email,
-                                @Field("gender") boolean gender,
-                                @Field("name") String name,
-                                @Field("avatar") String url);
+                                      @Field("bio") String bio,
+                                      @Field("email") String email,
+                                      @Field("gender") boolean gender,
+                                      @Field("name") String name,
+                                      @Field("avatar") String url);
 
     interface updateUserCallback {
         void onResponse(boolean success);
+
+        void onFailure(String error);
+    }
+
+    @FormUrlEncoded
+    @POST("user/request/success")
+    Call<Travel> travelHistory();
+
+    interface travelHistoryCallback {
+        void onResponse(List<Travel> travels);
 
         void onFailure(String error);
     }
