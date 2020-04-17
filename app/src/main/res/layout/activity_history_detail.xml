@@ -45,7 +45,7 @@
                 style="@style/tv_return"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:gravity="right"
+                android:gravity="start"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="4"
                 app:layout_constraintLeft_toRightOf="@id/tv_title"
@@ -56,6 +56,7 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:contentDescription="@string/back"
                 android:gravity="center"
                 android:src="@drawable/ic_chevron_right_white_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -169,11 +170,13 @@
         app:layout_constraintGuide_percent="0.6" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_cons"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/back_fifteen_light_gray"
+        android:layoutDirection="rtl"
         android:translationY="-35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline_aboveEnd"
         app:layout_constraintHeight_percent="0.3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -181,7 +184,371 @@
         app:layout_constraintVertical_bias="0"
         app:layout_constraintWidth_percent="0.9">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lin2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layoutDirection="rtl"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/tv_t"
+                style="@style/dark_blue_16"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/come_back"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                style="@style/text_green"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="start"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintTop_toBottomOf="@id/tv_t">
+
+                <TextView
+                    android:id="@+id/tv_have"
+                    style="@style/gray_bold_16"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.2"
+                    android:gravity="end"
+                    android:paddingStart="@dimen/text_padding"
+                    android:paddingEnd="@dimen/text_padding"
+                    android:text="@string/have" />
+
+                <TextView
+                    style="@style/gray_bold_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/slash" />
+
+                <TextView
+                    android:id="@+id/tv_does_not_have"
+                    style="@style/gray_bold_16"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:paddingStart="@dimen/text_padding"
+                    android:paddingEnd="@dimen/text_padding"
+                    android:text="@string/does_not_have" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:background="@color/darkGray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintLeft_toRightOf="@id/lin3"
+            app:layout_constraintRight_toLeftOf="@id/lin2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.06" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lin3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layoutDirection="rtl"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/tv_tp"
+                style="@style/dark_blue_16"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/payment_way"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                style="@style/text_green"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="start"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintTop_toBottomOf="@id/tv_tp">
+
+                <TextView
+                    android:id="@+id/tv_credit"
+                    style="@style/gray_bold_16"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.2"
+                    android:gravity="end"
+                    android:paddingStart="@dimen/text_padding"
+                    android:paddingEnd="@dimen/text_padding"
+                    android:text="@string/credit_" />
+
+                <TextView
+                    style="@style/gray_bold_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/slash" />
+
+                <TextView
+                    android:id="@+id/tv_cache"
+                    style="@style/gray_bold_16"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:paddingStart="@dimen/text_padding"
+                    android:paddingEnd="@dimen/text_padding"
+                    android:text="@string/cache" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:background="@color/darkGray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintLeft_toRightOf="@id/lin4"
+            app:layout_constraintRight_toLeftOf="@id/lin3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.06" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lin4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layoutDirection="rtl"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/tv_top"
+                style="@style/dark_blue_16"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/payAt"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                style="@style/text_green"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintTop_toBottomOf="@id/tv_top">
+
+                <TextView
+                    android:id="@+id/tv_start_location"
+                    style="@style/gray_bold_16"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:paddingStart="@dimen/text_padding"
+                    android:paddingEnd="@dimen/text_padding"
+                    android:text="@string/start" />
+
+                <TextView
+                    style="@style/gray_bold_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/slash" />
+
+                <TextView
+                    android:id="@+id/tv_destination"
+                    style="@style/gray_bold_16"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="@dimen/text_padding"
+                    android:paddingEnd="@dimen/text_padding"
+                    android:text="@string/destination" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/darkGray"
+            app:layout_constraintTop_toBottomOf="@id/lin2" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cons_right"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.7"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            app:layout_constraintWidth_percent="0.48">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_right"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <TextView
+                android:id="@+id/tv_req"
+                style="@style/dark_blue_16"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:paddingTop="10dp"
+                android:text="@string/accept_request"
+                app:layout_constraintHeight_percent="0.33"
+                app:layout_constraintRight_toLeftOf="@id/guide_right"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.8" />
+
+            <TextView
+                android:id="@+id/tv_receive"
+                style="@style/dark_blue_16"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:paddingTop="10dp"
+                android:text="@string/receive_from_client"
+                app:layout_constraintHeight_percent="0.33"
+                app:layout_constraintRight_toLeftOf="@id/guide_right"
+                app:layout_constraintTop_toBottomOf="@id/tv_req"
+                app:layout_constraintWidth_percent="0.8" />
+
+            <TextView
+                style="@style/dark_blue_16"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:paddingTop="10dp"
+                android:text="@string/give_to_client"
+                app:layout_constraintHeight_percent="0.31"
+                app:layout_constraintRight_toLeftOf="@id/guide_right"
+                app:layout_constraintTop_toBottomOf="@id/tv_receive"
+                app:layout_constraintWidth_percent="0.9" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_mid"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:weightSum="3"
+            app:layout_constraintHeight_percent="0.7"
+            app:layout_constraintRight_toLeftOf="@id/cons_right"
+            app:layout_constraintTop_toBottomOf="@id/lin3"
+            app:layout_constraintWidth_percent="0.3">
+
+            <TextView
+                android:id="@+id/tv_accept_req_date"
+                style="@style/text_pink"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_date_range_pink_24dp"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_receive_date"
+                style="@style/text_pink"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_date_range_pink_24dp"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_give_dat"
+                style="@style/text_pink"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_date_range_pink_24dp"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:weightSum="3"
+            app:layout_constraintHeight_percent="0.7"
+            app:layout_constraintRight_toLeftOf="@id/lin_mid"
+            app:layout_constraintTop_toBottomOf="@id/lin3"
+            app:layout_constraintWidth_percent="0.22">
+
+            <TextView
+                android:id="@+id/tv_accept_req_hour"
+                style="@style/text_pink"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_access_time_pink_24dp"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_receive_hour"
+                style="@style/text_pink"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_access_time_pink_24dp"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_give_hour"
+                style="@style/text_pink"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_access_time_pink_24dp"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_aboveEnd"
@@ -234,6 +601,7 @@
             android:layout_gravity="top"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="10dp"
+            android:contentDescription="@string/confirm_continue"
             android:src="@drawable/limit_icon_signup_bottom" />
 
         <TextView

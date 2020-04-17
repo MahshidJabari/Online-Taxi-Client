@@ -65,7 +65,7 @@
     <string name="scheduled">زمانبندی شده</string>
     <string name="finding">درحال یافتن نزدیک ترین سفیر!</string>
     <string name="payment_way">نوع پرداخت</string>
-    <string name="payment_company">طرف پرداخت</string>
+    <string name="payAt">طرف پرداخت</string>
     <string name="cache">نقدی</string>
     <string name="transfer_payment">هزینه ی حمل</string>
     <string name="cancel">انصراف</string>
@@ -95,6 +95,10 @@
     <string name="does_not_have">ندارد</string>
     <string name="stop_between">توقف در مسیر</string>
     <string name="scheduling">زمانبندی ارسال</string>
+    <string name="accept_request">پذیرش درخواست: </string>
+    <string name="receive_from_client">دریافت از مبدا: </string>
+    <string name="give_to_client">تحویل مرسوله به مقصد:</string>
+    <string name="slash">/</string>
     <string name="now">حالا</string>
     <string name="then">بعدا</string>
     <string name="confirm_continue">تایید و ادامه</string>
