@@ -16,7 +16,6 @@ import retrofit2.Retrofit;
 
 public class LoginController {
 
-    public String txt;
     ApiInterface.LoginUserCallback loginUserCallback;
     ApiInterface.UserVerifyCodeCallback userVerifyCodeCallback;
     ApiInterface.GetLawsCallback getLawsCallback;
@@ -80,7 +79,7 @@ public class LoginController {
         });
     }
 
-    public String getLaws() {
+    public void getLaws() {
 
         Retrofit retrofit = ApiClient.getClient();
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
@@ -89,8 +88,7 @@ public class LoginController {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body() != null) {
-                    txt = new Gson().fromJson(response.body().get("laws"), String.class);
-
+                    String txt = new Gson().fromJson(response.body().get("laws"), String.class);
                     getLawsCallback.onResponse(txt);
                 }
             }
@@ -102,7 +100,6 @@ public class LoginController {
             }
         });
 
-        return txt;
     }
 
 

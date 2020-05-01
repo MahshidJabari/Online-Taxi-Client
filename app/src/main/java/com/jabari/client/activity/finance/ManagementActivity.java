@@ -29,7 +29,7 @@ public class ManagementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_credit);
 
         setViews();
-           }
+    }
     public void setViews(){
         tv_Credit = findViewById(R.id.tv_credit);
         tv_Credit.setText(GlobalVariables.credit);

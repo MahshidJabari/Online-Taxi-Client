@@ -38,7 +38,7 @@ public class RequestController {
     public void calculate(Cost cost) {
         Retrofit retrofit = ApiClient.getClient();
         ApiInterface apiInterfaces = retrofit.create(ApiInterface.class);
-        Call<Cost> call = apiInterfaces.calculate(cost.getLat(), cost.getLng(), cost.getDlat(), cost.getDlng(), cost.getVehicle());
+        Call<Cost> call = apiInterfaces.calculate(cost.getLat(), cost.getLng(), cost.getDlat(), cost.getDlng(), cost.getVehicle() + 1);
         call.enqueue(new Callback<Cost>() {
             @Override
             public void onResponse(Call<Cost> call, Response<Cost> response) {

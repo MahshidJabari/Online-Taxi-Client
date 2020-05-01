@@ -39,7 +39,6 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.maps.GoogleMap;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -60,6 +59,7 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import org.neshan.core.LngLat;
 import org.neshan.core.Range;
 import org.neshan.layers.Layer;
+import org.neshan.layers.VectorElementEventListener;
 import org.neshan.layers.VectorElementLayer;
 import org.neshan.services.NeshanMapStyle;
 import org.neshan.services.NeshanServices;
@@ -67,6 +67,7 @@ import org.neshan.styles.MarkerStyle;
 import org.neshan.styles.MarkerStyleCreator;
 import org.neshan.ui.ClickData;
 import org.neshan.ui.ClickType;
+import org.neshan.ui.ElementClickData;
 import org.neshan.ui.MapEventListener;
 import org.neshan.ui.MapView;
 import org.neshan.utils.BitmapUtils;
@@ -246,28 +247,37 @@ public class StartPosActivity extends AppCompatActivity {
     private void initLayoutReferences() {
         map = findViewById(R.id.MapView);
         initMap();
-        map.setMapEventListener(new MapEventListener() {
-            @Override
-            public void onMapClicked(ClickData mapClickInfo) {
-                if (mapClickInfo.getClickType() == ClickType.CLICK_TYPE_DOUBLE) {
-                    // by calling getClickPos(), we can get position of clicking (or tapping)
-                    GlobalVariables.start = map.getFocalPointPosition();
-                    Toasty.success(StartPosActivity.this, "مبدا انتخاب شد", Toasty.LENGTH_LONG).show();
-                    addMarker(map.getFocalPointPosition(), R.drawable.ic_location_green);
 
-
-                }
-            }
-        });
         map.setMapEventListener(new MapEventListener() {
             @Override
             public void onMapMoved() {
                 super.onMapMoved();
-                addMarker(map.getFocalPointPosition(), R.drawable.location);
+                addMarker(map.getFocalPointPosition(), R.drawable.location_black);
                 Log.d("lnglat", map.getFocalPointPosition().toString());
             }
         });
+        startMarker.setVectorElementEventListener(new VectorElementEventListener() {
+                                                      @Override
+                                                      public boolean onVectorElementClicked(ElementClickData clickInfo) {
+                                                          // If a double click happens on a marker...
+                                                          if (clickInfo.getClickType() == ClickType.CLICK_TYPE_DOUBLE) {
+                                                              final long removeId = clickInfo.getVectorElement().getMetaDataElement("id").getLong();
+                                                              runOnUiThread(new Runnable() {
+                                                                  @Override
+                                                                  public void run() {
+                                                                  }
+                                                              });
+                                                              //getting marker reference from clickInfo and remove that marker from markerLayer
+                                                              addMarker(clickInfo.getClickPos(), R.drawable.location_blue);
+                                                              GlobalVariables.start = map.getFocalPointPosition();
+                                                          }
+                                                          return true;
+                                                      }
+
+                                                  }
+        );
     }
+
 
     private void initMap() {
         // Creating a VectorElementLayer(called userMarkerLayer) to add user marker to it and adding it to map's layers
@@ -288,7 +298,7 @@ public class StartPosActivity extends AppCompatActivity {
 
         // Setting map focal position to a fixed position and setting camera zoom
         map.setFocalPointPosition(new LngLat(51.330743, 35.767234), 0);
-        addMarker(new LngLat(51.330743, 35.767234), R.drawable.location);
+        addMarker(new LngLat(51.330743, 35.767234), R.drawable.location_black);
         map.setZoom(14, 0);
     }
 
@@ -496,7 +506,7 @@ public class StartPosActivity extends AppCompatActivity {
 
             GlobalVariables.start = new LngLat(args.getDouble("lng"), args.getDouble("lat"));
             GlobalVariables.startLoc = args.getString("address");
-            addMarker(GlobalVariables.start, R.drawable.location);
+            addMarker(GlobalVariables.start, R.drawable.location_black);
             focusOnLocation(GlobalVariables.start);
 
         }
@@ -512,7 +522,6 @@ public class StartPosActivity extends AppCompatActivity {
 
     private void addMarker(LngLat loc, int drawable) {
 
-
         MarkerStyleCreator markStCr = new MarkerStyleCreator();
         markStCr.setSize(40f);
         markStCr.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap(BitmapFactory.decodeResource(getResources(), drawable)));
@@ -525,6 +534,19 @@ public class StartPosActivity extends AppCompatActivity {
         startMarker.clear();
         // Adding marker to markerLayer, or showing marker on map!
         startMarker.add(marker);
+
+    }
+
+    private void changeMarkerToBlue(Marker redMarker) {
+        // create new marker style
+        MarkerStyleCreator markStCr = new MarkerStyleCreator();
+        markStCr.setSize(30f);
+        // Setting a new bitmap as marker
+        markStCr.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.location_blue)));
+        MarkerStyle blueMarkSt = markStCr.buildStyle();
+
+        // changing marker style using setStyle
+        redMarker.setStyle(blueMarkSt);
     }
 
     @Override

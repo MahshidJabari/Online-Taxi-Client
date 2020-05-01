@@ -62,6 +62,7 @@ import org.neshan.core.Range;
 import org.neshan.geometry.LineGeom;
 import org.neshan.graphics.ARGB;
 import org.neshan.layers.Layer;
+import org.neshan.layers.VectorElementEventListener;
 import org.neshan.layers.VectorElementLayer;
 import org.neshan.services.NeshanMapStyle;
 import org.neshan.services.NeshanServices;
@@ -71,6 +72,7 @@ import org.neshan.styles.MarkerStyle;
 import org.neshan.styles.MarkerStyleCreator;
 import org.neshan.ui.ClickData;
 import org.neshan.ui.ClickType;
+import org.neshan.ui.ElementClickData;
 import org.neshan.ui.MapEventListener;
 import org.neshan.ui.MapView;
 import org.neshan.utils.BitmapUtils;
@@ -253,23 +255,36 @@ public class EndPosActivity extends AppCompatActivity {
         initMap();
         map.setMapEventListener(new MapEventListener() {
             @Override
-            public void onMapClicked(ClickData mapClickInfo) {
-                if (mapClickInfo.getClickType() == ClickType.CLICK_TYPE_LONG) {
-                    // by calling getClickPos(), we can get position of clicking (or tapping)
-                    GlobalVariables.end = map.getFocalPointPosition();
-                    addMarker(map.getFocalPointPosition(),R.drawable.ic_location_green);
-
-                }
-            }
-        });
-        map.setMapEventListener(new MapEventListener() {
-            @Override
             public void onMapMoved() {
                 super.onMapMoved();
-                addMarker(map.getFocalPointPosition(),R.drawable.location);
+                if (GlobalVariables.end != null)
+                    addMarker(map.getFocalPointPosition(), R.drawable.location_black);
                 Log.d("lnglat", map.getFocalPointPosition().toString());
             }
         });
+        endMarker.setVectorElementEventListener(new VectorElementEventListener() {
+                                                    @Override
+                                                    public boolean onVectorElementClicked(ElementClickData clickInfo) {
+                                                        // If a double click happens on a marker...
+                                                        if (clickInfo.getClickType() == ClickType.CLICK_TYPE_DOUBLE) {
+                                                            final long removeId = clickInfo.getVectorElement().getMetaDataElement("id").getLong();
+                                                            runOnUiThread(new Runnable() {
+                                                                @Override
+                                                                public void run() {
+                                                                }
+                                                            });
+                                                            //getting marker reference from clickInfo and remove that marker from markerLayer
+                                                            addMarker(clickInfo.getClickPos(), R.drawable.location_blue);
+                                                            GlobalVariables.end = map.getFocalPointPosition();
+                                                            drawLineGeom(GlobalVariables.start, GlobalVariables.end);
+
+                                                        }
+                                                        return true;
+                                                    }
+
+                                                }
+        );
+
         lin_progress.setVisibility(View.GONE);
         cons_start.setVisibility(View.VISIBLE);
 
@@ -498,9 +513,9 @@ public class EndPosActivity extends AppCompatActivity {
             focusOnLocation(new LngLat(args.getDouble("lng"), args.getDouble("lat")));
             GlobalVariables.end = new LngLat(args.getDouble("lng"), args.getDouble("lat"));
             GlobalVariables.endLoc = args.getString("address");
-            addMarker(GlobalVariables.start,R.drawable.user_pinned);
-            addMarker(GlobalVariables.end,R.drawable.location);
-            drawLineGeom(GlobalVariables.start, GlobalVariables.end);
+            addMarker(GlobalVariables.start, R.drawable.user_pinned);
+            addMarker(GlobalVariables.end, R.drawable.location_black);
+
 
         }
 
@@ -514,7 +529,7 @@ public class EndPosActivity extends AppCompatActivity {
         }
     }
 
-    private void addMarker(LngLat loc,int drawable) {
+    private void addMarker(LngLat loc, int drawable) {
 
 
         MarkerStyleCreator markStCr = new MarkerStyleCreator();
@@ -547,7 +562,7 @@ public class EndPosActivity extends AppCompatActivity {
         lineLayer.add(line);
         // focusing camera on first point of drawn line
         map.setFocalPointPosition(new LngLat((start.getX() + end.getX()) / 2, (start.getY() + end.getY()) / 2), 0.25f);
-        map.setZoom(12, 0.25f);
+        map.setZoom(16, 0.25f);
         return lineGeom;
     }
 

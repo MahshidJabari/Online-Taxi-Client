@@ -16,8 +16,7 @@
             android:id="@+id/lin_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layoutDirection="rtl"
+            android:layout_alignParentLeft="true"
             android:orientation="horizontal">
 
             <TextView
@@ -35,19 +34,29 @@
                 android:layout_width="3dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="5dp"
                 android:background="@color/blue" />
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="4dp"
                 android:src="@drawable/ic_list_white_24dp" />
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btn_exit"
+            style="@style/common_text_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#001D25"
+            android:text="@string/exit" />
 
     </RelativeLayout>
 

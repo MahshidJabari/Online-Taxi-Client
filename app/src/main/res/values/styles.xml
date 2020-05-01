@@ -119,7 +119,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">18sp</item>
         <item name="android:background">@drawable/left_rounded_green</item>
-        <item name="android:drawableEnd">@drawable/ic_expand_more_dark_blue_24dp</item>
+        <item name="android:drawableEnd">@drawable/ic_expand_more_white_24dp</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingStart">30dp</item>
         <item name="android:textColor">@color/white</item>

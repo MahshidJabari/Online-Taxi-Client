@@ -42,6 +42,7 @@
         <activity android:name=".activity.finance.GiftCardActivity"/>
         <activity android:name=".activity.account.ProfileActivity"/>
         <activity android:name=".activity.finance.IncreaseCreditActivity"/>
+        <activity android:name=".activity.report.ArchiveDetailActivity"/>
         <activity android:name=".activity.finance.PaymentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

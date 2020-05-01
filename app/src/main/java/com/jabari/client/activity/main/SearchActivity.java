@@ -98,6 +98,6 @@ public class SearchActivity extends AppCompatActivity {
 
     public interface IOnSearchItemListener {
         void onSearchItemClick(LngLat lngLat,String address);
-        }
+    }
 
 }
