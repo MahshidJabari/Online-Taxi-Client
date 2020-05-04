@@ -65,7 +65,6 @@ import org.neshan.services.NeshanMapStyle;
 import org.neshan.services.NeshanServices;
 import org.neshan.styles.MarkerStyle;
 import org.neshan.styles.MarkerStyleCreator;
-import org.neshan.ui.ClickData;
 import org.neshan.ui.ClickType;
 import org.neshan.ui.ElementClickData;
 import org.neshan.ui.MapEventListener;
@@ -78,7 +77,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import es.dmoral.toasty.Toasty;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class StartPosActivity extends AppCompatActivity {
@@ -105,9 +103,7 @@ public class StartPosActivity extends AppCompatActivity {
     private LocationRequest locationRequest;
     private LocationSettingsRequest locationSettingsRequest;
     private LocationCallback locationCallback;
-    private String lastUpdateTime;
     // boolean flag to toggle the ui
-    private Boolean mRequestingLocationUpdates;
     private MapView map;
     private ConstraintLayout cons_start;
     private LinearLayout lin_progress;
@@ -253,14 +249,13 @@ public class StartPosActivity extends AppCompatActivity {
             public void onMapMoved() {
                 super.onMapMoved();
                 addMarker(map.getFocalPointPosition(), R.drawable.location_black);
-                Log.d("lnglat", map.getFocalPointPosition().toString());
             }
         });
         startMarker.setVectorElementEventListener(new VectorElementEventListener() {
                                                       @Override
                                                       public boolean onVectorElementClicked(ElementClickData clickInfo) {
                                                           // If a double click happens on a marker...
-                                                          if (clickInfo.getClickType() == ClickType.CLICK_TYPE_DOUBLE) {
+                                                          if (clickInfo.getClickType() == ClickType.CLICK_TYPE_SINGLE) {
                                                               final long removeId = clickInfo.getVectorElement().getMetaDataElement("id").getLong();
                                                               runOnUiThread(new Runnable() {
                                                                   @Override
@@ -312,14 +307,11 @@ public class StartPosActivity extends AppCompatActivity {
                 super.onLocationResult(locationResult);
                 // location is received
                 userLocation = locationResult.getLastLocation();
-                Log.d("location", userLocation.toString());
-                lastUpdateTime = DateFormat.getTimeInstance().format(new Date());
 
                 onLocationChange();
             }
         };
 
-        mRequestingLocationUpdates = false;
 
         locationRequest = new LocationRequest();
         locationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
@@ -404,7 +396,6 @@ public class StartPosActivity extends AppCompatActivity {
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
-                        mRequestingLocationUpdates = true;
                         startLocationUpdates();
                     }
 
@@ -423,25 +414,6 @@ public class StartPosActivity extends AppCompatActivity {
                     }
 
                 }).check();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            // Check for the integer request code originally supplied to startResolutionForResult().
-            case REQUEST_CODE:
-                switch (resultCode) {
-                    case Activity.RESULT_OK:
-                        Log.e(TAG, "User agreed to make required location settings changes.");
-                        // Nothing to do. startLocationupdates() gets called in onResume again.
-                        break;
-                    case Activity.RESULT_CANCELED:
-                        Log.e(TAG, "User chose not to make required location settings changes.");
-                        mRequestingLocationUpdates = false;
-                        break;
-                }
-                break;
-        }
     }
 
     private void openSettings() {

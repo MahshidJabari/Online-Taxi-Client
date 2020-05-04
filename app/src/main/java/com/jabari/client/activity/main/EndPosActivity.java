@@ -259,14 +259,13 @@ public class EndPosActivity extends AppCompatActivity {
                 super.onMapMoved();
                 if (GlobalVariables.end != null)
                     addMarker(map.getFocalPointPosition(), R.drawable.location_black);
-                Log.d("lnglat", map.getFocalPointPosition().toString());
             }
         });
         endMarker.setVectorElementEventListener(new VectorElementEventListener() {
                                                     @Override
                                                     public boolean onVectorElementClicked(ElementClickData clickInfo) {
                                                         // If a double click happens on a marker...
-                                                        if (clickInfo.getClickType() == ClickType.CLICK_TYPE_DOUBLE) {
+                                                        if (clickInfo.getClickType() == ClickType.CLICK_TYPE_SINGLE) {
                                                             final long removeId = clickInfo.getVectorElement().getMetaDataElement("id").getLong();
                                                             runOnUiThread(new Runnable() {
                                                                 @Override
@@ -608,7 +607,7 @@ public class EndPosActivity extends AppCompatActivity {
         cost.setLng(String.valueOf(GlobalVariables.start.getY()));
         cost.setDlat(String.valueOf(GlobalVariables.end.getX()));
         cost.setDlng(String.valueOf(GlobalVariables.end.getY()));
-        cost.setVehicle(GlobalVariables.v);
+        cost.setVehicle(GlobalVariables.v + 1);
         Calculate(cost);
 
     }
