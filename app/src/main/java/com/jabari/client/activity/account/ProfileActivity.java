@@ -11,12 +11,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -27,6 +25,7 @@ import com.jabari.client.activity.help.SupActivity;
 import com.jabari.client.activity.main.FirstActivity;
 import com.jabari.client.activity.main.MainActivity;
 import com.jabari.client.controller.UserController;
+import com.jabari.client.custom.ExceptionHandler;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.custom.PrefManager;
 import com.jabari.client.network.config.ApiInterface;
@@ -38,7 +37,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 
-import es.dmoral.toasty.Toasty;
 
 public class ProfileActivity extends AppCompatActivity {
     private TextView tv_mobile;
@@ -47,12 +45,15 @@ public class ProfileActivity extends AppCompatActivity {
     private int GALLERY = 1, CAMERA = 2;
     private Uri imageUri;
     private String avatar;
+    private ExceptionHandler handler;
     private static final String IMAGE_DIRECTORY = "/demonuts";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        handler = new ExceptionHandler(this);
+
         setView();
     }
 
@@ -180,7 +181,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(ProfileActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                   handler.generateError("gallery");
                 }
             }
 
@@ -227,7 +228,6 @@ public class ProfileActivity extends AppCompatActivity {
         byte[] b = baos.toByteArray();
         String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
 
-        Log.d("Image Log:", imageEncoded);
         return imageEncoded;
     }
 
@@ -247,7 +247,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(String error) {
-
+                handler.generateError(error);
             }
         };
         UserController userController = new UserController(uploadImageCallback);
@@ -287,7 +287,6 @@ public class ProfileActivity extends AppCompatActivity {
                     new String[]{f.getPath()},
                     new String[]{"image/jpeg"}, null);
             fo.close();
-            Log.d("TAG", "File Saved::---&gt;" + f.getAbsolutePath());
 
 
             return f.getAbsolutePath();
@@ -311,17 +310,13 @@ public class ProfileActivity extends AppCompatActivity {
         ApiInterface.updateUserCallback updateUserCallback = new ApiInterface.updateUserCallback() {
             @Override
             public void onResponse(boolean success) {
-                if (success)
-                    startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-                else
-                    Toasty.error(ProfileActivity.this, "درخواست با خطا مواجه شد", Toasty.LENGTH_LONG).show();
+
+                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
             }
 
             @Override
             public void onFailure(String error) {
-                if (error.equals("connection"))
-                    Toasty.error(ProfileActivity.this, "خطا در برقراری ارتباط!", Toasty.LENGTH_LONG).show();
-
+                handler.generateError(error);
             }
         };
         UserController userController = new UserController(updateUserCallback);

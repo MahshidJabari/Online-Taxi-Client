@@ -3,12 +3,14 @@ package com.jabari.client.network.config;
 
 import com.google.gson.JsonObject;
 import com.jabari.client.network.model.Cost;
+import com.jabari.client.network.model.Finance;
 import com.jabari.client.network.model.Request;
 import com.jabari.client.network.model.Item;
 import com.jabari.client.network.model.NeshanSearch;
 import com.jabari.client.network.model.Travel;
 import com.jabari.client.network.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -168,6 +170,26 @@ public interface ApiInterface {
 
     interface travelHistoryCallback {
         void onResponse(List<Travel> travels);
+
+        void onFailure(String error);
+    }
+
+    @FormUrlEncoded
+    @POST("gift")
+    Call<JsonObject> useGiftCode();
+
+    interface giftCallBack {
+        void onResponse();
+
+        void onFailure(String error);
+    }
+
+    /////////not implemented
+    @GET("report")
+    Call<JsonObject> financialReport();
+
+    interface reportCallBack {
+        void onResponse(ArrayList<Finance> finances);
 
         void onFailure(String error);
     }

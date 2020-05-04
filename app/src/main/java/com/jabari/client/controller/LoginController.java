@@ -33,8 +33,7 @@ public class LoginController {
     }
 
 
-
-    public void Do(final String mobileNum, String verify_code) {
+    public void check(final String mobileNum, String verify_code) {
         User user = new User();
         user.setMobileNum(mobileNum);
         Retrofit retrofit = ApiClient.getClient();
@@ -43,19 +42,17 @@ public class LoginController {
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if (response.isSuccessful()) {
+                if (response.body() != null) {
                     User user = new Gson().fromJson(response.body().get("user"), User.class);
                     String token = new Gson().fromJson(response.body().get("jwtAccessToken"), String.class);
-                    GlobalVariables.tok = token;
-                    Log.d("tok", token);
 
                     loginUserCallback.onResponse(user, token);
-                }
+                } else loginUserCallback.onFailure("null");
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                loginUserCallback.onFailure("Error!");
+                loginUserCallback.onFailure("connection");
             }
         });
     }
@@ -68,13 +65,15 @@ public class LoginController {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
-                    userVerifyCodeCallback.onResponse();
+                    if (response.body() != null)
+                        userVerifyCodeCallback.onResponse();
+                    else userVerifyCodeCallback.onFailure("null");
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                userVerifyCodeCallback.onFailure("Error!");
+                userVerifyCodeCallback.onFailure("connection");
             }
         });
     }
@@ -90,12 +89,12 @@ public class LoginController {
                 if (response.body() != null) {
                     String txt = new Gson().fromJson(response.body().get("laws"), String.class);
                     getLawsCallback.onResponse(txt);
-                }
+                } else getLawsCallback.onFailure("null");
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                getLawsCallback.onFailure("خطا در برقراری ارتباط");
+                getLawsCallback.onFailure("connection");
 
             }
         });

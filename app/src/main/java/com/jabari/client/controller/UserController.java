@@ -109,7 +109,7 @@ public class UserController {
                         String url = new Gson().fromJson(response.body().get("url"), String.class);
                         uploadImageCallback.onResponse("http://digipeyk.com/" + url);
                     } else
-                        uploadImageCallback.onFailure("false");
+                        uploadImageCallback.onFailure("null");
                 }
 
             }
@@ -132,7 +132,7 @@ public class UserController {
                 if (response.body() != null) {
                     boolean success = new Gson().fromJson(response.body().get("success"), Boolean.class);
                     updateUserCallback.onResponse(success);
-                }
+                } else updateUserCallback.onFailure("null");
             }
 
             @Override
