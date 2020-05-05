@@ -2,40 +2,42 @@ package com.jabari.client.network.model;
 
 public class Finance {
 
-    private String travel_date;
-    private String travel_code;
-    private String travel_type;
-    private String travel_cache;
+    private String id;
+    private String calculated;
+    private String vehicle;
 
-    public String getTravel_date() {
-        return travel_date;
+    public String getId() {
+        return id;
     }
 
-    public void setTravel_date(String travel_date) {
-        this.travel_date = travel_date;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getTravel_code() {
-        return travel_code;
+    public String getCalculated() {
+        return calculated;
     }
 
-    public void setTravel_code(String travel_code) {
-        this.travel_code = travel_code;
+    public void setCalculated(String calculated) {
+        this.calculated = calculated;
     }
 
-    public String getTravel_type() {
-        return travel_type;
+    public String getVehicle() {
+        return vehicle;
     }
 
-    public void setTravel_type(String travel_type) {
-        this.travel_type = travel_type;
+    public void setVehicle(String vehicle) {
+        this.vehicle = vehicle;
     }
 
-    public String getTravel_cache() {
-        return travel_cache;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setTravel_cache(String travel_cache) {
-        this.travel_cache = travel_cache;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
+
+    private String createdAt;
+
 }

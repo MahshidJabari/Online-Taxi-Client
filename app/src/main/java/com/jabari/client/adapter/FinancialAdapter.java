@@ -36,10 +36,10 @@ public class FinancialAdapter extends RecyclerView.Adapter<FinancialAdapter.Fina
 
     @Override
     public void onBindViewHolder(@NonNull FinancialViewHolder holder, int i) {
-        holder.tv_travel_code.setText(financeArrayList.get(i).getTravel_code());
-        holder.tv_travel_cache.setText(financeArrayList.get(i).getTravel_cache());
-        holder.tv_travel_type.setText(financeArrayList.get(i).getTravel_type());
-        holder.tv_travel_date.setText(financeArrayList.get(i).getTravel_date());
+        holder.tv_travel_code.setText(financeArrayList.get(i).getId());
+        holder.tv_travel_cache.setText(financeArrayList.get(i).getCalculated());
+        holder.tv_travel_type.setText(financeArrayList.get(i).getVehicle());
+        holder.tv_travel_date.setText(financeArrayList.get(i).getCreatedAt());
     }
 
     @Override

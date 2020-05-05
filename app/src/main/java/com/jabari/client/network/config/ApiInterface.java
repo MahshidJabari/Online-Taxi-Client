@@ -185,8 +185,9 @@ public interface ApiInterface {
     }
 
     /////////not implemented
-    @GET("report")
-    Call<JsonObject> financialReport();
+    @FormUrlEncoded
+    @POST("user/request")
+    Call<JsonObject> financialReport(@Field("page") int page);
 
     interface reportCallBack {
         void onResponse(ArrayList<Finance> finances);

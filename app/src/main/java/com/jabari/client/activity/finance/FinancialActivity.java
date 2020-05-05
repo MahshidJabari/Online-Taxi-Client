@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jabari.client.R;
 import com.jabari.client.activity.main.MainActivity;
 import com.jabari.client.adapter.FinancialAdapter;
+import com.jabari.client.controller.FinanceController;
 import com.jabari.client.network.config.ApiInterface;
 import com.jabari.client.network.model.Finance;
 
@@ -40,6 +41,7 @@ public class FinancialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_finance);
 
         setViews();
+        getFinancialReport();
     }
 
     private void setViews() {
@@ -51,7 +53,7 @@ public class FinancialActivity extends AppCompatActivity {
 
     private void setUpRecyclerView(ArrayList<Finance> finances) {
 
-        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView = findViewById(R.id.recycler_finance);
         adapter = new FinancialAdapter(this, recyclerView, finances);
         recyclerView.setAdapter(adapter);
@@ -60,6 +62,20 @@ public class FinancialActivity extends AppCompatActivity {
     }
 
     private void getFinancialReport() {
+        ApiInterface.reportCallBack reportCallBack = new ApiInterface.reportCallBack() {
+            @Override
+            public void onResponse(ArrayList<Finance> finances) {
+                setUpRecyclerView(finances);
+
+            }
+
+            @Override
+            public void onFailure(String error) {
+
+            }
+        };
+        FinanceController financeController = new FinanceController(reportCallBack);
+        financeController.getReport();
     }
 
     public void OnBackClick() {

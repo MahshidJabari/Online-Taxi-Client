@@ -2,9 +2,12 @@ package com.jabari.client.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.jabari.client.network.config.ApiClient;
 import com.jabari.client.network.config.ApiInterface;
+import com.jabari.client.network.model.Finance;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,16 +21,18 @@ public class FinanceController {
         this.reportCallBack = reportCallBack;
     }
 
-    private void getReport() {
+    public void getReport() {
         Retrofit retrofit = ApiClient.getClient();
         ApiInterface apiInterfaces = retrofit.create(ApiInterface.class);
-        Call<JsonObject> call = apiInterfaces.financialReport();
+        Call<JsonObject> call = apiInterfaces.financialReport(1);
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body() != null) {
-                    ArrayList finances = new Gson().fromJson(response.body().get("finance"),ArrayList.class);
-                    //reportCallBack.onResponse();
+                    Type userListType = new TypeToken<ArrayList<Finance>>(){}.getType();
+                    ArrayList<Finance> finances = new Gson().fromJson(response.body().get("requests"), userListType);
+                    reportCallBack.onResponse(finances);
+
                 } else reportCallBack.onFailure("null");
             }
 
