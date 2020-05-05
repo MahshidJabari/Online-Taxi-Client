@@ -11,7 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jabari.client.R;
-import com.jabari.client.network.model.Travel;
+import com.jabari.client.custom.DigitConverter;
+import com.jabari.client.network.model.Request;
 
 import java.util.ArrayList;
 
@@ -20,10 +21,10 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
 
     private Context context;
     private RecyclerView recyclerView;
-    private ArrayList<Travel> travelList;
+    private ArrayList<Request> travelList;
 
 
-    public ArchiveAdapter(Context context, RecyclerView recyclerView, ArrayList<Travel> travels) {
+    public ArchiveAdapter(Context context, RecyclerView recyclerView, ArrayList<Request> travels) {
 
         this.context = context;
         this.recyclerView = recyclerView;
@@ -44,12 +45,10 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
     public void onBindViewHolder(@NonNull ArchiveViewHolder holder, int i) {
 
 
-        holder.tv_date.setText(travelList.get(i).getDate());
-        holder.tv_start_location.setText(travelList.get(i).getSender_location());
-        holder.tv_receiver_loc.setText(travelList.get(i).getReciever_location());
-
-        /*holder.tv_sender.setText(travelList.get(i).getSender_name());
-        holder.tv_receiver.setText(travelList.get(i).getReciever_name());*/
+        holder.tv_date.setText(DigitConverter.convert(travelList.get(i).getCreatedAt()));
+        holder.tv_start_location.setText(travelList.get(i).getLocationAddress());
+        holder.tv_receiver_loc.setText(travelList.get(i).getDestinationAddress());
+        holder.tv_travel_code.setText(DigitConverter.convert(travelList.get(i).getId()));
 
     }
 
@@ -59,7 +58,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
     }
 
     public class ArchiveViewHolder extends RecyclerView.ViewHolder {
-        private TextView tv_date, tv_start_location, tv_receiver_loc, tv_sender, tv_receiver;
+        private TextView tv_date, tv_start_location, tv_receiver_loc, tv_sender, tv_receiver, tv_travel_code;
         private Button btn_request, btn_details;
 
         public ArchiveViewHolder(@NonNull View itemView) {
@@ -69,6 +68,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
             tv_receiver_loc = itemView.findViewById(R.id.tv_end_location);
             btn_request = itemView.findViewById(R.id.btn_request);
             btn_details = itemView.findViewById(R.id.btn_travel_details);
+            tv_travel_code = itemView.findViewById(R.id.tv_travel_code);
             /*tv_sender = itemView.findViewById(R.id.tv_sender_name);
             tv_receiver = itemView.findViewById(R.id.tv_receiver_name);*/
         }

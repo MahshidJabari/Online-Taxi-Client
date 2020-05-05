@@ -7,7 +7,6 @@ import com.jabari.client.network.model.Finance;
 import com.jabari.client.network.model.Request;
 import com.jabari.client.network.model.Item;
 import com.jabari.client.network.model.NeshanSearch;
-import com.jabari.client.network.model.Travel;
 import com.jabari.client.network.model.User;
 
 import java.util.ArrayList;
@@ -166,10 +165,10 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("user/request/success")
-    Call<Travel> travelHistory();
+    Call<JsonObject> requestSuccessHistory(@Field("page") int page);
 
-    interface travelHistoryCallback {
-        void onResponse(List<Travel> travels);
+    interface requestSuccessCallback {
+        void onResponse(String succeedRequests, String payments);
 
         void onFailure(String error);
     }
@@ -191,6 +190,16 @@ public interface ApiInterface {
 
     interface reportCallBack {
         void onResponse(ArrayList<Finance> finances);
+
+        void onFailure(String error);
+    }
+
+    @FormUrlEncoded
+    @POST("user/request")
+    Call<JsonObject> requestsReport(@Field("page") int page);
+
+    interface requestsReportCallBack {
+        void onResponse(ArrayList<Request> requests);
 
         void onFailure(String error);
     }

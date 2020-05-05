@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jabari.client.R;
 import com.jabari.client.activity.main.MainActivity;
 import com.jabari.client.adapter.FinancialAdapter;
-import com.jabari.client.controller.FinanceController;
+import com.jabari.client.controller.HistoryController;
 import com.jabari.client.network.config.ApiInterface;
 import com.jabari.client.network.model.Finance;
 
@@ -73,7 +73,7 @@ public class FinancialActivity extends AppCompatActivity {
 
             }
         };
-        FinanceController financeController = new FinanceController(reportCallBack);
+        HistoryController financeController = new HistoryController(reportCallBack);
         financeController.getReport();
     }
 

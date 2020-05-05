@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jabari.client.R;
+import com.jabari.client.custom.DigitConverter;
 import com.jabari.client.network.model.Finance;
 
 import java.util.ArrayList;
@@ -36,10 +37,10 @@ public class FinancialAdapter extends RecyclerView.Adapter<FinancialAdapter.Fina
 
     @Override
     public void onBindViewHolder(@NonNull FinancialViewHolder holder, int i) {
-        holder.tv_travel_code.setText(financeArrayList.get(i).getId());
-        holder.tv_travel_cache.setText(financeArrayList.get(i).getCalculated());
+        holder.tv_travel_code.setText(DigitConverter.convert(financeArrayList.get(i).getId()));
+        holder.tv_travel_cache.setText(DigitConverter.convert(financeArrayList.get(i).getCalculated()));
         holder.tv_travel_type.setText(financeArrayList.get(i).getVehicle());
-        holder.tv_travel_date.setText(financeArrayList.get(i).getCreatedAt());
+        holder.tv_travel_date.setText(DigitConverter.convert(financeArrayList.get(i).getCreatedAt()));
     }
 
     @Override

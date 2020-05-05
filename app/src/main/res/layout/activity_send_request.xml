@@ -126,7 +126,7 @@
                 android:paddingEnd="@dimen/tv_padding"
                 android:text="@string/start"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintHeight_percent="0.4"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0" />
@@ -138,7 +138,7 @@
                 android:orientation="horizontal"
                 android:weightSum="4"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintHeight_percent="0.4"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv"
                 app:layout_constraintVertical_bias="0">
@@ -175,7 +175,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.38" />
+        app:layout_constraintGuide_percent="0.34" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -200,7 +200,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.42" />
+        app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mid_cons"
@@ -208,8 +208,8 @@
         android:layout_height="0dp"
         android:background="@drawable/back_twenty_white"
         android:orientation="vertical"
-        android:translationY="-140dp"
-        app:layout_constraintHeight_percent="0.22"
+        android:translationY="-120dp"
+        app:layout_constraintHeight_percent="0.21"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guidelineMid"
@@ -225,7 +225,7 @@
             android:paddingEnd="@dimen/tv_padding"
             android:text="@string/destination"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintHeight_percent="0.25"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0" />
@@ -238,7 +238,7 @@
             android:orientation="horizontal"
             android:weightSum="4"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintHeight_percent="0.38"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv2"
             app:layout_constraintVertical_bias="0">
@@ -272,7 +272,7 @@
             android:text="@string/add_new_destination"
             android:onClick="AddDestination"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintHeight_percent="0.3"
             app:layout_constraintTop_toBottomOf="@id/lin"
             app:layout_constraintVertical_bias="1" />
 
@@ -286,7 +286,7 @@
         android:layout_marginTop="10dp"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
-        android:translationY="-130dp"
+        android:translationY="-110dp"
         android:weightSum="2"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -328,7 +328,7 @@
         android:layout_height="0dp"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
-        android:translationY="-120dp"
+        android:translationY="-100dp"
         android:weightSum="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.1"
@@ -366,7 +366,7 @@
         android:layout_width="0dp"
         android:layout_height="3dp"
         android:background="@color/gray"
-        android:translationY="-150dp"
+        android:translationY="-130dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lin3"
@@ -378,7 +378,7 @@
         android:layout_height="0dp"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
-        android:translationY="-130dp"
+        android:translationY="-110dp"
         android:weightSum="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.1"
@@ -415,7 +415,7 @@
         android:layout_width="0dp"
         android:layout_height="3dp"
         android:background="@color/gray"
-        android:translationY="-150dp"
+        android:translationY="-130dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lin4"
@@ -427,7 +427,7 @@
         android:layout_height="0dp"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
-        android:translationY="-130dp"
+        android:translationY="-110dp"
         android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.1"

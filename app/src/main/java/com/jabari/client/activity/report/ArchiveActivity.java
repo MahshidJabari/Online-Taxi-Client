@@ -14,7 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jabari.client.R;
 import com.jabari.client.activity.main.MainActivity;
 import com.jabari.client.adapter.ArchiveAdapter;
-import com.jabari.client.network.model.Travel;
+import com.jabari.client.controller.HistoryController;
+import com.jabari.client.custom.DigitConverter;
+import com.jabari.client.custom.ExceptionHandler;
+import com.jabari.client.network.config.ApiInterface;
+import com.jabari.client.network.model.Request;
 
 import java.util.ArrayList;
 
@@ -24,8 +28,9 @@ public class ArchiveActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ArchiveAdapter adapter;
-    private ArrayList<Travel> travels;
-    private TextView tv_return;
+    private ArrayList<Request> travels;
+    private TextView tv_successful_travel, tv_payments;
+    private ExceptionHandler handler;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -36,43 +41,59 @@ public class ArchiveActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
-
+        handler = new ExceptionHandler(this);
 
         setUpView();
 
-        Travel travel = new Travel();
-        travel.setDate("1397/8/22");
-        travel.setSender_location("ولیعصر،میدان ولیعصر،پلاک 2،واحد5");
-        travel.setReciever_location("ولیعصر،میدان ولیعصر،پلاک 3،واحد5");
-        /*travel.setSender_name("محمدرضا اکبری");
-        travel.setSender_phone("0990 537 4633");
-        travel.setReciever_name("محمدرضا اکبری");
-        travel.setRecirer_phone("0912 421 7230");
-*/
-        travels = new ArrayList<>();
-        travels.add(travel);
-        travels.add(travel);
-        setUpRecyclerView(travels);
     }
 
     private void setUpView() {
+        tv_payments = findViewById(R.id.tv_payment);
+        tv_successful_travel = findViewById(R.id.tv_successful_travel);
+    }
 
-        tv_return = findViewById(R.id.tv_return);
-        tv_return.setOnClickListener(new View.OnClickListener() {
+    public void OnBackClick(View view) {
+
+        startActivity(new Intent(ArchiveActivity.this, MainActivity.class));
+    }
+
+    private void getSuccessFulTravel() {
+
+        ApiInterface.requestSuccessCallback requestSuccessCallback = new ApiInterface.requestSuccessCallback() {
             @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ArchiveActivity.this, MainActivity.class));
+            public void onResponse(String succeedRequests, String payments) {
+                tv_successful_travel.setText(DigitConverter.convert(succeedRequests));
+                tv_payments.setText(DigitConverter.convert(payments));
             }
-        });
+
+            @Override
+            public void onFailure(String error) {
+                handler.generateError(error);
+            }
+        };
+        HistoryController historyController = new HistoryController(requestSuccessCallback);
+        historyController.getSuccess();
     }
 
-    private void getTravelList(){
+    private void getTravelList() {
+        ApiInterface.requestsReportCallBack reportCallBack = new ApiInterface.requestsReportCallBack() {
+            @Override
+            public void onResponse(ArrayList<Request> requests) {
+                setUpRecyclerView(requests);
+            }
 
+            @Override
+            public void onFailure(String error) {
+
+            }
+        };
+        HistoryController historyController = new HistoryController(reportCallBack);
+        historyController.getRequestDetail();
     }
 
-    private void setUpRecyclerView(ArrayList<Travel> travelList) {
+    private void setUpRecyclerView(ArrayList<Request> travelList) {
 
-        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView = findViewById(R.id.archive_recycler);
         adapter = new ArchiveAdapter(this, recyclerView, travelList);
         recyclerView.setAdapter(adapter);

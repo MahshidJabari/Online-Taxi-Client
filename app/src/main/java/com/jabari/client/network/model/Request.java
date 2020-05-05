@@ -39,13 +39,19 @@ public class Request {
     @SerializedName("locationAddress")
     @Expose
     private String locationAddress;
-    @SerializedName("message")
-    private String message;
+    @SerializedName("id")
+    private String id;
 
-
-    public String getMessage() {
-        return message;
+    public String getCreatedAt() {
+        return createdAt;
     }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @SerializedName("createdAt")
+    private String createdAt;
 
 
     public String getLat() {
@@ -135,6 +141,14 @@ public class Request {
     public void setLocationAddress(String locationAddress) {
         this.locationAddress = locationAddress;
     }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
 
 }

@@ -37,6 +37,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="right"
+            android:onClick="OnBackClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="4"
             app:layout_constraintLeft_toRightOf="@id/tv_title"
@@ -48,6 +49,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
+            android:onClick="OnBackClick"
             android:src="@drawable/ic_chevron_right_white_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/tv_return"
@@ -124,6 +126,7 @@
                 android:textDirection="rtl" />
 
             <TextView
+                android:id="@+id/tv_successful_travel"
                 style="@style/text_green"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -136,8 +139,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:paddingRight="@dimen/tv_padding"
                 android:paddingLeft="@dimen/tv_padding"
+                android:paddingRight="@dimen/tv_padding"
                 android:text="@string/successful_travels" />
 
 
@@ -201,6 +204,7 @@
                 android:textDirection="rtl" />
 
             <TextView
+                android:id="@+id/tv_payments"
                 style="@style/common_text_white"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -223,17 +227,22 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/archive_recycler"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_cons">
+        app:layout_constraintHeight_percent="0.92"
+        app:layout_constraintTop_toBottomOf="@id/top_cons"
+        app:layout_constraintVertical_bias="0.1">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/archive_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

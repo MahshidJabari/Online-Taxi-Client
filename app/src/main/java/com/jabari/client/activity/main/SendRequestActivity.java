@@ -18,7 +18,6 @@ import com.jabari.client.custom.DigitConverter;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.network.model.Request;
 import com.jabari.client.network.config.ApiInterface;
-import com.jabari.client.network.model.Travel;
 
 import es.dmoral.toasty.Toasty;
 
