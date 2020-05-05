@@ -38,7 +38,6 @@ public class FinanceController {
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                reportCallBack.onFailure("connection");
             }
         });
     }

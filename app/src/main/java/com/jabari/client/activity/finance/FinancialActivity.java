@@ -25,7 +25,6 @@ public class FinancialActivity extends AppCompatActivity {
 
     private TextView tv_code, tv_type, tv_cache, tv_date;
     private RecyclerView recycler_finance;
-    private RecyclerView recyclerView;
     private FinancialAdapter adapter;
     private ArrayList<Finance> finances;
 
@@ -53,11 +52,11 @@ public class FinancialActivity extends AppCompatActivity {
 
     private void setUpRecyclerView(ArrayList<Finance> finances) {
 
-        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView = findViewById(R.id.recycler_finance);
-        adapter = new FinancialAdapter(this, recyclerView, finances);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(manager);
+        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recycler_finance = findViewById(R.id.recycler_finance);
+        adapter = new FinancialAdapter(this, recycler_finance, finances);
+        recycler_finance.setAdapter(adapter);
+        recycler_finance.setLayoutManager(manager);
 
     }
 
