@@ -121,6 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="@dimen/tv_padding"
+                android:paddingTop="10dp"
                 android:paddingRight="@dimen/tv_padding"
                 android:text="@string/travel"
                 android:textDirection="rtl" />
@@ -131,6 +132,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingTop="10dp"
                 android:text="0"
                 android:textDirection="ltr" />
 
@@ -140,6 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:paddingLeft="@dimen/tv_padding"
+                android:paddingTop="10dp"
                 android:paddingRight="@dimen/tv_padding"
                 android:text="@string/successful_travels" />
 
@@ -230,17 +233,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.92"
+        app:layout_constraintHeight_percent="0.8"
         app:layout_constraintTop_toBottomOf="@id/top_cons"
-        app:layout_constraintVertical_bias="0.1">
+        app:layout_constraintVertical_bias="0.05">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/archive_recycler"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layoutDirection="rtl"
-            android:orientation="horizontal" />
+            android:orientation="vertical" />
 
     </LinearLayout>
 

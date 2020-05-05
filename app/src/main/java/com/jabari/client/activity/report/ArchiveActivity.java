@@ -19,6 +19,7 @@ import com.jabari.client.custom.DigitConverter;
 import com.jabari.client.custom.ExceptionHandler;
 import com.jabari.client.network.config.ApiInterface;
 import com.jabari.client.network.model.Request;
+import com.jabari.client.network.model.Travel;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,6 @@ public class ArchiveActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ArchiveAdapter adapter;
-    private ArrayList<Request> travels;
     private TextView tv_successful_travel, tv_payments;
     private ExceptionHandler handler;
 
@@ -44,11 +44,13 @@ public class ArchiveActivity extends AppCompatActivity {
         handler = new ExceptionHandler(this);
 
         setUpView();
+        getSuccessFulTravel();
+        getTravelList();
 
     }
 
     private void setUpView() {
-        tv_payments = findViewById(R.id.tv_payment);
+        tv_payments = findViewById(R.id.tv_payments);
         tv_successful_travel = findViewById(R.id.tv_successful_travel);
     }
 
@@ -62,8 +64,10 @@ public class ArchiveActivity extends AppCompatActivity {
         ApiInterface.requestSuccessCallback requestSuccessCallback = new ApiInterface.requestSuccessCallback() {
             @Override
             public void onResponse(String succeedRequests, String payments) {
+
                 tv_successful_travel.setText(DigitConverter.convert(succeedRequests));
                 tv_payments.setText(DigitConverter.convert(payments));
+
             }
 
             @Override
@@ -78,7 +82,7 @@ public class ArchiveActivity extends AppCompatActivity {
     private void getTravelList() {
         ApiInterface.requestsReportCallBack reportCallBack = new ApiInterface.requestsReportCallBack() {
             @Override
-            public void onResponse(ArrayList<Request> requests) {
+            public void onResponse(ArrayList<Travel> requests) {
                 setUpRecyclerView(requests);
             }
 
@@ -91,7 +95,7 @@ public class ArchiveActivity extends AppCompatActivity {
         historyController.getRequestDetail();
     }
 
-    private void setUpRecyclerView(ArrayList<Request> travelList) {
+    private void setUpRecyclerView(ArrayList<Travel> travelList) {
 
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView = findViewById(R.id.archive_recycler);

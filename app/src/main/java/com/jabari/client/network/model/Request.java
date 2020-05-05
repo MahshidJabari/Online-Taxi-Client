@@ -3,6 +3,8 @@ package com.jabari.client.network.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class Request {
 
     @SerializedName("lat")
@@ -18,6 +20,7 @@ public class Request {
     @SerializedName("dlng")
     @Expose
     private String dlng;
+
     @SerializedName("vehicle")
     @Expose
     private int vehicle;
@@ -39,20 +42,6 @@ public class Request {
     @SerializedName("locationAddress")
     @Expose
     private String locationAddress;
-    @SerializedName("id")
-    private String id;
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    @SerializedName("createdAt")
-    private String createdAt;
-
 
     public String getLat() {
         return lat;
@@ -141,14 +130,5 @@ public class Request {
     public void setLocationAddress(String locationAddress) {
         this.locationAddress = locationAddress;
     }
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-
 
 }

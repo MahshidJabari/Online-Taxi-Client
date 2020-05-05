@@ -33,6 +33,16 @@
         <activity android:name=".activity.finance.ManagementActivity" />
         <activity android:name=".activity.main.StartPosActivity" />
         <activity android:name=".activity.main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="digipeyk_client"
+                    android:scheme="return" />
+            </intent-filter>
             <meta-data
                 android:name="cheshmakPush"
                 android:value="openActivityOnPush" />
@@ -52,16 +62,7 @@
         <activity android:name=".activity.finance.IncreaseCreditActivity" />
         <activity android:name=".activity.report.ArchiveDetailActivity" />
         <activity android:name=".activity.finance.PaymentActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="digipeyk_client"
-                    android:scheme="return" />
-            </intent-filter>
         </activity>
         <activity android:name=".activity.main.EndPosActivity" />
 

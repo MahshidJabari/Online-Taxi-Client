@@ -7,6 +7,7 @@ import com.jabari.client.network.model.Finance;
 import com.jabari.client.network.model.Request;
 import com.jabari.client.network.model.Item;
 import com.jabari.client.network.model.NeshanSearch;
+import com.jabari.client.network.model.Travel;
 import com.jabari.client.network.model.User;
 
 import java.util.ArrayList;
@@ -199,7 +200,7 @@ public interface ApiInterface {
     Call<JsonObject> requestsReport(@Field("page") int page);
 
     interface requestsReportCallBack {
-        void onResponse(ArrayList<Request> requests);
+        void onResponse(ArrayList<Travel> requests);
 
         void onFailure(String error);
     }

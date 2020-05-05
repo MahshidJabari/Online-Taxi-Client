@@ -7,6 +7,7 @@ import com.jabari.client.network.config.ApiClient;
 import com.jabari.client.network.config.ApiInterface;
 import com.jabari.client.network.model.Finance;
 import com.jabari.client.network.model.Request;
+import com.jabari.client.network.model.Travel;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -86,9 +87,9 @@ public class HistoryController {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body() != null) {
-                    Type requestListType = new TypeToken<ArrayList<Request>>() {
+                    Type requestListType = new TypeToken<ArrayList<Travel>>() {
                     }.getType();
-                    ArrayList<Request> requests = new Gson().fromJson(response.body().get("requests"), requestListType);
+                    ArrayList<Travel> requests = new Gson().fromJson(response.body().get("requests"), requestListType);
                    requestsReportCallBack.onResponse(requests);
 
                 } else requestsReportCallBack.onFailure("null");

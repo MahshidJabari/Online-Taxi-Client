@@ -14,14 +14,14 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.9" />
 
 
     <LinearLayout
@@ -52,7 +52,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/tv_travel_date"
+            android:id="@+id/tv_date"
             style="@style/text_pink"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             android:layout_weight="1.2"
             android:drawableStart="@drawable/ic_date_range_pink_24dp"
             android:drawablePadding="10dp"
-            android:layoutDirection="ltr"
+            android:layoutDirection="rtl"
             android:text="1397/8/22">
 
         </TextView>
@@ -133,7 +133,7 @@
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_marginTop="@dimen/margin_border"
-        android:background="@color/gray"
+        android:background="@color/darkGray"
         app:layout_constraintLeft_toRightOf="@id/guideline_left"
         app:layout_constraintRight_toLeftOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@id/lin2" />
@@ -194,7 +194,7 @@
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_marginTop="@dimen/margin_border"
-        android:background="@color/gray"
+        android:background="@color/darkGray"
         app:layout_constraintLeft_toRightOf="@id/guideline_left"
         app:layout_constraintRight_toLeftOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@id/lin3" />

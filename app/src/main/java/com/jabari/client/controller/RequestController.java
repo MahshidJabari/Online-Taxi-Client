@@ -73,19 +73,17 @@ public class RequestController {
             @Override
             public void onResponse(Call<Request> call, Response<Request> response) {
 
-                if (response.isSuccessful()) {
 
-                    if (response.body() != null) {
-                        String message = response.body().getMessage();
-                        sendRequestCallback.onResponse(message);
-                    } else sendRequestCallback.onFailure("Error");
-                }
+                if (response.body() != null) {
+                    sendRequestCallback.onResponse("sent");
+                } else sendRequestCallback.onFailure("null");
+
 
             }
 
             @Override
             public void onFailure(Call<Request> call, Throwable t) {
-
+                sendRequestCallback.onFailure("connection");
             }
         });
 

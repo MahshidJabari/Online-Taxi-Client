@@ -15,6 +15,7 @@ import com.jabari.client.activity.finance.GiftCardActivity;
 import com.jabari.client.activity.finance.IncreaseCreditActivity;
 import com.jabari.client.controller.RequestController;
 import com.jabari.client.custom.DigitConverter;
+import com.jabari.client.custom.ExceptionHandler;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.network.model.Request;
 import com.jabari.client.network.config.ApiInterface;
@@ -26,11 +27,13 @@ public class SendRequestActivity extends AppCompatActivity {
     private EditText et_start_location, et_destination;
     private TextView tv_payment_way, tv_vehicle_name, tv_payment;
     private ImageView img_edit, imgEdit_destination;
+    private ExceptionHandler handler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_request);
+        handler = new ExceptionHandler(this);
 
         setViews();
         setVehicle();
@@ -129,7 +132,7 @@ public class SendRequestActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(String err) {
-
+                handler.generateError(err);
             }
         };
         RequestController requestController = new RequestController(sendRequestCallback);

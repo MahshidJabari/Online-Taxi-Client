@@ -26,7 +26,6 @@ public class FinancialActivity extends AppCompatActivity {
     private TextView tv_code, tv_type, tv_cache, tv_date;
     private RecyclerView recycler_finance;
     private FinancialAdapter adapter;
-    private ArrayList<Finance> finances;
 
     @Override
     protected void attachBaseContext(Context newBase) {

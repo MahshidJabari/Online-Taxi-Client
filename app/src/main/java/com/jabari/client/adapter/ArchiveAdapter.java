@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jabari.client.R;
 import com.jabari.client.custom.DigitConverter;
-import com.jabari.client.network.model.Request;
+import com.jabari.client.network.model.Travel;
 
 import java.util.ArrayList;
 
@@ -21,10 +21,10 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
 
     private Context context;
     private RecyclerView recyclerView;
-    private ArrayList<Request> travelList;
+    private ArrayList<Travel> travelList;
 
 
-    public ArchiveAdapter(Context context, RecyclerView recyclerView, ArrayList<Request> travels) {
+    public ArchiveAdapter(Context context, RecyclerView recyclerView, ArrayList<Travel> travels) {
 
         this.context = context;
         this.recyclerView = recyclerView;

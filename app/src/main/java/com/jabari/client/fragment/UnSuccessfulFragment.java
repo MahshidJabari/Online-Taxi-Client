@@ -10,15 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jabari.client.R;
-import com.jabari.client.adapter.UnsuccessfulAdapter;
-import com.jabari.client.network.model.UnsuccessfulTravel;
 
 import java.util.ArrayList;
 
 public class UnSuccessfulFragment extends Fragment {
     private RecyclerView recyclerView;
-    private UnsuccessfulAdapter adapter;
-    private ArrayList<UnsuccessfulTravel> travels;
+   /* private UnsuccessfulAdapter adapter;
+    private ArrayList<UnsuccessfulTravel> travels;*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,7 +27,7 @@ public class UnSuccessfulFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_unsuccessful, container, false);
         recyclerView = view.findViewById(R.id.unsuccessful_recycler);
 
-        UnsuccessfulTravel travel = new UnsuccessfulTravel();
+       /* UnsuccessfulTravel travel = new UnsuccessfulTravel();
         travel.setDetail("لطفا سریعتر به دستم برسد!");
         travel.setPayment_company("مبدا");
         travel.setPayment_way("نقدی");
@@ -42,11 +40,12 @@ public class UnSuccessfulFragment extends Fragment {
         travels.add(travel);
 
         setUpRecyclerView(travels, recyclerView);
-
+*/
         return view;
 
     }
 
+/*
     private void setUpRecyclerView(ArrayList<UnsuccessfulTravel> travels, RecyclerView recyclerView) {
         LinearLayoutManager manager = new LinearLayoutManager
                 (this.getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -57,5 +56,6 @@ public class UnSuccessfulFragment extends Fragment {
 
 
     }
+*/
 
 }
