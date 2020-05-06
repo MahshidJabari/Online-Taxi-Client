@@ -22,13 +22,14 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
     private Context context;
     private RecyclerView recyclerView;
     private ArrayList<Travel> travelList;
+    public ArchiveAdapterListener onClickListener;
 
 
-    public ArchiveAdapter(Context context, RecyclerView recyclerView, ArrayList<Travel> travels) {
-
+    public ArchiveAdapter(Context context, RecyclerView recyclerView, ArrayList<Travel> travels, ArchiveAdapterListener onClickListener) {
         this.context = context;
         this.recyclerView = recyclerView;
         this.travelList = travels;
+        this.onClickListener = onClickListener;
     }
 
     @NonNull
@@ -48,7 +49,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
         holder.tv_date.setText(DigitConverter.convert(travelList.get(i).getCreatedAt()));
         holder.tv_start_location.setText(travelList.get(i).getLocationAddress());
         holder.tv_receiver_loc.setText(travelList.get(i).getDestinationAddress());
-        holder.tv_travel_code.setText(DigitConverter.convert(travelList.get(i).getId()));
+        holder.tv_travel_code.setText(travelList.get(i).getId());
 
     }
 
@@ -71,6 +72,23 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
             tv_travel_code = itemView.findViewById(R.id.tv_travel_code);
             /*tv_sender = itemView.findViewById(R.id.tv_sender_name);
             tv_receiver = itemView.findViewById(R.id.tv_receiver_name);*/
+            btn_details.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickListener.detailOnClick(view, getAdapterPosition());
+                }
+            });
         }
+
+    }
+
+    public interface ArchiveAdapterListener {
+
+        void detailOnClick(View v, int position);
+
+        void requestOnClick(View v, int position);
     }
 }
+
+
+

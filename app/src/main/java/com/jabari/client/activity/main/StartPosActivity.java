@@ -509,18 +509,6 @@ public class StartPosActivity extends AppCompatActivity {
 
     }
 
-    private void changeMarkerToBlue(Marker redMarker) {
-        // create new marker style
-        MarkerStyleCreator markStCr = new MarkerStyleCreator();
-        markStCr.setSize(30f);
-        // Setting a new bitmap as marker
-        markStCr.setBitmap(BitmapUtils.createBitmapFromAndroidBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.location_blue)));
-        MarkerStyle blueMarkSt = markStCr.buildStyle();
-
-        // changing marker style using setStyle
-        redMarker.setStyle(blueMarkSt);
-    }
-
     @Override
     public void onBackPressed() {
         GlobalVariables.start = null;

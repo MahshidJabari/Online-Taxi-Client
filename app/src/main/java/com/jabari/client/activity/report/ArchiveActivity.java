@@ -3,6 +3,7 @@ package com.jabari.client.activity.report;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,7 +19,6 @@ import com.jabari.client.controller.HistoryController;
 import com.jabari.client.custom.DigitConverter;
 import com.jabari.client.custom.ExceptionHandler;
 import com.jabari.client.network.config.ApiInterface;
-import com.jabari.client.network.model.Request;
 import com.jabari.client.network.model.Travel;
 
 import java.util.ArrayList;
@@ -31,6 +31,7 @@ public class ArchiveActivity extends AppCompatActivity {
     private ArchiveAdapter adapter;
     private TextView tv_successful_travel, tv_payments;
     private ExceptionHandler handler;
+    private ArrayList<Travel> travelList;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -95,11 +96,23 @@ public class ArchiveActivity extends AppCompatActivity {
         historyController.getRequestDetail();
     }
 
-    private void setUpRecyclerView(ArrayList<Travel> travelList) {
+    private void setUpRecyclerView(final ArrayList<Travel> travelList) {
 
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView = findViewById(R.id.archive_recycler);
-        adapter = new ArchiveAdapter(this, recyclerView, travelList);
+        adapter = new ArchiveAdapter(this, recyclerView, travelList, new ArchiveAdapter.ArchiveAdapterListener() {
+            @Override
+            public void detailOnClick(View v, int position) {
+                Intent intent = new Intent(ArchiveActivity.this,ArchiveDetailActivity.class);
+                intent.putExtra("travel",travelList.get(position));
+                startActivity(intent);
+            }
+
+            @Override
+            public void requestOnClick(View v, int position) {
+
+            }
+        });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(manager);
 

@@ -108,33 +108,78 @@
             android:layoutDirection="rtl"
             android:orientation="horizontal"
             android:translationY="-30dp"
-            android:weightSum="4"
-            app:layout_constraintHeight_percent="0.17"
+            android:weightSum="2"
+            app:layout_constraintHeight_percent="0.12"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline_underHeader"
             app:layout_constraintWidth_percent="0.9">
 
             <TextView
-                style="@style/common_text"
+                android:id="@+id/tv_code"
+                style="@style/text_pink"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.9"
-                android:text="@string/travel_category" />
+                android:layout_weight="1"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:text="@string/travel_code"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                style="@style/text_pink"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_date_range_pink_24dp"
+                android:paddingEnd="10dp"
+                android:layoutDirection="rtl"
+                android:textSize="14sp" />
 
 
         </LinearLayout>
 
         <org.neshan.ui.MapView
+            android:id="@+id/MapView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent="0.55"
+            app:layout_constraintHorizontal_bias="0.512"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline_underHeader"
-            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintVertical_bias="0.0"
             app:layout_constraintWidth_percent="0.9" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="MapView"
+            app:layout_constraintWidth_percent="0.4">
+
+            <TextView
+                style="@style/common_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/your_driver" />
+
+            <TextView
+                style="@style/white_bold_16"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/your_driver"
+                android:textSize="18sp" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -142,7 +187,7 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.53" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -218,7 +263,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_t">
 
                 <TextView
-                    android:id="@+id/tv_have"
+                    android:id="@+id/tv_have_return"
                     style="@style/gray_bold_16"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -235,7 +280,7 @@
                     android:text="@string/slash" />
 
                 <TextView
-                    android:id="@+id/tv_does_not_have"
+                    android:id="@+id/tv_no_return"
                     style="@style/gray_bold_16"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -490,7 +535,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tv_give_dat"
+                android:id="@+id/tv_give_date"
                 style="@style/text_pink"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -609,8 +654,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:onClick="OnContinueClick"
-            android:text="@string/confirm_continue" />
+            android:onClick="OnSendEmailClick"
+            android:text="@string/get_email" />
 
 
     </LinearLayout>

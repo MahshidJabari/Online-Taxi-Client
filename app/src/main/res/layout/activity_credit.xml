@@ -39,6 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="right"
+            android:onClick="OnBackClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="4"
             app:layout_constraintLeft_toRightOf="@id/tv_title"
@@ -50,6 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
+            android:onClick="OnBackClick"
             android:src="@drawable/ic_chevron_right_white_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/tv_return"
@@ -170,16 +172,18 @@
         app:layout_constraintWidth_percent="0.75">
 
         <Button
+            android:id="@+id/btn_thirty"
             style="@style/button_credit"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:background="@drawable/back_twenty_radius_gray"
-            android:text="30/000"
+            android:onClick="OnCreditClick"
             android:textAlignment="center" />
 
         <Button
+            android:id="@+id/btn_twenty"
             style="@style/button_credit"
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -187,17 +191,18 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/back_twenty_radius_gray"
-            android:text="20/000"
+            android:onClick="OnCreditClick"
             android:textAlignment="center" />
 
         <Button
+            android:id="@+id/btn_ten"
             style="@style/button_credit"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:background="@drawable/back_twenty_radius_gray"
-            android:text="10/000"
+            android:onClick="OnCreditClick"
             android:textAlignment="center"
             android:textDirection="ltr" />
 
@@ -226,7 +231,7 @@
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:background="@drawable/back_twenty_radius_gray"
-            android:text="200/000"
+            android:onClick="OnCreditClick"
             android:textAlignment="center" />
 
         <Button
@@ -238,7 +243,7 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/back_twenty_radius_gray"
-            android:text="100/000"
+            android:onClick="OnCreditClick"
             android:textAlignment="center" />
 
         <Button
@@ -249,7 +254,7 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:background="@drawable/back_twenty_radius_gray"
-            android:text="50/000"
+            android:onClick="OnCreditClick"
             android:textAlignment="center"
             android:textDirection="ltr" />
 
@@ -307,10 +312,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingRight="10dp"
+            android:layoutDirection="rtl"
+            android:paddingStart="10dp"
             android:text="@string/toman" />
 
         <TextView
+            android:id="@+id/tv_increase_credit"
             style="@style/text_green"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -345,8 +352,8 @@
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:weightSum="4"
-        app:layout_constraintHeight_percent="0.07"
+        android:weightSum="5"
+        app:layout_constraintHeight_percent="0.06"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view4"
@@ -356,14 +363,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingLeft="20dp"
+            android:layoutDirection="rtl"
+            android:paddingStart="10dp"
             android:text="@string/toman"
             android:textColor="@color/green"
-            android:textDirection="ltr"
+            android:textDirection="rtl"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_after_increase"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -376,7 +385,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:text="اعتبار پس از افزایش"
             android:textColor="@color/color05"
             android:textSize="20sp"
@@ -444,6 +453,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_marginEnd="10dp"
+            android:onClick="OnPaymentClick"
             android:src="@drawable/limit_icon_signup_bottom" />
 
         <TextView
@@ -452,6 +462,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="top"
+            android:onClick="OnPaymentClick"
             android:text="@string/pay" />
 
     </LinearLayout>

@@ -48,6 +48,7 @@
     <string name="online_payment">پرداخت آنلاین</string>
     <string name="cache_payment">پرداخت نقدی</string>
     <string name="ongoing">در حال انجام</string>
+    <string name="get_email">دریافت ایمیل فاکتور</string>
     <string name="gift_card">کد هدیه</string>
     <string name="gift_card_">کد هدیه: </string>
     <string name="discount_code">کد معرف: </string>
@@ -72,6 +73,7 @@
     <string name="start">مبدا</string>
     <string name="destination">مقصد</string>
     <string name="delete">حذف</string>
+    <string name="your_driver">سفیر شما:</string>
     <string name="selected_address">آدرس های منتخب</string>
     <string name="search">جستجو ...</string>
     <string name="city">شهر</string>

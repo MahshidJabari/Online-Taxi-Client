@@ -56,7 +56,7 @@ public class PaymentActivity extends AppCompatActivity {
             }
         };
         RequestController requestController = new RequestController(payCallback);
-        requestController.pay("100");
+        requestController.pay(GlobalVariables.calculated);
 
     }
 

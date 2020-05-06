@@ -3,9 +3,10 @@ package com.jabari.client.network.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Travel {
+public class Travel implements Serializable {
     @SerializedName("location")
     private ArrayList<String> location;
 
