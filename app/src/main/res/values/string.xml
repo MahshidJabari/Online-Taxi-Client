@@ -62,7 +62,7 @@
     <string name="charge_with_gift_code">شارژ حساب با کد هدیه</string>
     <string name="gift_card_text">جهت شارژ حساب خود کد هدیه را در بخش زیر وارد کنید.</string>
     <string name="intro_cod_text">جهت شارژ حساب خود کد معرف را در بخش زیر وارد کنید.</string>
-    <string name="unsuccessful">ناموفق</string>
+    <string name="done">قبول شده</string>
     <string name="scheduled">زمانبندی شده</string>
     <string name="finding">درحال یافتن نزدیک ترین سفیر!</string>
     <string name="payment_way">نوع پرداخت</string>

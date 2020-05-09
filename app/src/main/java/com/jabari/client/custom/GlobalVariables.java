@@ -24,8 +24,11 @@ public class GlobalVariables {
     public static String lastName;
     public static String mail;
     public static String id;
+    public static String start_address;
+    public static String destination;
     public static String introduceCode;
+    public static boolean isOnlinePayment = false;
+    public static boolean isRequestSent = false;
     public static boolean hasReceivedResponse = false;
-    public static boolean requestSent = false;
 
 }

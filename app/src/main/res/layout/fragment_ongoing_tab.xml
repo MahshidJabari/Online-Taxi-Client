@@ -43,7 +43,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_start_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/payment_way"
@@ -52,11 +51,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_sender_name"
+                    android:id="@+id/tv_payment_way"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@string/cache"
+                    android:gravity="center"
                     android:textColor="@color/color06"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -101,12 +100,13 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tv_cache"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="5dp"
-                        android:text="5000"
+                        android:text=""
                         android:textColor="@color/color06"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -138,24 +138,22 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_end_location"
+                android:id="@+id/tv_start_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/ic_location_orange"
                 android:drawablePadding="10dp"
-                android:text="ولیعصر،میدان ولیعصر،پلاک 1،واحد5"
                 android:textColor="@color/color06"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_receiver_name"
+                android:id="@+id/tv_destination"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:drawableRight="@drawable/ic_location_green"
                 android:drawablePadding="10dp"
-                android:text="محمدرضا اکبری"
                 android:textColor="@color/color06"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -170,7 +168,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/gray" />
 
-        <Button
+       <!-- <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/view3"
@@ -186,6 +184,6 @@
             android:textColor="@color/color06"
             android:textSize="20sp"
             android:textStyle="bold" />
-
+-->
     </RelativeLayout>
 </LinearLayout>

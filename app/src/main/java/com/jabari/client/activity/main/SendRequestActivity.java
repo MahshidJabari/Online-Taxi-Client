@@ -125,7 +125,7 @@ public class SendRequestActivity extends AppCompatActivity {
             @Override
             public void onResponse(String message) {
 
-                GlobalVariables.requestSent = true;
+                GlobalVariables.isRequestSent = true;
                 startActivity(new Intent(SendRequestActivity.this, IncreaseCreditActivity.class));
 
             }

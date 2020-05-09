@@ -31,11 +31,13 @@ import com.jabari.client.activity.report.AddressActivity;
 import com.jabari.client.activity.report.ArchiveActivity;
 import com.jabari.client.controller.RequestController;
 import com.jabari.client.controller.UserController;
+import com.jabari.client.custom.ExceptionHandler;
 import com.jabari.client.custom.GlobalVariables;
 import com.jabari.client.fragment.OnGoingFragment;
 import com.jabari.client.fragment.ScheduledFragment;
 import com.jabari.client.fragment.UnSuccessfulFragment;
 import com.jabari.client.network.config.ApiInterface;
+import com.jabari.client.network.model.Travel;
 import com.jabari.client.network.model.User;
 
 import es.dmoral.toasty.Toasty;
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView tv_scheduled, tv_unsuccessful, tv_ongoing, tv_mail;
     private int current_selected = 0;
     private LinearLayout lin_profile;
+    private ExceptionHandler exceptionHandler;
+    private Travel travel;
     private String ongoing = "ongoing", unsuccessful = "unsuccessful", scheduled = "scheduled";
 
     @Override
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        exceptionHandler = new ExceptionHandler(this);
 
         setUpNavigationView();
         setUpTab_travelList();
@@ -151,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     tv_ongoing.setTextColor(getResources().getColor(R.color.white));
                     UnSelectedElse(1);
                     removeAllFragment(new OnGoingFragment(), false, ongoing);
-
                 }
             }
         });
@@ -254,9 +258,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void checkRequest() {
 
-        if (GlobalVariables.requestSent) {
+        if (GlobalVariables.isRequestSent) {
+            removeAllFragment(new OnGoingFragment(), false, ongoing);
             while (!GlobalVariables.hasReceivedResponse) {
-                Handler handler = new Handler();
+                final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -267,13 +272,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     GlobalVariables.hasReceivedResponse = true;
                                     Toasty.success(MainActivity.this, "راننده پیدا شد!", Toasty.LENGTH_LONG).show();
                                     Toasty.success(MainActivity.this, "راننده درحال آمدن به سمت شماست!", Toasty.LENGTH_LONG).show();
-
                                 }
                             }
 
                             @Override
                             public void onFailure(String error) {
-
+                                exceptionHandler.generateError(error);
                             }
                         };
                         RequestController requestController = new RequestController(checkCallback);
