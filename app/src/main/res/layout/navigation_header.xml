@@ -19,17 +19,6 @@
             android:layout_alignParentLeft="true"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_mail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:text="mail"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
             <View
                 android:layout_width="3dp"
                 android:layout_height="20dp"
@@ -39,6 +28,7 @@
                 android:background="@color/blue" />
 
             <ImageView
+                android:id="@+id/img_profile"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="20dp"
@@ -47,16 +37,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_exit"
-            style="@style/common_text_white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="#001D25"
-            android:text="@string/exit" />
 
     </RelativeLayout>
 

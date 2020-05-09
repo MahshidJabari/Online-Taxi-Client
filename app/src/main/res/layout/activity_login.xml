@@ -24,14 +24,14 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="42dp" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineRight"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -42,7 +42,7 @@
         app:layout_constraintLeft_toLeftOf="@id/guidelineLeft"
         app:layout_constraintRight_toRightOf="@id/guidelineRight"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
-        app:layout_constraintWidth_percent="0.8">
+        app:layout_constraintWidth_percent="0.85">
 
         <TextView
             android:id="@+id/et_header"
@@ -266,8 +266,8 @@
                 android:layout_height="0dp"
                 android:autoLink="web"
                 android:gravity="start"
-                android:onClick="getLaws"
                 android:layoutDirection="rtl"
+                android:onClick="getLaws"
                 android:text="@string/linkToSite"
                 app:layout_constraintHeight_percent="0.1"
                 app:layout_constraintHorizontal_bias="1"

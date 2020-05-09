@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
         final String phoneNumber = et_phoneNum.getText().toString();
         if (!isValidPhone(phoneNumber))
             handler.generateError("invalid_phone");
-
+        view.setBackgroundDrawable(getResources().getDrawable(R.drawable.back_fifty_radius_gray));
         LoginController loginController = new LoginController(new ApiInterface.UserVerifyCodeCallback() {
             @Override
             public void onResponse() {
