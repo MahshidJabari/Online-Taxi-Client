@@ -272,6 +272,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     GlobalVariables.hasReceivedResponse = true;
                                     Toasty.success(MainActivity.this, "راننده پیدا شد!", Toasty.LENGTH_LONG).show();
                                     Toasty.success(MainActivity.this, "راننده درحال آمدن به سمت شماست!", Toasty.LENGTH_LONG).show();
+                                    removeAllFragment(new UnSuccessfulFragment(), false, unsuccessful);
                                 }
                             }
 

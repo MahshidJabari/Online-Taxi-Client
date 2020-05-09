@@ -114,7 +114,7 @@
             android:orientation="horizontal"
             android:translationY="-30dp"
             android:weightSum="2"
-            app:layout_constraintHeight_percent="0.17"
+            app:layout_constraintHeight_percent="0.18"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline_underHeader"
@@ -129,11 +129,11 @@
 
             <Spinner
                 android:id="@+id/vehicle_spin"
+                style="@style/white_spinner"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:layout_weight="1.1"
-                android:background="@drawable/left_rounded_green" />
+                android:layout_weight="1.1" />
 
         </LinearLayout>
 
@@ -389,10 +389,10 @@
 
         <Spinner
             android:id="@+id/stop_spin"
+            style="@style/white_spinner"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.4"
-            android:background="@drawable/left_rounded_green"
             android:entries="@array/stop_arrays"
             android:gravity="center"
             android:layoutDirection="rtl"
