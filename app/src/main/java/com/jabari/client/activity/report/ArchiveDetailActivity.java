@@ -31,7 +31,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ArchiveDetailActivity extends AppCompatActivity {
     private TextView tv_have_return, tv_no_return, tv_credit, tv_cache, tv_start_location,
-            tv_destination, tv_accept_req_date, tv_receive_date, tv_give_date, tv_date, tv_code;
+            tv_destination, tv_accept_req_date, tv_receive_date, tv_give_date, tv_date, tv_code, tv_driver;
     private LinearLayout lin;
     private Travel travel;
     private MapView map;
@@ -70,6 +70,7 @@ public class ArchiveDetailActivity extends AppCompatActivity {
         tv_give_date = findViewById(R.id.tv_give_date);
         tv_date = findViewById(R.id.tv_date);
         tv_code = findViewById(R.id.tv_code);
+        tv_driver = findViewById(R.id.tv_driver);
     }
 
     private void setText() {
@@ -79,6 +80,7 @@ public class ArchiveDetailActivity extends AppCompatActivity {
             tv_give_date.setText(DigitConverter.convert(travel.getCreatedAt()));
             tv_date.setText(DigitConverter.convert(travel.getCreatedAt()));
             tv_code.setText(travel.getId());
+            tv_driver.setText(travel.getDriver());
             if (travel.isHaveReturn())
                 tv_have_return.setTextColor(getResources().getColor(R.color.green));
             else

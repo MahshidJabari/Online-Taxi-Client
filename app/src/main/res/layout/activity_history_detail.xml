@@ -173,11 +173,11 @@
                 android:text="@string/your_driver" />
 
             <TextView
+                android:id="@+id/tv_driver"
                 style="@style/white_bold_16"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="@string/your_driver"
                 android:textSize="18sp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

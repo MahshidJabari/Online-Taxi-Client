@@ -24,6 +24,7 @@ public class GlobalVariables {
     public static String lastName;
     public static String mail;
     public static String id;
+    public static String introduceCode;
     public static boolean hasReceivedResponse = false;
     public static boolean requestSent = false;
 

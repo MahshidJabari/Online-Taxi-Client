@@ -3,7 +3,6 @@ package com.jabari.client.activity.report;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -31,7 +30,6 @@ public class ArchiveActivity extends AppCompatActivity {
     private ArchiveAdapter adapter;
     private TextView tv_successful_travel, tv_payments;
     private ExceptionHandler handler;
-    private ArrayList<Travel> travelList;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -117,4 +115,5 @@ public class ArchiveActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(manager);
 
     }
+
 }

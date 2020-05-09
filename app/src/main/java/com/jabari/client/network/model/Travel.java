@@ -37,6 +37,16 @@ public class Travel implements Serializable {
     private String id;
     @SerializedName("createdAt")
     private String createdAt;
+    @SerializedName("driver")
+    private String driver;
+
+    public String getDriver() {
+        return driver;
+    }
+
+    public void setDriver(String driver) {
+        this.driver = driver;
+    }
 
     public ArrayList<String> getLocation() {
         return location;

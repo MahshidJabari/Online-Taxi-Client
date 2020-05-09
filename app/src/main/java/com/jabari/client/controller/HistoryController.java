@@ -6,7 +6,6 @@ import com.google.gson.reflect.TypeToken;
 import com.jabari.client.network.config.ApiClient;
 import com.jabari.client.network.config.ApiInterface;
 import com.jabari.client.network.model.Finance;
-import com.jabari.client.network.model.Request;
 import com.jabari.client.network.model.Travel;
 
 import java.lang.reflect.Type;

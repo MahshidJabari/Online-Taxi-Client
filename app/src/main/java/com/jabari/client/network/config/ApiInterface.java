@@ -176,10 +176,10 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("gift")
-    Call<JsonObject> useGiftCode();
+    Call<JsonObject> useGiftCode(@Field("code") String code);
 
     interface giftCallBack {
-        void onResponse();
+        void onResponse(String success);
 
         void onFailure(String error);
     }

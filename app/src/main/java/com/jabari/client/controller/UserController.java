@@ -24,6 +24,7 @@ public class UserController {
     ApiInterface.getCurrentUserCallback getCurrentUserCallback;
     ApiInterface.uploadImageCallback uploadImageCallback;
     ApiInterface.updateUserCallback updateUserCallback;
+    ApiInterface.giftCallBack giftCallBack;
 
     public UserController(ApiInterface.callSupportCallback callSupportCallback) {
         this.callSupportCallback = callSupportCallback;
@@ -39,6 +40,10 @@ public class UserController {
 
     public UserController(ApiInterface.updateUserCallback updateUserCallback) {
         this.updateUserCallback = updateUserCallback;
+    }
+
+    public UserController(ApiInterface.giftCallBack giftCallBack) {
+        this.giftCallBack = giftCallBack;
     }
 
     public void call() {
@@ -138,6 +143,26 @@ public class UserController {
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 updateUserCallback.onFailure("connection");
+            }
+        });
+    }
+
+    public void gift(String code) {
+        Retrofit retrofit = ApiClient.getClient();
+        ApiInterface apiInterfaces = retrofit.create(ApiInterface.class);
+        Call<JsonObject> call = apiInterfaces.useGiftCode(code);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.body() != null)
+                    giftCallBack.onResponse("gift");
+                else
+                    giftCallBack.onFailure("gift");
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                giftCallBack.onFailure("connection");
             }
         });
     }

@@ -172,15 +172,14 @@
             android:text="@string/gift_card_" />
 
         <EditText
-            android:id="@+id/et_gift_card"
+            android:id="@+id/tv_gift_card"
             style="@style/text_black_18"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.8"
             android:gravity="center"
             android:background="@android:color/transparent"
-            android:layoutDirection="rtl"
-            android:text="@string/gift_card" />
+            android:layoutDirection="rtl"/>
 
     </LinearLayout>
 
@@ -225,16 +224,15 @@
             android:layoutDirection="rtl"
             android:text="@string/discount_code" />
 
-        <EditText
-            android:id="@+id/et_discount_code"
+        <TextView
+            android:id="@+id/tv_introduce_code"
             style="@style/text_black_18"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.8"
             android:gravity="center"
             android:background="@android:color/transparent"
-            android:layoutDirection="rtl"
-            android:text="@string/discount_code" />
+            android:layoutDirection="rtl"/>
 
     </LinearLayout>
 

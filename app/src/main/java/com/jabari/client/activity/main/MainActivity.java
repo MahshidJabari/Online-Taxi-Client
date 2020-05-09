@@ -234,6 +234,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 GlobalVariables.lastName = user.getLastName();
                 GlobalVariables.mail = user.getEmail();
                 GlobalVariables.id = id;
+                GlobalVariables.introduceCode = user.getIntroduceCode();
 
             }
 

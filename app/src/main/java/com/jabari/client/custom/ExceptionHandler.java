@@ -50,6 +50,12 @@ public class ExceptionHandler {
             case "gallery":
                 Toasty.error(myContext.getBaseContext(), myContext.getString(R.string.exp_gallery), Toasty.LENGTH_LONG).show();
                 break;
+            case "gift":
+                Toasty.error(myContext.getBaseContext(), myContext.getString(R.string.exp_gift), Toasty.LENGTH_LONG).show();
+                break;
+            case "gift_null":
+                Toasty.error(myContext.getBaseContext(), myContext.getString(R.string.exp_gift_null), Toasty.LENGTH_LONG).show();
+                break;
         }
     }
 
@@ -58,6 +64,9 @@ public class ExceptionHandler {
         switch (success) {
             case "code":
                 Toasty.success(myContext.getBaseContext(), myContext.getString(R.string.success_code), Toasty.LENGTH_LONG).show();
+                break;
+            case "gift":
+                Toasty.error(myContext.getBaseContext(), myContext.getString(R.string.success_gift), Toasty.LENGTH_LONG).show();
                 break;
         }
     }
