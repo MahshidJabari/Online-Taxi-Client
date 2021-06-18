@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_alert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="45dp"
+        android:gravity="center"
+        android:text="هیچ درخواست درحال انجام ای یافت نشد!"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
 
     <RelativeLayout
+        android:id="@+id/rel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -86,31 +103,34 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/toman"
-                        android:textColor="@color/darkGray"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <TextView
                         android:id="@+id/tv_cache"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="5dp"
+                        android:layout_weight="1"
                         android:text=""
                         android:textColor="@color/color06"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/toman"
+                        android:textColor="@color/darkGray"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
 
@@ -160,30 +180,30 @@
 
         </LinearLayout>
 
-        <View
+        <!--<View
             android:id="@+id/view3"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_below="@id/lin3"
             android:layout_marginTop="10dp"
             android:background="@color/gray" />
-
-       <!-- <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/view3"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/border_pink"
-            android:drawableRight="@drawable/ic_close_dark_blue_24dp"
-            android:drawablePadding="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/cancel"
-            android:textColor="@color/color06"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 -->
+        <!-- <Button
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_below="@id/view3"
+             android:layout_centerHorizontal="true"
+             android:layout_marginTop="10dp"
+             android:layout_marginBottom="10dp"
+             android:background="@drawable/border_pink"
+             android:drawableRight="@drawable/ic_close_dark_blue_24dp"
+             android:drawablePadding="5dp"
+             android:paddingLeft="10dp"
+             android:paddingRight="10dp"
+             android:text="@string/cancel"
+             android:textColor="@color/color06"
+             android:textSize="20sp"
+             android:textStyle="bold" />
+ -->
     </RelativeLayout>
 </LinearLayout>

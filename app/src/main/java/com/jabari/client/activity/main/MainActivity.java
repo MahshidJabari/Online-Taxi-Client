@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         lin_profile = headerView.findViewById(R.id.lin_profile);
-        tv_mail.setText(GlobalVariables.mail);
+        /*tv_mail.setText(GlobalVariables.mail);*/
         lin_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

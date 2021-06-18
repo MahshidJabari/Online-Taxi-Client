@@ -112,7 +112,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1.8"
             android:paddingRight="20dp"
             android:text="@string/your_credit"
             android:textColor="@color/color05"
@@ -135,11 +135,11 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.7"
             android:paddingEnd="10dp"
             android:text="@string/toman"
             android:textColor="@color/green"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -322,7 +322,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="20/000" />
+            android:text="" />
 
         <TextView
             style="@style/common_text_dark_blue"
@@ -376,10 +376,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="20/000"
+            android:text=""
             android:textColor="@color/green"
             android:textDirection="ltr"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -19,7 +20,8 @@ import com.jabari.client.network.model.Travel;
  */
 public class OnGoingFragment extends Fragment {
 
-    private TextView tv_destination, tv_start_address, tv_payment_way, tv_cache;
+    private TextView tv_destination, tv_start_address, tv_payment_way, tv_cache,tv_alert;
+    private RelativeLayout rel;
 
     public OnGoingFragment() {
         // Required empty public constructor
@@ -33,6 +35,8 @@ public class OnGoingFragment extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_ongoing_tab, container, false);
         tv_destination = root.findViewById(R.id.tv_destination);
         tv_start_address = root.findViewById(R.id.tv_start_location);
+        tv_alert = root.findViewById(R.id.tv_alert);
+        rel = root.findViewById(R.id.rel);
         tv_payment_way = root.findViewById(R.id.tv_payment_way);
         tv_cache = root.findViewById(R.id.tv_cache);
         tv_destination.setText(GlobalVariables.destination);
@@ -41,7 +45,13 @@ public class OnGoingFragment extends Fragment {
             tv_payment_way.setText("آنلاین");
         else
             tv_payment_way.setText("نقدی");
-        tv_cache.setText(DigitConverter.convert(GlobalVariables.calculated));
+        if (GlobalVariables.calculated != null) {
+            tv_cache.setText(DigitConverter.convert(GlobalVariables.calculated));
+        }
+        else {
+            rel.setVisibility(View.GONE);
+            tv_alert.setVisibility(View.VISIBLE);
+        }
         return root;
     }
 

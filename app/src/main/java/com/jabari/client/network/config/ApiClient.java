@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://digipeyk.com/api/";
+    private static final String BASE_URL = "https://digipeyk.com/api/";
 
     static OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
             .connectTimeout(60, TimeUnit.SECONDS)
@@ -87,7 +87,7 @@ public class ApiClient {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
-//                    .client(UnsafeHttp().build())
+                   .client(UnsafeHttp().build())
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
